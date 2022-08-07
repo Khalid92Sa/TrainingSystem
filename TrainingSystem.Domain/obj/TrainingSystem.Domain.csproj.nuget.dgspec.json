@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj": {}
+    "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj": {
+    "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
-        "projectName": "TrainingSystem.Web",
-        "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
+        "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+        "projectName": "TrainingSystem.Domain",
+        "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
         "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Web\\obj\\",
+        "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -51,9 +51,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

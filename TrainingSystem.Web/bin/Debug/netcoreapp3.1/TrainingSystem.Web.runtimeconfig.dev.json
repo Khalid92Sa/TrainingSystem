@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\one_touch\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\one_touch\\.nuget\\packages"
+    ]
+  }
+}
