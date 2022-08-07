@@ -8,28 +8,26 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\one_touch\\.nuget\\packages\\": {}
+    "C:\\Users\\khalids\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\khalids\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
       "projectName": "TrainingSystem.Domain",
-      "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
-      "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
+      "projectPath": "C:\\Users\\khalids\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+      "packagesPath": "C:\\Users\\khalids\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\khalids\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\khalids\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.telerik.com/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -61,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
