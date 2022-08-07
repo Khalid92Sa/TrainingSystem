@@ -6,6 +6,8 @@ namespace TrainingSystem.Service
     {
         //comment
         //Comment Khalid
+        // Comment Khalid2
+
         //Comment Abdulkareem
     }
 }
