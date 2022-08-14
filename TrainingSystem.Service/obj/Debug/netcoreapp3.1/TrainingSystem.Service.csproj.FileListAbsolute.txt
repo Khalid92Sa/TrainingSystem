@@ -1,10 +1,17 @@
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Service.deps.json
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Service.dll
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Service.pdb
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Application.dll
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Domain.dll
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Repositroy.dll
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Domain.pdb
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Repositroy.pdb
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\bin\Debug\netcoreapp3.1\TrainingSystem.Application.pdb
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\obj\Debug\netcoreapp3.1\TrainingSystem.Service.csproj.AssemblyReference.cache
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\obj\Debug\netcoreapp3.1\TrainingSystem.Service.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\obj\Debug\netcoreapp3.1\TrainingSystem.Service.AssemblyInfoInputs.cache
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\obj\Debug\netcoreapp3.1\TrainingSystem.Service.AssemblyInfo.cs
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\obj\Debug\netcoreapp3.1\TrainingSystem.Service.csproj.CoreCompileInputs.cache
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\obj\Debug\netcoreapp3.1\TrainingSystem.Service.csproj.CopyComplete
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\obj\Debug\netcoreapp3.1\TrainingSystem.Service.dll
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Service\obj\Debug\netcoreapp3.1\TrainingSystem.Service.pdb
