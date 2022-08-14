@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using TrainingSystem.Application.DTOs.Users;
+using TrainingSystem.Service;
 using TrainingSystem.Web.Models;
 
 namespace TrainingSystem.Web.Controllers
@@ -12,10 +14,12 @@ namespace TrainingSystem.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUserService _UserService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IUserService userService)
         {
             _logger = logger;
+            _UserService = userService;
         }
 
         public IActionResult Index()

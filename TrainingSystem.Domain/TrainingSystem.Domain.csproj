@@ -1,7 +1,36 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220807221108_AddAppUserEntity.cs" />
+    <Compile Remove="Migrations\20220807221108_AddAppUserEntity.Designer.cs" />
+    <Compile Remove="Migrations\20220807221207_AddAppUserEntity.cs" />
+    <Compile Remove="Migrations\20220807221207_AddAppUserEntity.Designer.cs" />
+    <Compile Remove="Migrations\20220808114418_AddAppUserEntity.cs" />
+    <Compile Remove="Migrations\20220808114418_AddAppUserEntity.Designer.cs" />
+    <Compile Remove="Migrations\20220811103149_AddTrainerEntity.cs" />
+    <Compile Remove="Migrations\20220811103149_AddTrainerEntity.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrainingSystem.Application\TrainingSystem.Application.csproj" />
+  </ItemGroup>
 
 </Project>
