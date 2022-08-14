@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\C-ROAD\\Source\\Repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {}
+    "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\C-ROAD\\Source\\Repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
+    "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\C-ROAD\\Source\\Repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
         "projectName": "TrainingSystem.Domain",
-        "projectPath": "C:\\Users\\C-ROAD\\Source\\Repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
-        "packagesPath": "C:\\Users\\C-ROAD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\C-ROAD\\Source\\Repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+        "packagesPath": "C:\\Users\\Moh'd\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\C-ROAD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Moh'd\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
         }
       }
     }

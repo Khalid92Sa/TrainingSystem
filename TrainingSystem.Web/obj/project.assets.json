@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\C-ROAD\\.nuget\\packages\\": {}
+    "C:\\Users\\Moh'd\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\C-ROAD\\Source\\Repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
+      "projectUniqueName": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
       "projectName": "TrainingSystem.Web",
-      "projectPath": "C:\\Users\\C-ROAD\\Source\\Repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
-      "packagesPath": "C:\\Users\\C-ROAD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\C-ROAD\\Source\\Repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Web\\obj\\",
+      "projectPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
+      "packagesPath": "C:\\Users\\Moh'd\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\C-ROAD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Moh'd\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
       }
     }
   }
