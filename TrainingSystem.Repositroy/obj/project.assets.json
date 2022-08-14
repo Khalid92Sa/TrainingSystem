@@ -8,26 +8,25 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Moh'd\\.nuget\\packages\\": {}
+    "C:\\Users\\khalids\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
+      "projectUniqueName": "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
       "projectName": "TrainingSystem.Repositroy",
-      "projectPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
-      "packagesPath": "C:\\Users\\Moh'd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\obj\\",
+      "projectPath": "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
+      "packagesPath": "C:\\Users\\khalids\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Moh'd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\khalids\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

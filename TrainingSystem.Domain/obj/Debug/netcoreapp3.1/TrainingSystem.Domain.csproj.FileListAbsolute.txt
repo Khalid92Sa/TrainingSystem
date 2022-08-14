@@ -1,0 +1,10 @@
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\bin\Debug\netcoreapp3.1\TrainingSystem.Domain.deps.json
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\bin\Debug\netcoreapp3.1\TrainingSystem.Domain.dll
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\bin\Debug\netcoreapp3.1\TrainingSystem.Domain.pdb
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\obj\Debug\netcoreapp3.1\TrainingSystem.Domain.csproj.AssemblyReference.cache
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\obj\Debug\netcoreapp3.1\TrainingSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\obj\Debug\netcoreapp3.1\TrainingSystem.Domain.AssemblyInfoInputs.cache
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\obj\Debug\netcoreapp3.1\TrainingSystem.Domain.AssemblyInfo.cs
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\obj\Debug\netcoreapp3.1\TrainingSystem.Domain.csproj.CoreCompileInputs.cache
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\obj\Debug\netcoreapp3.1\TrainingSystem.Domain.dll
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Domain\obj\Debug\netcoreapp3.1\TrainingSystem.Domain.pdb

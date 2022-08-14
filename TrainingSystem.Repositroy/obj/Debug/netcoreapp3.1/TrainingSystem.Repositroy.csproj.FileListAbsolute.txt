@@ -1,0 +1,10 @@
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Debug\netcoreapp3.1\TrainingSystem.Repositroy.deps.json
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Debug\netcoreapp3.1\TrainingSystem.Repositroy.dll
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Debug\netcoreapp3.1\TrainingSystem.Repositroy.pdb
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Debug\netcoreapp3.1\TrainingSystem.Repositroy.csproj.AssemblyReference.cache
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Debug\netcoreapp3.1\TrainingSystem.Repositroy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Debug\netcoreapp3.1\TrainingSystem.Repositroy.AssemblyInfoInputs.cache
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Debug\netcoreapp3.1\TrainingSystem.Repositroy.AssemblyInfo.cs
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Debug\netcoreapp3.1\TrainingSystem.Repositroy.csproj.CoreCompileInputs.cache
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Debug\netcoreapp3.1\TrainingSystem.Repositroy.dll
+C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Debug\netcoreapp3.1\TrainingSystem.Repositroy.pdb
