@@ -6571,19 +6571,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\C-ROAD\\.nuget\\packages\\": {}
+    "C:\\Users\\Moh'd\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
       "projectName": "TrainingSystem.Repositroy",
       "projectPath": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
       "packagesPath": "C:\\Users\\C-ROAD\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Repositroy\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
+      "projectName": "TrainingSystem.Repositroy",
+      "projectPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
+      "packagesPath": "C:\\Users\\Moh'd\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\obj\\",
+>>>>>>> dd35395c0598aad0a4d07c77f270f89431a57bf1
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\C-ROAD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Moh'd\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6660,7 +6668,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
       }
     }
   }

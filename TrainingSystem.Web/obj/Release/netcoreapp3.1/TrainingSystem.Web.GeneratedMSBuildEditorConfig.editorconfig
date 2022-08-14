@@ -1,3 +1,7 @@
 is_global = true
 build_property.RootNamespace = TrainingSystem.Web
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\C-ROAD\source\repos\Khalid92Sa\TrainingSystem\TrainingSystem.Web\
+=======
+build_property.ProjectDir = C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Web\
+>>>>>>> dd35395c0598aad0a4d07c77f270f89431a57bf1

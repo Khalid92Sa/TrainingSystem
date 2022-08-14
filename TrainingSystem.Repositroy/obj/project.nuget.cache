@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "5Cg2ro+Ry1Ys3tX7Wux8ya/LOEBNPQQbT7tBpENs11/8RnX0kHj1r+gY9l7tUtN35TkEtQvEy+Z/wUSSmzsNSg==",
   "success": true,
   "projectFilePath": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
@@ -133,5 +134,11 @@
     "C:\\Users\\C-ROAD\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\C-ROAD\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "0IcEksKHD+MarmwKpy/1AC4e/ZkhslHoRlfqBhfahgmPsvYk0XdjvMHL5xqHhYzVPiiRG1tQBW7gC6Vcx6oqXg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> dd35395c0598aad0a4d07c77f270f89431a57bf1
   "logs": []
 }

@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "PxPdhDMSxfD5S9JRwvkHE+UNPFmyVBYGpwBwsVg4PRWwpLiXOVBpORwSjK98NJpqoHyX3zW/jLcNVPJEiyHADA==",
   "success": true,
   "projectFilePath": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
@@ -110,5 +111,11 @@
     "C:\\Users\\C-ROAD\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\C-ROAD\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "VIEfEtfzxpzvepbhwEeEG8OWJ9Mv5B3wp3jeGxXORTjHmofl4lo1Qa/PUNyLEFbNntARh1WQ/jpyVFI2ZxDO0A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> dd35395c0598aad0a4d07c77f270f89431a57bf1
   "logs": []
 }

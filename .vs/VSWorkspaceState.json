@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< HEAD
     "\\TrainingSystem.Service"
+=======
+    "\\TrainingSystem.Web"
+>>>>>>> dd35395c0598aad0a4d07c77f270f89431a57bf1
   ],
   "SelectedNode": "\\TrainingSystem.sln",
   "PreviewInSolutionExplorer": false

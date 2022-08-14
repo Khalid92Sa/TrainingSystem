@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "moZQYpVuSywZl47OK7zREn3DJ7W/v1xkrWcyeHFsnnVBNJgFSnedcv2PGbvDs8P37wY4BN4BLgGAGVEmzLLcJA==",
   "success": true,
   "projectFilePath": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
@@ -208,5 +209,11 @@
     "C:\\Users\\C-ROAD\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
     "C:\\Users\\C-ROAD\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "Gg4rWpN3QFQfluHqt5Jdck1v3uA3MCjnyN3tSUw8zuTzYpv2ggyuD5xGQt6X75+AXB3phv0JKAee3p1yhmsLyA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> dd35395c0598aad0a4d07c77f270f89431a57bf1
   "logs": []
 }

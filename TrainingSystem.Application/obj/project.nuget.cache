@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "Tk6ntOcdIE8dJCTcmyQ8hraRdajgxbVq+k672Ni/459lJlrVLzyLNsGVNLO0hu1qxMQlXeXu5Eu7bSjfAunQ8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
+=======
+  "dgSpecHash": "RsCi+BWlV/1PskBzV8cv0mzdP/B6aSZuMOIQnKcE34AWcr/zFAzVOVsazGZh5X0oGlnmXUuhr27+rSuW9ntlvg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
+>>>>>>> dd35395c0598aad0a4d07c77f270f89431a57bf1
   "expectedPackageFiles": [],
   "logs": []
 }

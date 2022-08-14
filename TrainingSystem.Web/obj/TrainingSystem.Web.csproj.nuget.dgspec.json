@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj": {}
   },
   "projects": {
@@ -12,9 +13,22 @@
         "projectPath": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
         "packagesPath": "C:\\Users\\C-ROAD\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\C-ROAD\\source\\repos\\Khalid92Sa\\TrainingSystem\\TrainingSystem.Application\\obj\\",
+=======
+    "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
+        "projectName": "TrainingSystem.Web",
+        "projectPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
+        "packagesPath": "C:\\Users\\Moh'd\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\obj\\",
+>>>>>>> dd35395c0598aad0a4d07c77f270f89431a57bf1
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\C-ROAD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Moh'd\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -433,7 +447,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
         }
       }
     }
