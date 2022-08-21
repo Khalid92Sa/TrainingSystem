@@ -216,16 +216,25 @@ namespace TrainingSystem.Domain.Migrations
                 });
 
             modelBuilder.Entity("TrainingSystem.Application.DTOs.Users.LoginDTO", b =>
+            {
+                b.Property<string>("Email")
+                    .HasColumnType("nvarchar(450)");
+
+                b.Property<string>("Password")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<bool>("RememberMe")
+                    .HasColumnType("bit");
+
+                b.HasKey("Email");
+
+                b.ToTable("LoginDTO");
+            });
             modelBuilder.Entity("TrainingSystem.Domain.ProgramSection", b =>
                 {
-                    b.Property<string>("Email")
                     b.Property<string>("SectionID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                    b.Property<string>("ProgramsID")
-                        .HasColumnType("nvarchar(450)");
+                    .HasColumnType("nvarchar(450)");
 
                     b.HasKey("SectionID", "ProgramsID");
 
