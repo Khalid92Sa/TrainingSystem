@@ -34,7 +34,6 @@ namespace TrainingSystem.Web.Controllers
             if (string.IsNullOrEmpty(SearchValue)) return View( await _TrainerService.Trainers.ToListAsync());
             ViewBag.SearchValue = SearchValue;
             if (SearchBy == null || SearchBy == "Name") return View(await _TrainerService.Trainers.Where(n => n.Name.Contains(SearchValue)).ToListAsync());
-            else if (SearchBy == "Section") return View(await _TrainerService.Trainers.Where(n => n.SectionID.Contains(SearchValue)).ToListAsync());
             else if (SearchBy == "ID") return View(await _TrainerService.Trainers.Where(n => n.ID.Contains(SearchValue)).ToListAsync());
             else
             {

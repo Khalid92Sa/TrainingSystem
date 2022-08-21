@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TrainingSystem.Domain;
 using TrainingSystem.Service;
 
@@ -22,26 +24,35 @@ namespace TrainingSystem.Service
             return context.Sections.FirstOrDefault(x => x.ID == id);
         }
 
-        public void CreateSection(Section section)
+        public async Task CreateSection(Section section)
         {
             context.Sections.Add(section);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
         
 
-        public void UpdateSection(Section section, int id)
+        public async Task UpdateSection(Section section, int id)
         {
             var sectionToUpdate = GetSectionByID(id);
             if (sectionToUpdate == null)
             {
                 return;
             }
-            sectionToUpdate.SectionField = section.SectionField;
+            sectionToUpdate.SectionLookupID = section.SectionLookupID;
+            sectionToUpdate.TrainerID = section.TrainerID;
             sectionToUpdate.StartDate = section.StartDate;
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        
+        public System.Data.Common.DbConnection Conn()
+        {
+            return context.Database.GetDbConnection();
+        }
+
+        public async Task Save()
+        {
+            await context.SaveChangesAsync();
+        }
     }
 }

@@ -1,0 +1,15 @@
+﻿@model TrainingSystem.Domain.Trainee
+@{
+    ViewData["Title"] = "ViewCV";
+    var base64 = Convert.ToBase64String(Model.CV);
+    var Src = String.Format("data:application/pdf;base64,{0}", base64);
+    if (!Model.CVFileName.Contains(".pdf"))
+    {
+        Src = String.Format("data:image/gif;base64,{0}", base64);
+    }
+}
+<div>
+    <a class="btn btn-default" asp-action="Index">Back To Trianees</a>|| <a class="btn btn-default" asp-action="AddCVFile" asp-route-id="@Model.ID">EditCVFile</a>
+</div>
+<hr />
+<embed src="@Src" width="500" height="500" alt="Image"/>

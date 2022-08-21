@@ -239,16 +239,44 @@ namespace TrainingSystem.Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+
+                    b.Property<int>("SectionLookupID")
+                        .HasColumnType("int");
+
                     b.Property<string>("SectionField")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
+
+                    b.Property<string>("TrainerID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
 
+                    b.HasIndex("SectionLookupID");
+
+                    b.HasIndex("TrainerID");
+
                     b.ToTable("Sections");
+                });
+
+            modelBuilder.Entity("TrainingSystem.Domain.SectionLookup", b =>
+                {
+                    b.Property<int>("SectionLookupID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("SectionField")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SectionLookupID");
+
+                    b.ToTable("SectionLookup");
                 });
 
             modelBuilder.Entity("TrainingSystem.Domain.Trainee", b =>
@@ -264,6 +292,12 @@ namespace TrainingSystem.Domain.Migrations
                     b.Property<string>("CVFileName")
                         .HasColumnType("nvarchar(max)");
 
+
+                    b.Property<int>("ContactNumber")
+                        .HasColumnType("int");
+
+
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -271,17 +305,38 @@ namespace TrainingSystem.Domain.Migrations
                     b.Property<DateTime>("GraduationDate")
                         .HasColumnType("datetime2");
 
+
+
                     b.Property<bool>("GraduationStatus")
                         .HasColumnType("bit");
+
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+
+                    b.Property<int?>("SectionID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TrainerID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SectionID");
+
+                    b.HasIndex("TrainerID");
+
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
 
                     b.ToTable("Trainees");
                 });
@@ -304,13 +359,23 @@ namespace TrainingSystem.Domain.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+
+                    b.Property<int?>("SectionID")
+                        .HasColumnType("int");
+
                     b.Property<string>("SectionID")
                         .HasColumnType("nvarchar(max)");
+
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("ID");
+
+
+                    b.HasIndex("SectionID");
+
+
 
                     b.ToTable("Trainer");
                 });
@@ -365,6 +430,40 @@ namespace TrainingSystem.Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
+
+            modelBuilder.Entity("TrainingSystem.Domain.Section", b =>
+                {
+                    b.HasOne("TrainingSystem.Domain.SectionLookup", "SectionField")
+                        .WithMany("Sections")
+                        .HasForeignKey("SectionLookupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TrainingSystem.Domain.Trainer", "Trainer")
+                        .WithMany()
+                        .HasForeignKey("TrainerID");
+                });
+
+            modelBuilder.Entity("TrainingSystem.Domain.Trainee", b =>
+                {
+                    b.HasOne("TrainingSystem.Domain.Section", "Section")
+                        .WithMany("Trainees")
+                        .HasForeignKey("SectionID");
+
+                    b.HasOne("TrainingSystem.Domain.Trainer", "Trainer")
+                        .WithMany("Trainees")
+                        .HasForeignKey("TrainerID");
+                });
+
+            modelBuilder.Entity("TrainingSystem.Domain.Trainer", b =>
+                {
+                    b.HasOne("TrainingSystem.Domain.Section", "Section")
+                        .WithMany()
+                        .HasForeignKey("SectionID");
+                });
+
+
 #pragma warning restore 612, 618
         }
     }

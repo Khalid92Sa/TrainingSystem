@@ -11,7 +11,9 @@ namespace TrainingSystem.Service
     {
         IQueryable<Section> Sections { get; }
         public Section GetSectionByID(int id);
-        public void CreateSection(Section section);
-        public void UpdateSection(Section section, int id);
+        public Task CreateSection(Section section);
+        public Task UpdateSection(Section section, int id);
+        public System.Data.Common.DbConnection Conn();
+        public Task Save();
     }
 }

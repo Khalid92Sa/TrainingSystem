@@ -36,10 +36,16 @@ namespace TrainingSystem.Web
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITrainerRepository, TrainerRepository>();
             services.AddScoped<ITrainerService, TrainerService>();
+
+            services.AddScoped<ITrainee, TraineeService>();
+            services.AddScoped<ISection, SectionService>();
+            services.AddScoped<ISectionLookup, SectionLookupService>();
+
             services.AddScoped<IEmailSender, EmailSender>();
 
             
             services.AddMemoryCache();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -137,7 +137,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Http/2.2.0": {
+      "Microsoft.AspNetCore.Http/2.2.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -1843,6 +1843,9 @@
       "TrainingSystem.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http": "2.2.2"
+        },
         "compile": {
           "bin/placeholder/TrainingSystem.Application.dll": {}
         },
@@ -2023,16 +2026,16 @@
         "microsoft.aspnetcore.hosting.server.abstractions.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Http/2.2.0": {
-      "sha512": "YogBSMotWPAS/X5967pZ+yyWPQkThxhmzAwyCHCSSldzYBkW5W5d6oPfBaPqQOnSHYTpSOSOkpZoAce0vwb6+A==",
+    "Microsoft.AspNetCore.Http/2.2.2": {
+      "sha512": "BAibpoItxI5puk7YJbIGj95arZueM8B8M5xT1fXBn3hb3L2G3ucrZcYXv1gXdaroLbntUs8qeV8iuBrpjQsrKw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.http/2.2.0",
+      "path": "microsoft.aspnetcore.http/2.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.xml",
-        "microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
         "microsoft.aspnetcore.http.nuspec"
       ]
     },
@@ -6515,19 +6518,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Moh'd\\.nuget\\packages\\": {}
+    "C:\\Users\\one_touch\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
+      "projectUniqueName": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
       "projectName": "TrainingSystem.Service",
-      "projectPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
-      "packagesPath": "C:\\Users\\Moh'd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Service\\obj\\",
+      "projectPath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
+      "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Moh'd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6535,17 +6538,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.telerik.com/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
-              "projectPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
+            "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
+              "projectPath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
             },
-            "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {
-              "projectPath": "C:\\Users\\Moh'd\\Source\\Repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj"
+            "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {
+              "projectPath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj"
             }
           }
         }
@@ -6574,7 +6578,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

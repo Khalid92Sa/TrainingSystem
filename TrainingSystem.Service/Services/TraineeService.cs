@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TrainingSystem.Domain;
 using TrainingSystem.Service;
 
@@ -21,13 +22,13 @@ namespace TrainingSystem.Service
             return context.Trainees.FirstOrDefault(x => x.ID == id);
         }
 
-        public void CreateTrainee(Trainee trainee)
+        public async Task CreateTrainee(Trainee trainee)
         {
             context.Trainees.Add(trainee);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }     
 
-        public void UpdateTrainee(Trainee trainee, int id)
+        public async Task UpdateTrainee(Trainee trainee, int id)
         {
             var traineeToUpdate = GetTraineeByID(id);
             if (traineeToUpdate == null)
@@ -36,9 +37,43 @@ namespace TrainingSystem.Service
             }
             traineeToUpdate.Name = trainee.Name;
             traineeToUpdate.Email = trainee.Email;
-            traineeToUpdate.CV = trainee.CV;
+            traineeToUpdate.ContactNumber = trainee.ContactNumber;
+            traineeToUpdate.StartDate = trainee.StartDate;
             traineeToUpdate.GraduationDate = trainee.GraduationDate;
+            await context.SaveChangesAsync();
+        }
+
+        public async Task UpdateTraineeCV(string FileName, byte[] File, int id)
+        {
+            var traineeToUpdate = GetTraineeByID(id);
+            if (traineeToUpdate == null)
+            {
+                return;
+            }
+            traineeToUpdate.CV = File;
+            traineeToUpdate.CVFileName = FileName;
+            await context.SaveChangesAsync();
+        }
+        public void AddTraineeToSection(int id, int sectionid)
+        {
+            var traineeToUpdate = GetTraineeByID(id);
+            traineeToUpdate.SectionID = sectionid;
+            //await context.SaveChangesAsync();
             context.SaveChanges();
+        }
+
+        public void RemoveTraineeFromSection(Section section)
+        {
+            foreach (var trainee in Trainees)
+            {
+                if(trainee.SectionID == section.ID)
+                {
+                    trainee.SectionID = null;
+                }  
+            }
+            //await context.SaveChangesAsync();
+            context.SaveChanges();
+
         }
     }
 }

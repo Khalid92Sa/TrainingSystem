@@ -1,3 +1,196 @@
 ﻿@{
     ViewData["Title"] = "Sections";
 }
+@*@model IEnumerable<TrainingSystem.Domain.Section>*@
+@model TrainingSystem.Repositroy.ViewModelSection
+<h1>@ViewBag.Title</h1>
+<form asp-action="Index" method="get">
+    <div class="mb-1">
+        <p>
+            <div class="form-actions no-color">
+                <p>
+                    <select class="form-select form-control-sm mb-1 ml-2" asp-items="@ViewBag.SectionField" name="searchSection" style="width:130px">
+                    @if (ViewBag.searchSection == null)
+                    {
+                        <option value="">--Section Field--</option>
+                    }
+                    else
+                    {
+                        <option value="@ViewBag.searchSection">
+                            @ViewBag.SectionFieldResult
+                        </option>
+                    }
+                    </select>
+                    <input type="number" name="DateFilter" value="@ViewData["CurrentFilterDate"]" placeholder="YYYY" min="2000" max="3000" />
+                 </p>
+            </div>
+            <div class="form-actions no-color">
+                <p>
+                    <input type="submit" value="Search" class="btn btn-default" /> |
+                    <a asp-action="Index" class="btn btn-default">Back to Full List</a>
+                 </p>
+            </div>
+            <a class="btn btn-success btn-sm" asp-action="CreateEdit">Add New Section</a>
+            <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Export To
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <li><a class="dropdown-item" id="exportTableToExcel">Excel</a></li>
+                <li><a class="dropdown-item" id="print">PDF</a></li>
+            </ul>
+        </p>
+    </div>
+    <table class="table mytable" id="mytable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    SectionField
+                </th>
+                <th>
+                    StartDate
+                </th>
+                <th>
+                    EndDate
+                </th>
+                <th>
+                    Trainers
+                </th>
+                <th>
+                    Trainees
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Sections)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idstring)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SectionField.SectionField)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Trainer.Name)
+                    </td>
+                    <td>
+                        @foreach (var Trainee in item.Trainees)
+                        {
+                            @Html.DisplayFor(modelItem => Trainee.Name) <br />
+                        }
+                        <a class="@*btn btn-default*@" asp-action="InsertTrainees" asp-route-id="@item.ID">Insert</a>
+
+                    </td>
+                    <td>
+                        <a class="btn btn-default" asp-action="CreateEdit" asp-route-id="@item.ID">Edit</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <h2>SectionsFields</h2>
+    <div class="form-actions no-color">
+        <p>
+            Filter by Year: <input type="number" name="DateFilterFields" value="@ViewData["CurrentFilterDateFields"]" placeholder="YYYY" min="2000" max="3000" />
+        </p>
+    </div>
+    <div class="form-actions no-color">
+        <p>
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index" class="btn btn-default">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                SectionField
+            </th>
+            <th>
+                StartDate
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SectionsFields)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SectionField)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js" integrity="sha512-XmZS54be9JGMZjf+zk61JZaLZyjTRgs41JLSmx5QlIP5F+sSGIyzD2eJyxD4K6kGGr7AsVhaitzZ2WTfzpsQzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script>
+        var ele2 = document.getElementById('mytable');
+        console.log(ele2)
+        $("#print").click(function() {
+            var ele1 = document.querySelectorAll(".DontTakeInPDF").forEach(e => e.remove());
+            var ele = document.getElementById('mytable');
+            console.log(ele)
+            html2pdf().from(ele).set({
+                pagebreak: { avoid: 'tr' },
+                filename: 'Sections.pdf',
+                jsPDF: { orientation: 'landscape', unit: 'pt', format: 'letter', compressPDF: true }
+            }).save()
+            ele = ele2;
+            setTimeout("location.reload(true);", 500);
+        });
+
+        $("#exportTableToExcel").click(function() {
+            var ele1 = document.querySelectorAll(".DontTakeInPDF").forEach(e => e.remove());
+            var ele = document.getElementById('mytable');
+            $("#mytable").table2excel({
+                filename: "Sections",
+                excepte: "DontTakeInPDF"
+            });
+            ele = ele2;
+            setTimeout("location.reload(true);", 500);
+        });
+    </script>
+}
+

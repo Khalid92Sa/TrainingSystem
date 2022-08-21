@@ -15,6 +15,7 @@ namespace TrainingSystem.Domain
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
+        public DbSet<SectionLookup> SectionLookup { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
