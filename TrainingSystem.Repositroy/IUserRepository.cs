@@ -11,5 +11,8 @@ namespace TrainingSystem.Repositroy
     {
         Task<Microsoft.AspNetCore.Identity.SignInResult> Passwordsignin(LoginDTO loginDTO);
         Task Logout();
+     
+        Task<IdentityUser> GetUserByUserName(string userName);
+
     }
 }

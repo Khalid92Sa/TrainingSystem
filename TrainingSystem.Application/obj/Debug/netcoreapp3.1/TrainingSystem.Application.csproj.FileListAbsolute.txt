@@ -8,3 +8,13 @@ C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Application\obj\Debu
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.csproj.CoreCompileInputs.cache
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.dll
 C:\Users\khalids\source\repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.pdb
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\bin\Debug\netcoreapp3.1\TrainingSystem.Application.deps.json
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\bin\Debug\netcoreapp3.1\TrainingSystem.Application.dll
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\bin\Debug\netcoreapp3.1\TrainingSystem.Application.pdb
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.csproj.AssemblyReference.cache
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.AssemblyInfoInputs.cache
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.AssemblyInfo.cs
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.csproj.CoreCompileInputs.cache
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.dll
+C:\Users\Moh'd\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.pdb

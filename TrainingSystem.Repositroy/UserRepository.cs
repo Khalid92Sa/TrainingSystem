@@ -23,12 +23,20 @@ namespace TrainingSystem.Repositroy
         }
         public async Task<Microsoft.AspNetCore.Identity.SignInResult> Passwordsignin(LoginDTO loginDto)
         {
-            var userr = await _signInManager.PasswordSignInAsync(loginDto.Email, loginDto.Password, loginDto.RememberMe, false);
+            var userr = await _signInManager.PasswordSignInAsync(loginDto.UserName, loginDto.Password, loginDto.RememberMe, false);
             return userr;
         }
         public async Task Logout()
         {
             await _signInManager.SignOutAsync();
         }
+
+      
+        public async Task<IdentityUser> GetUserByUserName(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            return user;
+        }
+
     }
 }

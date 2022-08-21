@@ -20,6 +20,7 @@ namespace TrainingSystem.Domain
             base.OnModelCreating(builder);
             builder.Entity<Trainer>().ToTable("Trainer");
         }
-        public DbSet<TrainingSystem.Application.DTOs.Users.LoginDTO> LoginDTO { get; set; }
+        
+       
     }
 }
