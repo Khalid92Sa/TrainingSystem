@@ -7,7 +7,7 @@ namespace TrainingSystem.Domain
     public class Section
     {
         [Range (1, 5)]
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         [Required]
         public string SectionField { get; set; }
@@ -24,6 +24,8 @@ namespace TrainingSystem.Domain
         public DateTime EndDate {
             get{return StartDate.AddMonths(3);}
         }
+        public ICollection<Trainer> trainers { get; set; }
+        public ICollection<ProgramSection> programSections { get; set; }
 
     }
 }

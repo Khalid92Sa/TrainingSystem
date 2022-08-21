@@ -1,8 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220814100108_InitialCreate.cs" />
+    <Compile Remove="Migrations\20220814100108_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20220816090327_updateTrainer.cs" />
+    <Compile Remove="Migrations\20220816090327_updateTrainer.Designer.cs" />
+    <Compile Remove="Migrations\20220816090449_InitailCreate.cs" />
+    <Compile Remove="Migrations\20220816090449_InitailCreate.Designer.cs" />
+    <Compile Remove="Migrations\20220816092738_AddProgram.cs" />
+    <Compile Remove="Migrations\20220816092738_AddProgram.Designer.cs" />
+    <Compile Remove="Migrations\20220816093018_AddProgram.cs" />
+    <Compile Remove="Migrations\20220816093018_AddProgram.Designer.cs" />
+    <Compile Remove="Migrations\20220816093705_addProgram.cs" />
+    <Compile Remove="Migrations\20220816093705_addProgram.Designer.cs" />
+    <Compile Remove="Migrations\20220816094359_addProgram.cs" />
+    <Compile Remove="Migrations\20220816094359_addProgram.Designer.cs" />
+    <Compile Remove="Migrations\20220821081706_AddProgram_andProgramSection.cs" />
+    <Compile Remove="Migrations\20220821081706_AddProgram_andProgramSection.Designer.cs" />
+    <Compile Remove="Migrations\20220821082003_AddProgram_andProgramSection.cs" />
+    <Compile Remove="Migrations\20220821082003_AddProgram_andProgramSection.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />

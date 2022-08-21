@@ -10,8 +10,8 @@ namespace TrainingSystem.Service
     public interface ISection
     {
         IQueryable<Section> Sections { get; }
-        public Section GetSectionByID(int id);
+        public Section GetSectionByID(string id);
         public void CreateSection(Section section);
-        public void UpdateSection(Section section, int id);
+        public void UpdateSection(Section section, string id);
     }
 }

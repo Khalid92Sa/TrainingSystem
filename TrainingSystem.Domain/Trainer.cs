@@ -18,8 +18,9 @@ namespace TrainingSystem.Domain
             get { return Name.Replace(" ", "_"); }
         }
         public string Email { get; set; }
-        //public Section Section { get; set; }
-        //public ICollection<Trainee> Trainees { get; set; }
+        public string Password { get; set; }
+        public Section Section { get; set; }
+        public ICollection<Trainee> Trainees { get; set; }
 
     }
 }

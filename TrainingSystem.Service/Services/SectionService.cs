@@ -17,7 +17,7 @@ namespace TrainingSystem.Service
         public IQueryable<Section> Sections =>
             context.Sections;
 
-        public Section GetSectionByID(int id)
+        public Section GetSectionByID(string id)
         {
             return context.Sections.FirstOrDefault(x => x.ID == id);
         }
@@ -30,7 +30,7 @@ namespace TrainingSystem.Service
 
         
 
-        public void UpdateSection(Section section, int id)
+        public void UpdateSection(Section section, string id)
         {
             var sectionToUpdate = GetSectionByID(id);
             if (sectionToUpdate == null)

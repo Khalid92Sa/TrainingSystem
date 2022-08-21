@@ -23,6 +23,7 @@ namespace TrainingSystem.Repositroy
         }
         public async Task<Microsoft.AspNetCore.Identity.SignInResult> Passwordsignin(LoginDTO loginDto)
         {
+            
             var userr = await _signInManager.PasswordSignInAsync(loginDto.Email, loginDto.Password, loginDto.RememberMe, false);
             return userr;
         }

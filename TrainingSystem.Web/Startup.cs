@@ -8,6 +8,9 @@ using Microsoft.Extensions.Hosting;
 using TrainingSystem.Domain;
 using TrainingSystem.Repositroy;
 using TrainingSystem.Service;
+using TrainingSystem.Service.Interfaces;
+using TrainingSystem.Service.Services;
+
 namespace TrainingSystem.Web
 {
     public class Startup
@@ -31,6 +34,10 @@ namespace TrainingSystem.Web
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITrainerRepository, TrainerRepository>();
             services.AddScoped<ITrainerService, TrainerService>();
+            services.AddScoped<ISection, SectionService>();
+            services.AddScoped<IProgramsRepository, ProgramsRepository>();
+            services.AddScoped<IprogramsService, ProgramsService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

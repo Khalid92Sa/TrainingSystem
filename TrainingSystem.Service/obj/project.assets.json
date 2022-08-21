@@ -1855,6 +1855,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.25",
+          "Microsoft.EntityFrameworkCore": "3.1.25",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.25",
           "TrainingSystem.Application": "1.0.0"
         },
@@ -6514,36 +6515,37 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\khalids\\.nuget\\packages\\": {}
+    "C:\\Users\\C-ROAD\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
+      "projectUniqueName": "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
       "projectName": "TrainingSystem.Service",
-      "projectPath": "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
-      "packagesPath": "C:\\Users\\khalids\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\obj\\",
+      "projectPath": "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
+      "packagesPath": "C:\\Users\\C-ROAD\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\khalids\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\C-ROAD\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
-              "projectPath": "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
+            "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
+              "projectPath": "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
             },
-            "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {
-              "projectPath": "C:\\Users\\khalids\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj"
+            "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {
+              "projectPath": "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj"
             }
           }
         }

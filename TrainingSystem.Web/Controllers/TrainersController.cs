@@ -20,27 +20,34 @@ namespace TrainingSystem.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ITrainerService _TrainerService;
+        private readonly ISection _section;
 
-        public TrainersController(ITrainerService trainerService, ApplicationDbContext context)
+        public TrainersController(ITrainerService trainerService, ApplicationDbContext context, ISection section)
         {
             _TrainerService = trainerService;
             _context = context;
+            _section = section;
 
         }
 
         // GET: Trainersf
-        public async Task<IActionResult> Index(string SearchValue, string SearchBy)
+        public async Task<IActionResult> Index(string SearchById, string SearchByName, string SearchByActivation, string SearchBySectionFeild)
         {
-            if (string.IsNullOrEmpty(SearchValue)) return View( await _TrainerService.Trainers.ToListAsync());
-            ViewBag.SearchValue = SearchValue;
-            if (SearchBy == null || SearchBy == "Name") return View(await _TrainerService.Trainers.Where(n => n.Name.Contains(SearchValue)).ToListAsync());
-            else if (SearchBy == "Section") return View(await _TrainerService.Trainers.Where(n => n.SectionID.Contains(SearchValue)).ToListAsync());
-            else if (SearchBy == "ID") return View(await _TrainerService.Trainers.Where(n => n.ID.Contains(SearchValue)).ToListAsync());
+            if (string.IsNullOrEmpty(SearchById) && string.IsNullOrEmpty(SearchByName) && string.IsNullOrEmpty(SearchByActivation))
+                return View( await _TrainerService.Trainers.ToListAsync());
+            ViewBag.SearchById = SearchById;
+            ViewBag.SearchByNmae = SearchByName;
+            if (!string.IsNullOrEmpty(SearchByName)) return View(await _TrainerService.Trainers.Where(n => n.Name.Contains(SearchByName)).ToListAsync());
+            else if (!string.IsNullOrEmpty(SearchBySectionFeild)) return View(await _TrainerService.Trainers.Where(s=> s.Section.SectionField.Contains(SearchBySectionFeild)).ToListAsync());
+            else if (!string.IsNullOrEmpty(SearchById)) return View(await _TrainerService.Trainers.Where(n => n.ID.Contains(SearchById)).ToListAsync());
+            else if (!string.IsNullOrEmpty(SearchByActivation))
+            {
+                if (SearchByActivation.Contains("Active")) return View(await _TrainerService.Trainers.Where(s => s.Status == true).ToListAsync());
+                else return View(await _TrainerService.Trainers.Where(s => s.Status == false).ToListAsync());
+            }
             else
             {
-                if (SearchValue.Contains("Yes")) return View(await _TrainerService.Trainers.Where(s=> s.Status == true).ToListAsync());
-                else if(SearchValue.Contains("No")) return View(await _TrainerService.Trainers.Where(s => s.Status == false).ToListAsync());
-                else return View(await _TrainerService.Trainers.ToListAsync());
+                return View(await _TrainerService.Trainers.ToListAsync());
             }
          //return View(result);
         }
@@ -66,6 +73,7 @@ namespace TrainingSystem.Web.Controllers
         // GET: Trainers/Create
         public IActionResult Create()
         {
+            ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
             return View();
         }
 
@@ -74,7 +82,7 @@ namespace TrainingSystem.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,SectionID,Status,ContactNumber,Address,UserName,Email")] Trainer trainer)
+        public async Task<IActionResult> Create([Bind("ID,Name,SectionID,Status,ContactNumber,Address,UserName,Email,Password")] Trainer trainer)
         {
             if (ModelState.IsValid)
             {
@@ -82,6 +90,7 @@ namespace TrainingSystem.Web.Controllers
                 await _TrainerService.SaveChangesAsyncc();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
             return View(trainer);
         }
 
@@ -98,6 +107,7 @@ namespace TrainingSystem.Web.Controllers
             {
                 return NotFound();
             }
+            ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
             return View(trainer);
         }
 
@@ -106,7 +116,7 @@ namespace TrainingSystem.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,Name,SectionID,Status,ContactNumber,Address,UserName,Email")] Trainer trainer)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,Name,SectionID,Status,ContactNumber,Address,UserName,Email,Password")] Trainer trainer)
         {
             if (id != trainer.ID)
             {
@@ -135,6 +145,7 @@ namespace TrainingSystem.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
             return View(trainer);
         }
 
