@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\C-ROAD\\Source\\Repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
+      "projectUniqueName": "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
       "projectName": "TrainingSystem.Application",
-      "projectPath": "C:\\Users\\C-ROAD\\Source\\Repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
+      "projectPath": "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
       "packagesPath": "C:\\Users\\C-ROAD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\C-ROAD\\Source\\Repos\\TrainingSystem\\TrainingSystem.Application\\obj\\",
+      "outputPath": "C:\\Users\\C-ROAD\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\C-ROAD\\AppData\\Roaming\\NuGet\\NuGet.Config",

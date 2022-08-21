@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,5 +11,9 @@ namespace TrainingSystem.Service
     {
         Task<Microsoft.AspNetCore.Identity.SignInResult> Passwordsignin(LoginDTO loginDTO);
         Task Logout();
+        Task<ResponseDTO> ForgotPassword(ForgotPasswordDTo forgotPasswordDTo);
+        int GenerateRandomNo();
+        Boolean ConfirmationCode(String userName, int code);
+        Task<IdentityUser> GetUserByUserName(string userName);
     }
 }

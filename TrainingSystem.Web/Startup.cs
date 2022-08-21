@@ -28,12 +28,18 @@ namespace TrainingSystem.Web
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITrainerRepository, TrainerRepository>();
             services.AddScoped<ITrainerService, TrainerService>();
+            services.AddScoped<IEmailSender, EmailSender>();
+
+            
+            services.AddMemoryCache();
             services.AddScoped<ISection, SectionService>();
             services.AddScoped<IProgramsRepository, ProgramsRepository>();
             services.AddScoped<IprogramsService, ProgramsService>();

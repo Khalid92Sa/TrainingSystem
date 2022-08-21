@@ -5,15 +5,22 @@ using System.Text;
 
 namespace TrainingSystem.Application.DTOs.Users
 {
-    public class LoginDTO
+    public class ResetPasswordDTO
     {
-        [Key]
         [Required]
         public string UserName { get; set; }
         [Required]
+        public string code { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Display(Name = "Remeber Me")]
-        public bool RememberMe { get; set; }
+
+        
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password",ErrorMessage = "Password and Confirm Password must match")]
+        public string ConfirmPassword { get; set; }
+
     }
 }
