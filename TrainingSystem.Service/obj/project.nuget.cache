@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O6OCJd0VF4i5UhqYuliNsmeOPaXmJUtBbLrR9dQmJCwgFdc+fZPGQGoed42fYRN1z1RQTNoYEiISrxyiGMYmyQ==",
+  "dgSpecHash": "SCUORASgWP/C/rTxUzcanO7s7E3RdEr28XSG8pXrovV1ckrNtQ0N64tf4KqQIyS7q6TYth59xz9jMFPH8r84+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
+  "projectFilePath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\one_touch\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\one_touch\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

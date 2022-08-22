@@ -336,7 +336,6 @@ C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netc
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\Details.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\Edit.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\Index.cshtml.g.cs
-C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\ViewSection.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\CreateEdit.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\Index.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\InsertTrainees.cshtml.g.cs

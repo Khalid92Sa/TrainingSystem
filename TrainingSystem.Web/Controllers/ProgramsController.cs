@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using TrainingSystem.Domain;
 using TrainingSystem.Service;
+using TrainingSystem.Service.Interfaces;
 
 namespace TrainingSystem.Web.Controllers
 {
@@ -14,17 +14,42 @@ namespace TrainingSystem.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ISection _section;
-
-        public ProgramsController(ApplicationDbContext context, ISection section)
+        private readonly IprogramsService _program;
+        private readonly ITrainerService _trainer;
+        public ProgramsController(ApplicationDbContext context,
+            ISection section,
+            IprogramsService program,
+            ITrainerService trainer
+            )
         {
             _context = context;
             _section = section;
+            _program = program;
+            _trainer = trainer;
         }
 
         // GET: Programs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchStringByName, string DateFilter, string HeadOfProgram)
         {
-            var applicationDbContext = _context.Programs.Include(p => p.Trainer);
+            ViewData["HeadOfProgram"] = new SelectList(_trainer.Trainers, "ID", "Name");
+            ViewData["searchHeadOfProgram"] = HeadOfProgram;
+            ViewData["CurrentFilterDate"] = DateFilter;
+            ViewData["SearchByName"] = SearchStringByName;
+            IQueryable<Programs> applicationDbContext = _program.Programs.Include(p => p.Trainer);
+            if (SearchStringByName != null)
+            {
+                applicationDbContext = applicationDbContext.Where(s => s.Name.Contains(SearchStringByName));
+            }
+            if (DateFilter != null)
+            {
+                applicationDbContext = applicationDbContext.Where(s => s.StartDate.ToString().Contains(DateFilter));
+            }
+            if (HeadOfProgram != null)
+            {
+                applicationDbContext = applicationDbContext.Where(s => s.TrainerID.Contains(HeadOfProgram));
+                var head = _trainer.Trainers.First(s => s.ID == HeadOfProgram);
+                ViewData["HeadOfProgramResult"] = head.Name;
+            }
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,7 +61,10 @@ namespace TrainingSystem.Web.Controllers
                 return NotFound();
             }
 
-            var programs = await _context.Programs
+            //var programs = await _context.Programs
+            //    .Include(p => p.Trainer)
+            //    .FirstOrDefaultAsync(m => m.ID == id);
+            var programs = await _program.Programs
                 .Include(p => p.Trainer)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (programs == null)
@@ -50,7 +78,7 @@ namespace TrainingSystem.Web.Controllers
         // GET: Programs/Create
         public IActionResult Create()
         {
-            ViewData["TrainerID"] = new SelectList(_context.Trainers, "ID", "Name");
+            ViewData["TrainerID"] = new SelectList(_trainer.Trainers, "ID", "Name");
             var programs = new Programs();
             programs.programSections = new List<ProgramSection>();
             PopulateAssignedSectionData(programs);
@@ -62,7 +90,7 @@ namespace TrainingSystem.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,TrainerID,StartDate")] Programs programs, string[] selectedCourses)
+        public async Task<IActionResult> Create([Bind("ID,Name,TrainerID,StartDate")] Programs programs, int[] selectedCourses)
         {
             if (selectedCourses != null)
             {
@@ -81,11 +109,13 @@ namespace TrainingSystem.Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                _context.Add(programs);
-                await _context.SaveChangesAsync();
+                //_context.Add(programs);
+                //await _context.SaveChangesAsync();
+                _program.AddProgram(programs);
+                await _program.SaveChangesAsyncc();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TrainerID"] = new SelectList(_context.Trainers, "ID", "Name", programs.TrainerID);
+            ViewData["TrainerID"] = new SelectList(_trainer.Trainers, "ID", "Name", programs.TrainerID);
             PopulateAssignedSectionData(programs);
             return View(programs);
         }
@@ -98,7 +128,7 @@ namespace TrainingSystem.Web.Controllers
                 return NotFound();
             }
 
-            var programs = await _context.Programs
+            var programs = await _program.Programs
                 .Include(i => i.programSections)
                 .Include(i => i.programSections).ThenInclude(i => i.section)
                 .AsNoTracking()
@@ -107,7 +137,7 @@ namespace TrainingSystem.Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["TrainerID"] = new SelectList(_context.Trainers, "ID", "Name", programs.TrainerID);
+            ViewData["TrainerID"] = new SelectList(_trainer.Trainers, "ID", "Name", programs.TrainerID);
             PopulateAssignedSectionData(programs);
             return View(programs);
         }
@@ -124,7 +154,7 @@ namespace TrainingSystem.Web.Controllers
                 return NotFound();
             }
 
-            var ProgramToUpdate = await _context.Programs
+            var ProgramToUpdate = await _program.Programs
                 .Include(i => i.programSections)
                 .Include(i => i.programSections)
                     .ThenInclude(i => i.section)
@@ -137,7 +167,7 @@ namespace TrainingSystem.Web.Controllers
                 UpdateInstructorCourses(selectedCourses, ProgramToUpdate);
                 try
                 {
-                    await _context.SaveChangesAsync();
+                    await _program.SaveChangesAsyncc();
                 }
                 catch (DbUpdateException /* ex */)
                 {
@@ -148,7 +178,7 @@ namespace TrainingSystem.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TrainerID"] = new SelectList(_context.Trainers, "ID", "Name", programs.TrainerID);
+            ViewData["TrainerID"] = new SelectList(_trainer.Trainers, "ID", "Name", programs.TrainerID);
             UpdateInstructorCourses(selectedCourses, ProgramToUpdate);
             PopulateAssignedSectionData(ProgramToUpdate);
             return View(programs);
@@ -162,7 +192,7 @@ namespace TrainingSystem.Web.Controllers
                 return NotFound();
             }
 
-            var programs = await _context.Programs
+            var programs = await _program.Programs
                 .Include(p => p.Trainer)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (programs == null)
@@ -178,9 +208,9 @@ namespace TrainingSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var programs = await _context.Programs.FindAsync(id);
-            _context.Programs.Remove(programs);
-            await _context.SaveChangesAsync();
+            var programs = await _program.Programs.FirstOrDefaultAsync(m => m.ID == id);
+            await _program.RemoveProgram(programs);
+            await _program.SaveChangesAsyncc();
             return RedirectToAction(nameof(Index));
         }
 
@@ -192,24 +222,21 @@ namespace TrainingSystem.Web.Controllers
 
         private void PopulateAssignedSectionData(Programs programs)
         {
-            var allSection = _section.Sections.Include(x => x.trainers);
-            var ProgramSection = new HashSet<string>(programs.programSections.Select(c => c.SectionID));
+            var allSection = _section.Sections.Include(x => x.Trainer).Include(s => s.SectionField);
+            var ProgramSection = new HashSet<int>(programs.programSections.Select(c => c.SectionID));
             var viewModel = new List<AssignedSectionData>();
-            var viewModell = new List<string>();
-            foreach (var course in allSection)
+            var viewModell = new List<int>();
+            foreach (var section in allSection)
             {
-                foreach (var x in course.trainers)
-                {
 
-                }
                 viewModel.Add(new AssignedSectionData
                 {
-
-                    SectionID = course.ID,
-                    SectionField = course.SectionField,
-                    TrainerName = course.trainers,
-                    Assigned = ProgramSection.Contains(course.ID)
+                    SectionID = section.ID,
+                    SectionField = section.SectionField.SectionField,
+                    TrainerName = section.Trainer,
+                    Assigned = ProgramSection.Contains(section.ID)
                 });
+
             }
             ViewData["Courses"] = viewModel;
         }
@@ -218,7 +245,7 @@ namespace TrainingSystem.Web.Controllers
 
 
 
-        private void UpdateInstructorCourses(string[] selectedCourses, Programs programToUpdate)
+        private async void UpdateInstructorCourses(string[] selectedCourses, Programs programToUpdate)
         {
             if (selectedCourses == null)
             {
@@ -227,7 +254,7 @@ namespace TrainingSystem.Web.Controllers
             }
 
             var selectedSectionHS = new HashSet<string>(selectedCourses);
-            var programsection = new HashSet<string>
+            var programsection = new HashSet<int>
                 (programToUpdate.programSections.Select(c => c.section.ID));
             foreach (var course in _section.Sections)
             {
@@ -245,17 +272,42 @@ namespace TrainingSystem.Web.Controllers
                     if (programsection.Contains(course.ID))
                     {
                         ProgramSection sectionToRemove = programToUpdate.programSections.FirstOrDefault(i => i.SectionID == course.ID);
-                        _context.Remove(sectionToRemove);
+                        //_context.Remove(sectionToRemove);
+                        _program.RemoveSectionfromProgram(sectionToRemove);
+                        await _program.SaveChangesAsyncc();
                     }
                 }
             }
         }
+        public async Task<IActionResult> ViewSection(string id)
+        {
 
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var programs = await _program.Programs
+                .Include(p => p.programSections)
+                    .ThenInclude(x => x.section)
+                    .ThenInclude(x => x.SectionField)
+                .Include(p => p.programSections)
+                    .ThenInclude(x => x.section)
+                    .ThenInclude(x => x.Trainer)
+                .Include(p => p.programSections)
+                    .ThenInclude(x => x.section)
+                    .ThenInclude(x => x.Trainees)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (programs == null)
+            {
+                return NotFound();
+            }
 
+            return View(programs);
+        }
         private bool ProgramsExists(string id)
         {
-            return _context.Programs.Any(e => e.ID == id);
+            return _program.Programs.Any(e => e.ID == id);
         }
     }
 }

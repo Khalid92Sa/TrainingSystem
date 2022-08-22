@@ -9,15 +9,16 @@ namespace TrainingSystem.Domain
     {
         [Range(0, 5)]
         public int ID { get; set; }
-        public string idstring { 
-            get {
+        public string idstring
+        {
+            get
+            {
                 if (ID < 10)
                 { return "SF-0" + ID; }
-                
+
                 return "SF-" + ID;
-            } }
-        [Required]
-        public string SectionField { get; set; }
+            }
+        }
 
         [Required]
         [DataType(DataType.Date)]
@@ -28,8 +29,9 @@ namespace TrainingSystem.Domain
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
-        public DateTime EndDate {
-            get{return StartDate.AddMonths(3);}
+        public DateTime EndDate
+        {
+            get { return StartDate.AddMonths(3); }
         }
         [ForeignKey("Trainer")]
         public string TrainerID { get; set; }

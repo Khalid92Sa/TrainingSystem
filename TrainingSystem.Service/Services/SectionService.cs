@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TrainingSystem.Domain;
-using TrainingSystem.Service;
 
 namespace TrainingSystem.Service
 {
@@ -19,7 +16,7 @@ namespace TrainingSystem.Service
         public IQueryable<Section> Sections =>
             context.Sections;
 
-        public Section GetSectionByID(string id)
+        public Section GetSectionByID(int id)
         {
             return context.Sections.FirstOrDefault(x => x.ID == id);
         }
@@ -27,10 +24,18 @@ namespace TrainingSystem.Service
         public async Task CreateSection(Section section)
         {
             context.Sections.Add(section);
+            //Trainer trainer = context.Trainers.First(s => s.ID == section.TrainerID);
+            //trainer.SectionID = section.ID;
+            //Console.WriteLine(trainer.SectionID);
+            await context.SaveChangesAsync();
+            var sectionupdateTrainer = context.Sections.Max(i => i.ID);
+            Console.WriteLine(sectionupdateTrainer);
+            Trainer trainer = context.Trainers.First(s => s.ID == section.TrainerID);
+            trainer.SectionID = sectionupdateTrainer;
             await context.SaveChangesAsync();
         }
 
-        
+
 
         public async Task UpdateSection(Section section, int id)
         {
@@ -40,8 +45,17 @@ namespace TrainingSystem.Service
                 return;
             }
             sectionToUpdate.SectionLookupID = section.SectionLookupID;
-            sectionToUpdate.TrainerID = section.TrainerID;
             sectionToUpdate.StartDate = section.StartDate;
+
+
+            if (section.TrainerID != sectionToUpdate.TrainerID)
+            {
+                Trainer AddSectionIdTrainer = context.Trainers.First(s => s.ID == section.TrainerID);
+                Trainer RemoveSectionIdTrainer = context.Trainers.First(s => s.ID == sectionToUpdate.TrainerID);
+                AddSectionIdTrainer.SectionID = sectionToUpdate.ID;
+                RemoveSectionIdTrainer.SectionID = null;
+            }
+            sectionToUpdate.TrainerID = section.TrainerID;
             await context.SaveChangesAsync();
         }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrainingSystem.Domain
@@ -9,7 +8,7 @@ namespace TrainingSystem.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string ID { get; set; }
         public string Name { get; set; }
-        public string SectionID { get; set; }
+
         public bool Status { get; set; }
         public int? ContactNumber { get; set; }
         public string Address { get; set; }
@@ -23,7 +22,7 @@ namespace TrainingSystem.Domain
         public Section Section { get; set; }
         public ICollection<Trainee> Trainees { get; set; }
         public string Password { get; set; }
-        
+
 
     }
 }

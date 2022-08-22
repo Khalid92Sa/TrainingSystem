@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using TrainingSystem.Domain;
 using TrainingSystem.Repositroy;
@@ -28,6 +25,18 @@ namespace TrainingSystem.Service.Services
 
         public async Task<Programs> GetProgramById(string id) => await _ProgramsRepository.GetProgramById(id);
 
+        public async Task RemoveProgram(Programs programs)
+        {
+            _context.Programs.Remove(programs);
+            await SaveChangesAsyncc();
+        }
+
+        public void RemoveSectionfromProgram(ProgramSection programSection)
+        {
+            _context.programSections.Remove(programSection);
+
+        }
+
         public async Task SaveChangesAsyncc()
         {
             await _ProgramsRepository.SaveChangesAsyncc();
@@ -37,5 +46,6 @@ namespace TrainingSystem.Service.Services
         {
             _ProgramsRepository.UpdateProgram(programs);
         }
+
     }
 }

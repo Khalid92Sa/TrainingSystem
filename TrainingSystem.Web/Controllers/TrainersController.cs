@@ -12,6 +12,7 @@ using TrainingSystem.Application.DTOs.Trainers;
 using TrainingSystem.Domain;
 using TrainingSystem.Service;
 using Microsoft.Extensions.Logging;
+using TrainingSystem.Service.Interfaces;
 //using SelectPdf;
 
 namespace TrainingSystem.Web.Controllers
@@ -20,42 +21,60 @@ namespace TrainingSystem.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ITrainerService _TrainerService;
+        private readonly ISectionLookup _SectionLookup;
         private readonly ISection _section;
 
-        public TrainersController(ITrainerService trainerService, ApplicationDbContext context, ISection section)
+        public TrainersController(ITrainerService trainerService,
+            ApplicationDbContext context,
+            ISection section,
+            ISectionLookup sectionLookup)
         {
             _TrainerService = trainerService;
             _context = context;
             _section = section;
+            _SectionLookup = sectionLookup;
 
         }
 
         // GET: Trainersf
         public async Task<IActionResult> Index(string SearchById, string SearchByName, string SearchByActivation, string SearchBySectionFeild)
         {
-            if (string.IsNullOrEmpty(SearchById) && string.IsNullOrEmpty(SearchByName) && string.IsNullOrEmpty(SearchByActivation))
-                return View( await _TrainerService.Trainers.ToListAsync());
+            ViewData["SectionField"] = new SelectList(_SectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
+            ViewData["searchSection"] = SearchBySectionFeild;
+            if (string.IsNullOrEmpty(SearchById) && string.IsNullOrEmpty(SearchByName) && string.IsNullOrEmpty(SearchByActivation) && string.IsNullOrEmpty(SearchBySectionFeild))
+                return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).ToListAsync());
             ViewBag.SearchById = SearchById;
             ViewBag.SearchByNmae = SearchByName;
-            if (!string.IsNullOrEmpty(SearchByName)) return View(await _TrainerService.Trainers.Where(n => n.Name.Contains(SearchByName)).ToListAsync());
-            else if (!string.IsNullOrEmpty(SearchBySectionFeild)) return View(await _TrainerService.Trainers.Where(s=> s.Section.SectionField.Contains(SearchBySectionFeild)).ToListAsync());
-            else if (!string.IsNullOrEmpty(SearchById)) return View(await _TrainerService.Trainers.Where(n => n.ID.Contains(SearchById)).ToListAsync());
+            if (!string.IsNullOrEmpty(SearchByName)) return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(n => n.Name.Contains(SearchByName)).ToListAsync());
+            else if (!string.IsNullOrEmpty(SearchBySectionFeild))
+            {
+                if (SearchBySectionFeild == "DoesnottrainanySection")
+                {
+                    ViewData["SectionFieldResult"] = "Does not train any Section";
+                    return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(s => s.SectionID == null).ToListAsync());
+
+                }
+                else
+                {
+                    SectionLookup sectionlookup = _SectionLookup.SectionLookUp.First(s => s.SectionLookupID.ToString().Contains(SearchBySectionFeild));
+                    ViewData["SectionFieldResult"] = sectionlookup.SectionField;
+                    return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(s => s.Section.SectionField.SectionLookupID.ToString().Contains(SearchBySectionFeild)).ToListAsync());
+
+                }
+            }
+            else if (!string.IsNullOrEmpty(SearchById)) return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(n => n.ID.Contains(SearchById)).ToListAsync());
             else if (!string.IsNullOrEmpty(SearchByActivation))
             {
-                if (SearchByActivation.Contains("Active")) return View(await _TrainerService.Trainers.Where(s => s.Status == true).ToListAsync());
-                else return View(await _TrainerService.Trainers.Where(s => s.Status == false).ToListAsync());
+                if (SearchByActivation.Contains("Active")) return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(s => s.Status == true).ToListAsync());
+                else return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(s => s.Status == false).ToListAsync());
             }
-            if (string.IsNullOrEmpty(SearchValue)) return View( await _TrainerService.Trainers.ToListAsync());
-            ViewBag.SearchValue = SearchValue;
-            if (SearchBy == null || SearchBy == "Name") return View(await _TrainerService.Trainers.Where(n => n.Name.Contains(SearchValue)).ToListAsync());
-            else if (SearchBy == "ID") return View(await _TrainerService.Trainers.Where(n => n.ID.Contains(SearchValue)).ToListAsync());
             else
             {
-                return View(await _TrainerService.Trainers.ToListAsync());
+                return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).ToListAsync());
             }
-         //return View(result);
+            //return View(result);
         }
-        
+
         // GET: Trainers/Details/5
         public async Task<IActionResult> Details(string id)
         {
