@@ -216,20 +216,57 @@ namespace TrainingSystem.Domain.Migrations
                 });
 
             modelBuilder.Entity("TrainingSystem.Application.DTOs.Users.LoginDTO", b =>
+            {
+                b.Property<string>("Email")
+                    .HasColumnType("nvarchar(450)");
+
+                b.Property<string>("Password")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<bool>("RememberMe")
+                    .HasColumnType("bit");
+
+                b.HasKey("Email");
+
+                b.ToTable("LoginDTO");
+            });
+            modelBuilder.Entity("TrainingSystem.Domain.ProgramSection", b =>
                 {
-                    b.Property<string>("Email")
+                    b.Property<string>("SectionID")
+                    .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("SectionID", "ProgramsID");
+
+                    b.HasIndex("ProgramsID");
+
+                    b.ToTable("programSections");
+                });
+
+            modelBuilder.Entity("TrainingSystem.Domain.Programs", b =>
+                {
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("RememberMe")
                         .HasColumnType("bit");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TrainerID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
 
                     b.HasKey("Email");
+                    b.HasIndex("TrainerID");
 
                     b.ToTable("LoginDTO");
+                    b.ToTable("Program");
                 });
 
             modelBuilder.Entity("TrainingSystem.Domain.Section", b =>
@@ -238,6 +275,8 @@ namespace TrainingSystem.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
 
 
                     b.Property<int>("SectionLookupID")
@@ -364,18 +403,18 @@ namespace TrainingSystem.Domain.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SectionID")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SectionID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("ID");
 
-
                     b.HasIndex("SectionID");
-
-
 
                     b.ToTable("Trainer");
                 });
@@ -431,15 +470,23 @@ namespace TrainingSystem.Domain.Migrations
                         .IsRequired();
                 });
 
-
-            modelBuilder.Entity("TrainingSystem.Domain.Section", b =>
+            modelBuilder.Entity("TrainingSystem.Domain.ProgramSection", b =>
                 {
-                    b.HasOne("TrainingSystem.Domain.SectionLookup", "SectionField")
-                        .WithMany("Sections")
-                        .HasForeignKey("SectionLookupID")
+                    b.HasOne("TrainingSystem.Domain.Programs", "programs")
+                        .WithMany("programSections")
+                        .HasForeignKey("ProgramsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TrainingSystem.Domain.Section", "section")
+                        .WithMany("programSections")
+                        .HasForeignKey("SectionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TrainingSystem.Domain.Programs", b =>
+                {
                     b.HasOne("TrainingSystem.Domain.Trainer", "Trainer")
                         .WithMany()
                         .HasForeignKey("TrainerID");
@@ -447,11 +494,7 @@ namespace TrainingSystem.Domain.Migrations
 
             modelBuilder.Entity("TrainingSystem.Domain.Trainee", b =>
                 {
-                    b.HasOne("TrainingSystem.Domain.Section", "Section")
-                        .WithMany("Trainees")
-                        .HasForeignKey("SectionID");
-
-                    b.HasOne("TrainingSystem.Domain.Trainer", "Trainer")
+                    b.HasOne("TrainingSystem.Domain.Trainer", null)
                         .WithMany("Trainees")
                         .HasForeignKey("TrainerID");
                 });
@@ -459,11 +502,9 @@ namespace TrainingSystem.Domain.Migrations
             modelBuilder.Entity("TrainingSystem.Domain.Trainer", b =>
                 {
                     b.HasOne("TrainingSystem.Domain.Section", "Section")
-                        .WithMany()
+                        .WithMany("trainers")
                         .HasForeignKey("SectionID");
                 });
-
-
 #pragma warning restore 612, 618
         }
     }

@@ -45,6 +45,9 @@ namespace TrainingSystem.Web
 
             
             services.AddMemoryCache();
+            services.AddScoped<ISection, SectionService>();
+            services.AddScoped<IProgramsRepository, ProgramsRepository>();
+            services.AddScoped<IprogramsService, ProgramsService>();
 
         }
 

@@ -17,6 +17,9 @@ namespace TrainingSystem.Domain
                 return "SF-" + ID;
             } }
         [Required]
+        public string SectionField { get; set; }
+
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }

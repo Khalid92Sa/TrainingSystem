@@ -6523,11 +6523,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
+      "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
       "projectName": "TrainingSystem.Service",
-      "projectPath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
+      "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj",
       "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Service\\obj\\",
+      "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6545,11 +6545,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
-              "projectPath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
+            "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
+              "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
             },
-            "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {
-              "projectPath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj"
+            "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {
+              "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj"
             }
           }
         }

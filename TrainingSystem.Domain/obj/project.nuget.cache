@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/Tk9chzBjg3yscLuKG8eK6exyHoAa3/Jdk6Z3F1OzoSYA0fXcHPaE9E8XpROQpxufCmvpRCse/ZoRKsmusERvQ==",
+  "dgSpecHash": "RqV7mrF/AmqVrDV9yE4s9FL8A8rkj18PVvCJZypgsnLeeN5RtbaRb2b+K5wnO+G8+S9mPszJP+TVidyDxyAwDg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\one_touch\\Downloads\\Save\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+  "projectFilePath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\one_touch\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.25\\microsoft.aspnetcore.cryptography.internal.3.1.25.nupkg.sha512",
     "C:\\Users\\one_touch\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.25\\microsoft.aspnetcore.cryptography.keyderivation.3.1.25.nupkg.sha512",

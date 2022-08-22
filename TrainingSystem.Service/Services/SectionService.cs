@@ -19,7 +19,7 @@ namespace TrainingSystem.Service
         public IQueryable<Section> Sections =>
             context.Sections;
 
-        public Section GetSectionByID(int id)
+        public Section GetSectionByID(string id)
         {
             return context.Sections.FirstOrDefault(x => x.ID == id);
         }
