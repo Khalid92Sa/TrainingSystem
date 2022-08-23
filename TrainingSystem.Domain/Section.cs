@@ -34,6 +34,7 @@ namespace TrainingSystem.Domain
             get { return StartDate.AddMonths(3); }
         }
         [ForeignKey("Trainer")]
+        [Required(ErrorMessage = "Please Add Trainer berfore Section.")]
         public string TrainerID { get; set; }
         public Trainer Trainer { get; set; }
         public ICollection<Trainee> Trainees { get; set; }

@@ -33,12 +33,20 @@ namespace TrainingSystem.Service
         {
             await _TrainerRepository.SaveChangesAsyncc();
         }
-        public async Task<Trainer> GetTrainerById(string? id)=>await _TrainerRepository.GetTrainerById(id);
+        public async Task<Trainer> GetTrainerById(string id)=>await _TrainerRepository.GetTrainerById(id);
         public void UpdateTrainer(Trainer trainer)
         {
               _TrainerRepository.UpdateTrainer(trainer);
 
              
+        }
+
+        public bool Login(string email, string password)
+        {
+            var trainer =  _context.Trainers.FirstOrDefault(s=>s.Name== email && s.Password== password);
+            if(trainer == null)
+            { return false; }
+            else { return true; }
         }
     }
 }

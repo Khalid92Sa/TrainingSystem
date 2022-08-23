@@ -11,7 +11,7 @@ namespace TrainingSystem.Service.Interfaces
         Task RemoveProgram(Programs programs);
         void RemoveSectionfromProgram(ProgramSection programSection);
 
-        Task<Programs> GetProgramById(string? id);
+        Task<Programs> GetProgramById(string id);
         void UpdateProgram(Programs programs);
         Task SaveChangesAsyncc();
     }

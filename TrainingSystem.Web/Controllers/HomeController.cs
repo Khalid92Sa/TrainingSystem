@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -7,21 +8,28 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TrainingSystem.Application.DTOs.Users;
+using TrainingSystem.Domain;
 using TrainingSystem.Service;
 using TrainingSystem.Web.Models;
 
 namespace TrainingSystem.Web.Controllers
-{
+{ 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUserService _UserService;
         private readonly UserManager<IdentityUser> _UserManager;
-        public HomeController(ILogger<HomeController> logger, IUserService userService, UserManager<IdentityUser> userManager)
+        private readonly ITrainerService _trainer;
+        public HomeController(ILogger<HomeController> logger,
+            IUserService userService,
+            UserManager<IdentityUser> userManager,
+            ITrainerService trainer
+            )
         {
             _logger = logger;
             _UserService = userService;
             _UserManager = userManager;
+            _trainer = trainer;
         }
 
         public IActionResult Index()
@@ -48,11 +56,28 @@ namespace TrainingSystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result =await _UserService.Passwordsignin(loginDTO);
+                var result = await _UserService.Passwordsignin(loginDTO);
 
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Section");
+                }
+                ModelState.AddModelError(string.Empty, "invalid Login Attempt");
+            }
+
+            return View(loginDTO);
+        }
+        [HttpPost]
+        [Route("Home/Login/{TraineeID}")]
+        public  IActionResult Login(LoginDTO loginDTO,int TraineeID)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _trainer.Login(loginDTO.UserName, loginDTO.Password);
+                if (result)
+                {
+                    return RedirectToAction("CreateEdit", new RouteValueDictionary(
+                    new { controller = "Trainee", action = "CreateEdit", Id = TraineeID }));
                 }
                 ModelState.AddModelError(string.Empty, "invalid Login Attempt");
             }

@@ -95,14 +95,14 @@ namespace TrainingSystem.Web.Controllers
         public ActionResult CreateEdit(int? id)
         {
             ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
-            ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers, "ID", "Name");
             ViewData["CreateOrEdit"] = "Edit";
             if (id == null)
             {
+                ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s => s.SectionID == null), "ID", "Name");
                 ViewData["CreateOrEdit"] = "Create";
                 return View();
             }
-
+            ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s => s.SectionID == null || s.SectionID == id), "ID", "Name");
             var section = RepoSection.GetSectionByID((int)id);
             return View(section);
         }
@@ -127,7 +127,7 @@ namespace TrainingSystem.Web.Controllers
                 }
             }
             ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
-            ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers, "ID", "Name");
+            ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s => s.SectionID == null), "ID", "Name");
             ViewData["CreateOrEdit"] = "Edit";
             if (id == null)
             {

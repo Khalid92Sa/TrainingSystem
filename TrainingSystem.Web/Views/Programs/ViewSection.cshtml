@@ -1,0 +1,49 @@
+﻿@model TrainingSystem.Domain.Programs
+
+@{
+    ViewData["Title"] = "ViewSection";
+}
+<h1>View Section for @Model.Name</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Section Field
+            </th>
+            <th>
+                Trainer
+            </th>
+            <th>
+                Trainees
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.programSections)
+        {
+            <tr>
+                <td>
+                    @item.section.ID
+                </td>
+                <td>
+                    @item.section.SectionField.SectionField
+                </td>
+                <td>
+                    @item.section.Trainer.Name
+                </td>
+                <td>
+                    @foreach(var x in item.section.Trainees)
+                    {
+                        @x.Name <br />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

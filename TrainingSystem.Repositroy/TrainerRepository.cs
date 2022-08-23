@@ -25,7 +25,7 @@ namespace TrainingSystem.Repositroy
         {
              _context.Add(trainer);
         }
-        public async Task<Trainer> GetTrainerById(string? id)
+        public async Task<Trainer> GetTrainerById(string id)
         {
             var trainer = await _context.Trainers.FindAsync(id);
             return trainer;
@@ -33,6 +33,11 @@ namespace TrainingSystem.Repositroy
         public void UpdateTrainer(Trainer trainer)
         {
             _context.Update(trainer);
+        }
+
+        public bool Login(string email, string password)
+        {
+            throw new NotImplementedException();
         }
     }
 }

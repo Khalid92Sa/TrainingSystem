@@ -13,8 +13,9 @@ namespace TrainingSystem.Service
         IQueryable<Trainer> Trainers { get; }
         void AddTrainer(Trainer trainer);
         Task SaveChangesAsyncc();
-        Task<Trainer> GetTrainerById(string? id);
+        Task<Trainer> GetTrainerById(string id);
         void UpdateTrainer(Trainer trainer);
+        bool Login(string email,string password);
 
     }
 }

@@ -360,3 +360,4 @@ C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netc
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.dll
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.pdb
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.genruntimeconfig.cache
+C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\ViewSection.cshtml.g.cs

@@ -9309,11 +9309,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
+      "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
       "projectName": "TrainingSystem.Web",
-      "projectPath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
+      "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Web\\TrainingSystem.Web.csproj",
       "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Web\\obj\\",
+      "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9331,11 +9331,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
-              "projectPath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
+            "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
+              "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
             },
-            "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj": {
-              "projectPath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj"
+            "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj": {
+              "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Service\\TrainingSystem.Service.csproj"
             }
           }
         }

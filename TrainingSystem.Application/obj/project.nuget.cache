@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3iK+CQY07zPlV+oUMwBNkrXVyLSpyilAT1o9Z2Bf4GX0zMJSdS2RqwA7lKbiaOJ5xmD2/bkECy4G++523gdiyQ==",
+  "dgSpecHash": "ukfYzA7IzKsCZ0GwwQqMcAjfhXtZHxMGho3n2k83pgKdx5furEu5O04jDiKgAtW4M+aSd9wdgWj3sgcvyOUaJw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
+  "projectFilePath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\one_touch\\.nuget\\packages\\microsoft.aspnetcore.http\\2.2.2\\microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "C:\\Users\\one_touch\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

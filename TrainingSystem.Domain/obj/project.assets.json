@@ -6117,11 +6117,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
       "projectName": "TrainingSystem.Domain",
-      "projectPath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+      "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
       "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
+      "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6139,8 +6139,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj": {
-              "projectPath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj"
+            "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj": {
+              "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj"
             }
           }
         }
