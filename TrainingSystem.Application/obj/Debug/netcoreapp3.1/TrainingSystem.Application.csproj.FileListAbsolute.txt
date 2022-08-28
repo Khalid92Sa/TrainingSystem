@@ -18,3 +18,13 @@ C:\Users\one_touch\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\De
 C:\Users\one_touch\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.csproj.CoreCompileInputs.cache
 C:\Users\one_touch\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.dll
 C:\Users\one_touch\Source\Repos\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.pdb
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\bin\Debug\netcoreapp3.1\TrainingSystem.Application.deps.json
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\bin\Debug\netcoreapp3.1\TrainingSystem.Application.dll
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\bin\Debug\netcoreapp3.1\TrainingSystem.Application.pdb
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.csproj.AssemblyReference.cache
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.AssemblyInfoInputs.cache
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.AssemblyInfo.cs
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.csproj.CoreCompileInputs.cache
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.dll
+C:\Users\one_touch\Downloads\Video\TrainingSystem\TrainingSystem.Application\obj\Debug\netcoreapp3.1\TrainingSystem.Application.pdb

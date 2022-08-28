@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateEdit">
-            <input value"@Model.section.ID" asp-for="ID" type="hidden"></input>
+            <input value"@Model.section.ID" asp-for="ID" type="hidden">
             <div class="form-group">
                 <label class="control-label">SectionField</label>
                 <select asp-for="SectionLookupID" class="form-control" asp-items="ViewBag.SectionLookupID"></select>

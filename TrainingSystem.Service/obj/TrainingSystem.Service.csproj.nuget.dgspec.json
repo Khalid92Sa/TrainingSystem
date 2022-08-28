@@ -11,7 +11,7 @@
         "projectName": "TrainingSystem.Application",
         "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
         "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\one_touch\\Source\\Repos\\TrainingSystem\\TrainingSystem.Application\\obj\\",
+        "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",

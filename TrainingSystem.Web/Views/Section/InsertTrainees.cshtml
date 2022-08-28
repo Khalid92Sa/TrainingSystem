@@ -31,6 +31,9 @@
                     Select
                 </th>
                 <th>
+                    TraineeID
+                </th>
+                <th>
                     Name
                 </th>
                 <th>
@@ -49,6 +52,17 @@
                                name="selectedTrainees"
                                value="@trainee.TraineeID"
                                @(Html.Raw(trainee.Assigned ? "checked=\"checked\"" : "")) />
+                        </td>
+                        <td>
+                            @if (@trainee.TraineeID < 10)
+                            {
+                                string x = "TE-0" + @trainee.TraineeID;
+                                <p>@x</p>
+                            }
+                            else
+                            {
+                                <p>TE-@trainee.TraineeID</p>
+                            }
                         </td>
                         <td>
                             @trainee.Name

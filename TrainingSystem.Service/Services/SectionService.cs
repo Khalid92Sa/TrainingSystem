@@ -24,12 +24,8 @@ namespace TrainingSystem.Service
         public async Task CreateSection(Section section)
         {
             context.Sections.Add(section);
-            //Trainer trainer = context.Trainers.First(s => s.ID == section.TrainerID);
-            //trainer.SectionID = section.ID;
-            //Console.WriteLine(trainer.SectionID);
             await context.SaveChangesAsync();
             var sectionupdateTrainer = context.Sections.Max(i => i.ID);
-            Console.WriteLine(sectionupdateTrainer);
             Trainer trainer = context.Trainers.First(s => s.ID == section.TrainerID);
             trainer.SectionID = sectionupdateTrainer;
             await context.SaveChangesAsync();

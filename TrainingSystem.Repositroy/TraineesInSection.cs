@@ -8,6 +8,8 @@ namespace TrainingSystem.Repositroy
     {
         public int TraineeID { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
+        public bool Status { get; set; }
         public bool Assigned { get; set; }
         public bool IsInOtherSection { get; set; }
     }

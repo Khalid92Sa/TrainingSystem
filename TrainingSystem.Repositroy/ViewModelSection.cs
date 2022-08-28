@@ -11,5 +11,6 @@ namespace TrainingSystem.Repositroy
     {
         public IQueryable<Section> Sections { get; set; }
         public List<SectionsFields> SectionsFields { get; set; }
+        public int SectionID { get; set; }
     }
 }
