@@ -8,18 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using TrainingSystem.Application.ViewModel;
 using TrainingSystem.Domain;
 using TrainingSystem.Repositroy;
 using TrainingSystem.Service;
 using TrainingSystem.Service.Interfaces;
-using Xamarin.Essentials;
 
 namespace TrainingSystem.Web.Controllers
 {
+    //[Authorize(Policy = "RequireAdminRole")]
+    //[Authorize(Roles = "ADMIN")]
     public class SectionController : Controller
     {
         private readonly ITrainee RepoTrainee;
@@ -130,8 +129,9 @@ namespace TrainingSystem.Web.Controllers
                     Environment.NewLine,
                     "Evalution of the Trainees:",
                     trainees,
-                    "Please Evalute Trainees By The Link: " + "https://localhost:44321/Home/Login/" + SectionID,
+                    "Please Evalute Trainees By The Link: " + "https://localhost:44321/Home/Index/" + SectionID,
                     "Regards,");
+                Console.WriteLine(emailMessage.Body);
                 emailMessage.Body.BodyType = BodyType.HTML;
                 emailMessage.ToRecipients.Add(Section.Trainer.Email);
                // emailMessage.Send();

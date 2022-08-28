@@ -328,8 +328,6 @@ C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netc
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.RazorCoreGenerate.cache
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\ForgotPassword.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
-C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\ResetPassword.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\Create.cshtml.g.cs
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\Delete.cshtml.g.cs
@@ -552,3 +550,4 @@ C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netc
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\bin\Debug\netcoreapp3.1\Microsoft.Exchange.WebServices.Auth.dll
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\bin\Debug\netcoreapp3.1\Microsoft.Exchange.WebServices.dll
 C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\bin\Debug\netcoreapp3.1\Xamarin.Essentials.dll
+C:\Users\one_touch\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Welcome.cshtml.g.cs

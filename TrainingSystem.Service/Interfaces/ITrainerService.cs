@@ -15,7 +15,7 @@ namespace TrainingSystem.Service
         Task SaveChangesAsyncc();
         Task<Trainer> GetTrainerById(string id);
         void UpdateTrainer(Trainer trainer);
-        bool Login(string email,string password);
+        bool Login(string email,string password,int SectionID);
 
     }
 }

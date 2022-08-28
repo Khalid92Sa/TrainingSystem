@@ -31,7 +31,9 @@ namespace TrainingSystem.Web
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+             .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>(TokenOptions.DefaultProvider);
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITrainerRepository, TrainerRepository>();
@@ -43,14 +45,16 @@ namespace TrainingSystem.Web
 
             services.AddScoped<IEmailSender, EmailSender>();
 
-            
             services.AddMemoryCache();
             services.AddScoped<ISection, SectionService>();
             services.AddScoped<IProgramsRepository, ProgramsRepository>();
             services.AddScoped<IprogramsService, ProgramsService>();
-            services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/login");
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Home");
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+            });
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

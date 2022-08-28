@@ -41,9 +41,9 @@ namespace TrainingSystem.Service
              
         }
 
-        public bool Login(string email, string password)
+        public bool Login(string email, string password, int SectionID)
         {
-            var trainer =  _context.Trainers.FirstOrDefault(s=>s.Name== email && s.Password== password);
+            var trainer =  _context.Trainers.FirstOrDefault(s=>s.Name== email && s.Password== password && s.SectionID==SectionID);
             if(trainer == null)
             { return false; }
             else { return true; }

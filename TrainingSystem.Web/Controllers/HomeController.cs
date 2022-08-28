@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Routing;
@@ -51,37 +52,28 @@ namespace TrainingSystem.Web.Controllers
             _program = program;
             _signInManager = signInManager;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        //Login Page implementation
-
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> IndexAsync()
         {
-
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             return View();
         }
-
+        public IActionResult Welcome()
+        {
+            return View();
+        }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginDTO loginDTO)
+        public async Task<IActionResult> Index(LoginDTO loginDTO)
         {
             if (ModelState.IsValid)
             {
                 var result = await _UserService.Passwordsignin(loginDTO);
+                //var result = await _signInManager.PasswordSignInAsync(loginDTO.UserName, loginDTO.Password, loginDTO.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
 
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Welcome", "Home");
 
                 }
                 ModelState.AddModelError(string.Empty, "invalid Login Attempt");
@@ -98,12 +90,12 @@ namespace TrainingSystem.Web.Controllers
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
         [HttpPost]
-        [Route("Home/Login/{SectionID}")]
-        public IActionResult Login(LoginDTO loginDTO, int SectionID)
+        [Route("Home/Index/{SectionID}")]
+        public IActionResult Index(LoginDTO loginDTO, int SectionID)
         {
             if (ModelState.IsValid)
             {
-                var result = _trainer.Login(loginDTO.UserName, loginDTO.Password);
+                var result = _trainer.Login(loginDTO.UserName, loginDTO.Password,SectionID);
                 if (result)
                 {
                     return RedirectToAction("InsertTrainees", new RouteValueDictionary(
