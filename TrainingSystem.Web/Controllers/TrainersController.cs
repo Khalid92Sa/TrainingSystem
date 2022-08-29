@@ -13,10 +13,12 @@ using TrainingSystem.Domain;
 using TrainingSystem.Service;
 using Microsoft.Extensions.Logging;
 using TrainingSystem.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 //using SelectPdf;
 
 namespace TrainingSystem.Web.Controllers
 {
+    [Authorize]
     public class TrainersController : Controller
     {
         private readonly ApplicationDbContext _context;

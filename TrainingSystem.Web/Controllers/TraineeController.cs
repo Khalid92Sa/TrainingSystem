@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ using TrainingSystem.Service.Interfaces;
 
 namespace TrainingSystem.Web.Controllers
 {
+    [Authorize]
     public class TraineeController : Controller
     {
         private readonly ITrainee RepoTrainee;

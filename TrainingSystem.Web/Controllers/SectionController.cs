@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using TrainingSystem.Application.ViewModel;
 using TrainingSystem.Domain;
@@ -17,8 +19,7 @@ using TrainingSystem.Service.Interfaces;
 
 namespace TrainingSystem.Web.Controllers
 {
-    //[Authorize(Policy = "RequireAdminRole")]
-    //[Authorize(Roles = "ADMIN")]
+    [Authorize]
     public class SectionController : Controller
     {
         private readonly ITrainee RepoTrainee;
@@ -119,26 +120,27 @@ namespace TrainingSystem.Web.Controllers
             }
             try
             {
-                ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-                service.UseDefaultCredentials = false;
-                service.Credentials = new WebCredentials("abdulkareem.rabbai@techprocess.net", "P@ssw0rd", "sss-process.org");
-                service.Url = new Uri("https://mail.sssprocess.com/EWS/Exchange.asmx");
-                Microsoft.Exchange.WebServices.Data.EmailMessage emailMessage = new Microsoft.Exchange.WebServices.Data.EmailMessage(service);
-                emailMessage.Subject = "Mr.\\Mrs. " + Section.Trainer.Name + ",";
-                emailMessage.Body = String.Join(
-                    Environment.NewLine,
-                    "Evalution of the Trainees:",
-                    trainees,
-                    "Please Evalute Trainees By The Link: " + "https://localhost:44321/Home/Index/" + SectionID,
-                    "Regards,");
-                Console.WriteLine(emailMessage.Body);
-                emailMessage.Body.BodyType = BodyType.HTML;
-                emailMessage.ToRecipients.Add(Section.Trainer.Email);
-               // emailMessage.Send();
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.To.Add(new MailAddress(Section.Trainer.Email));
+                message.From = new MailAddress("notifications@techprocess.net");
+                message.Subject = "Mr.\\Mrs. " + Section.Trainer.Name + ",";
+                message.IsBodyHtml = true;
+                message.Body = String.Join(
+                     Environment.NewLine,
+                     "Evalution of the Trainees:",
+                     trainees,
+                     "Please Evalute Trainees By The Link: " + "https://localhost:44321/Home/Index/" + SectionID,
+                     "Regards,");
+                smtp.Host = "mail.sssprocess.com";
+                smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
             }
             return RedirectToAction(nameof(Index));
         }
@@ -159,27 +161,28 @@ namespace TrainingSystem.Web.Controllers
             }
             try
             {
-                ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-                service.UseDefaultCredentials = false;
-                service.Credentials = new WebCredentials("abdulkareem.rabbai@techprocess.net", "P@ssw0rd", "sss-process.org");
-                service.Url = new Uri("https://mail.sssprocess.com/EWS/Exchange.asmx");
-                Microsoft.Exchange.WebServices.Data.EmailMessage emailMessage = new Microsoft.Exchange.WebServices.Data.EmailMessage(service);
-                emailMessage.Subject = "Mr.\\Mrs. " + Section.Trainer.Name + ",";
-                emailMessage.Body = String.Join(
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.To.Add(new MailAddress(Section.Trainer.Email));
+                message.From = new MailAddress("notifications@techprocess.net");
+                message.Subject = "Mr.\\Mrs. " + Section.Trainer.Name + ",";
+                message.IsBodyHtml = true;
+                message.Body = String.Join(
                     Environment.NewLine,
                     "Our company has opened a new training track.",
                     "You have been handed the " + Section.SectionField.SectionField + " Track with each of the following interns:",
                      trainees,
                     "Regards,");
-                emailMessage.Body.BodyType = BodyType.HTML;
-                emailMessage.ToRecipients.Add(Section.Trainer.Email);
-                // emailMessage.Send();
+                smtp.Host = "mail.sssprocess.com";
+                smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
             }
-            
             return RedirectToAction(nameof(Index));
         }
         public ActionResult CreateEdit(int? id)

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,7 +19,8 @@ using TrainingSystem.Web.Models;
 
 namespace TrainingSystem.Web.Controllers
 {
-    
+
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -52,29 +53,29 @@ namespace TrainingSystem.Web.Controllers
             _program = program;
             _signInManager = signInManager;
         }
+        [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> IndexAsync()
+        public IActionResult Index()
         {
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             return View();
         }
+        [Authorize]
         public IActionResult Welcome()
         {
             return View();
         }
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Index(LoginDTO loginDTO)
         {
             if (ModelState.IsValid)
             {
                 var result = await _UserService.Passwordsignin(loginDTO);
-                //var result = await _signInManager.PasswordSignInAsync(loginDTO.UserName, loginDTO.Password, loginDTO.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
 
                     _logger.LogInformation("User logged in.");
                     return RedirectToAction("Welcome", "Home");
-
                 }
                 ModelState.AddModelError(string.Empty, "invalid Login Attempt");
             }
@@ -91,11 +92,12 @@ namespace TrainingSystem.Web.Controllers
         }
         [HttpPost]
         [Route("Home/Index/{SectionID}")]
+        [AllowAnonymous]
         public IActionResult Index(LoginDTO loginDTO, int SectionID)
         {
             if (ModelState.IsValid)
             {
-                var result = _trainer.Login(loginDTO.UserName, loginDTO.Password,SectionID);
+                var result = _trainer.Login(loginDTO.UserName, loginDTO.Password, SectionID);
                 if (result)
                 {
                     return RedirectToAction("InsertTrainees", new RouteValueDictionary(
@@ -108,7 +110,7 @@ namespace TrainingSystem.Web.Controllers
         }
 
         //Forgot Password Page implementation
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult ForgotPassword()
         {
@@ -117,6 +119,7 @@ namespace TrainingSystem.Web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ResponseDTO> ForgotPassword(ForgotPasswordDTo forgotPasswordDTo)
         {
             if (ModelState.IsValid)
@@ -150,7 +153,7 @@ namespace TrainingSystem.Web.Controllers
         }
 
         //Reset Password Page implementation
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult ResetPassword(string userName, string token)
         {
@@ -158,7 +161,7 @@ namespace TrainingSystem.Web.Controllers
             ViewBag.token = token;
             return View();
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordDTO resetPasswordDTO)
         {
@@ -182,6 +185,7 @@ namespace TrainingSystem.Web.Controllers
             }
             return View(resetPasswordDTO);
         }
+        [Authorize]
         public IActionResult ReportingPage(string Trainer, string Trainee, string Section, string Status, string Score)
         {
             ViewData["Trainer"] = Trainer;
