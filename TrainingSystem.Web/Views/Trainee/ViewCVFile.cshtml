@@ -9,7 +9,7 @@
     }
 }
 <div>
-    <a class="btn btn-default" asp-action="Index">Back To Trianees</a>|| <a class="btn btn-default" asp-action="AddCVFile" asp-route-id="@Model.ID">EditCVFile</a>
+    <a class="btn btn-default" asp-action="CreateEdit" asp-route-id="@ViewData["ID"]">Back </a>|| <a class="btn btn-default" asp-action="AddCVFile" asp-route-id="@Model.ID">EditCVFile</a>
 </div>
 <hr />
 <embed src="@Src" width="500" height="500" alt="Image"/>

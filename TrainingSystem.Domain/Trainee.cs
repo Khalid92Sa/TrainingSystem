@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrainingSystem.Domain
 {
@@ -18,12 +19,18 @@ namespace TrainingSystem.Domain
             }
         }
         [Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+         ErrorMessage = "Invalid Name, use english letter only")]
+
         public string Name { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
-        public int ContactNumber { get; set; }
+        [Required]
+        [RegularExpression(@"^[0-9''-'\s]{1,14}$",
+               ErrorMessage = "Invalid Phone number, use english number only")]
+        [StringLength(14, MinimumLength = 14, ErrorMessage = "This field must be 14 numbers and containes country code")]
+        public string ContactNumber { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -60,7 +67,11 @@ namespace TrainingSystem.Domain
         }
         public int? SectionID { get; set; }
         public Section Section { get; set; }
-        public string TrainerID { get; set; }
+        public Evaluation Evaluation { get; set; }
+        [ForeignKey("SectionLookup")]
+        public int SectionLookupID { get; set; }
+        public SectionLookup SectionField { get; set; }
+        public int TrainerID { get; set; }
         public Trainer Trainer { get; set; }
     }
 }

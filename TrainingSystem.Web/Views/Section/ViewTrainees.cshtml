@@ -14,10 +14,10 @@
     <label class="control-label">Trainer Name: @Model.Trainer.Name</label>
 </div>
 <div class="form-group">
-    <label class="control-label">Start Date: @Model.StartDate</label>
+    <label class="control-label">Start Date: @Model.StartDate.ToShortDateString()</label>
 </div>
 <div class="form-group">
-    <label class="control-label">End Date: @Model.EndDate</label>
+    <label class="control-label">End Date: @Model.EndDate.ToShortDateString()</label>
 </div>
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">

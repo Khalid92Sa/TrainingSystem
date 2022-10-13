@@ -1,7 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
+using TrainingSystem.Application.ViewModel;
 using TrainingSystem.Domain;
 
 namespace TrainingSystem.Service
@@ -63,6 +68,121 @@ namespace TrainingSystem.Service
         public async Task Save()
         {
             await context.SaveChangesAsync();
+        }
+
+        public void SendEvaluationEmail(Section Section)
+        {
+            string trainees = @"";
+            int count = 1;
+            foreach (var x in Section.Trainees)
+            {
+                trainees += count + ")" + x.Name + "\n";
+                count++;
+            }
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.To.Add(new MailAddress(Section.Trainer.Email));
+                message.From = new MailAddress("notifications@techprocess.net");
+                message.Subject = "Mr.\\Mrs. " + Section.Trainer.Name + ",";
+                message.IsBodyHtml = true;
+                message.Body = String.Join(
+                     Environment.NewLine,
+                     "Evalution of the Trainees:",
+                     trainees,
+                     "Please Evalute Trainees By The Link: " + "https://saib-web/TS/Home/Index/" + Section.Trainer.ID,
+                     "Regards,");
+                smtp.Host = "mail.sssprocess.com";
+                smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
+                smtp.Port = 587;
+                smtp.EnableSsl = false;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        public void SendStartEmail(Section Section)
+        {
+            string trainees = @"";
+            int count = 1;
+            foreach (var x in Section.Trainees)
+            {
+                trainees += count + ")" + x.Name + " Email:" + x.Email + "\n";
+                count++;
+            }
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.To.Add(new MailAddress(Section.Trainer.Email));
+                message.From = new MailAddress("notifications@techprocess.net");
+                message.Subject = "Mr.\\Mrs. " + Section.Trainer.Name + ",";
+                message.IsBodyHtml = true;
+                message.Body = String.Join(
+                    Environment.NewLine,
+                    "Our company has opened a new training track.",
+                    "You have been handed the " + Section.SectionField.SectionField + " Track with each of the following trainees:",
+                     trainees,
+                    "Regards,");
+                smtp.Host = "mail.sssprocess.com";
+                smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
+                smtp.Port = 587;
+                smtp.EnableSsl = false;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        public List<SectionsFields> SectionsFields()
+        {
+            List<SectionsFields> groups = new List<SectionsFields>();
+            var conn = Conn();
+            try
+            {
+                conn.OpenAsync();
+                using var command = conn.CreateCommand();
+                //string query = "SELECT SectionLookup.SectionField , MIN(Sections.StartDate) FROM Sections INNER JOIN SectionLookup ON Sections.SectionLookupID = SectionLookup.SectionLookupID WHERE Sections.SectionLookupID = SectionLookup.SectionLookupID GROUP BY SectionLookup.SectionField; ";
+                string query = String.Join(
+                    Environment.NewLine,
+                    "SELECT SectionLookup.SectionField , MIN(Sections.StartDate)",
+                    "FROM Sections full JOIN SectionLookup",
+                    "ON Sections.SectionLookupID = SectionLookup.SectionLookupID",
+                    "Where Sections.SectionLookupID = SectionLookup.SectionLookupID",
+                    "GROUP BY SectionLookup.SectionField;");
+                command.CommandText = query;
+                DbDataReader reader = command.ExecuteReader();
+                var id = 1;
+                if (reader.HasRows)
+                {
+                    while  (reader.Read())
+                    {
+                        //if (reader[1] == null)
+                        //{
+                            var row = new SectionsFields { ID = id++, SectionField = reader.GetString(0),Year=reader.GetDateTime(1) };
+                            groups.Add(row);
+                        //}
+                        //else
+                        //{
+                        //    var row = new SectionsFields { ID = id++, SectionField = reader.GetString(0), Year = reader.GetDateTime(1) };
+                        //    groups.Add(row);
+                        //}
+                    }
+                }
+                reader.Dispose();
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return groups;
         }
     }
 }

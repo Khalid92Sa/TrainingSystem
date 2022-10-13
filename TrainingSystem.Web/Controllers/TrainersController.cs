@@ -14,6 +14,13 @@ using TrainingSystem.Service;
 using Microsoft.Extensions.Logging;
 using TrainingSystem.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using System.Net.Mail;
+using System.Net;
+using System.Xml.Linq;
+using AspNetCore.Reporting;
+using System.Data;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 //using SelectPdf;
 
 namespace TrainingSystem.Web.Controllers
@@ -25,60 +32,65 @@ namespace TrainingSystem.Web.Controllers
         private readonly ITrainerService _TrainerService;
         private readonly ISectionLookup _SectionLookup;
         private readonly ISection _section;
+        private readonly ISectionLookup RepoSectionLookup;
+        private readonly IConfiguration _configuration;
 
         public TrainersController(ITrainerService trainerService,
             ApplicationDbContext context,
             ISection section,
-            ISectionLookup sectionLookup)
+            ISectionLookup sectionLookup,
+            ISectionLookup repoSectionLookup,
+            IConfiguration configuratio)
         {
             _TrainerService = trainerService;
             _context = context;
             _section = section;
             _SectionLookup = sectionLookup;
+            RepoSectionLookup = repoSectionLookup;
+            _configuration = configuratio;
 
         }
 
         // GET: Trainersf
-        public async Task<IActionResult> Index(string SearchById, string SearchByName, string SearchByActivation, string SearchBySectionFeild)
+        public IActionResult Index(string SearchById, string SearchByName, string SearchByActivation, string SearchBySectionFeild)
         {
             ViewData["SectionField"] = new SelectList(_SectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             ViewData["searchSection"] = SearchBySectionFeild;
-            if (string.IsNullOrEmpty(SearchById) && string.IsNullOrEmpty(SearchByName) && string.IsNullOrEmpty(SearchByActivation) && string.IsNullOrEmpty(SearchBySectionFeild))
-                return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).ToListAsync());
-            ViewBag.SearchById = SearchById;
-            ViewBag.SearchByNmae = SearchByName;
-            if (!string.IsNullOrEmpty(SearchByName)) return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(n => n.Name.Contains(SearchByName)).ToListAsync());
-            else if (!string.IsNullOrEmpty(SearchBySectionFeild))
+            ViewData["Status"] = SearchByActivation;
+            ViewData["SearchById"] = SearchById;
+            ViewData["SearchByNmae"] = SearchByName;
+            ViewData["SectionField2"] = _SectionLookup.SectionLookUp;
+            IQueryable<Trainer> Trainers = _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField);
+            if (SearchByName != null)
             {
-                if (SearchBySectionFeild == "DoesnottrainanySection")
+                Trainers = Trainers.Where(n => n.Name.Contains(SearchByName));
+            }
+            if (SearchById != null)
+            {
+                Trainers = Trainers.Where(n => n.ID.ToString().Contains(SearchById));
+            }
+            if (SearchByActivation != null)
+            {
+                if (SearchByActivation == "Active")
                 {
-                    ViewData["SectionFieldResult"] = "Does not train any Section";
-                    return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(s => s.SectionID == null).ToListAsync());
-
+                    Trainers = Trainers.Where(n => n.Status == true);
                 }
                 else
                 {
-                    SectionLookup sectionlookup = _SectionLookup.SectionLookUp.First(s => s.SectionLookupID.ToString().Contains(SearchBySectionFeild));
-                    ViewData["SectionFieldResult"] = sectionlookup.SectionField;
-                    return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(s => s.Section.SectionField.SectionLookupID.ToString().Contains(SearchBySectionFeild)).ToListAsync());
-
+                    Trainers = Trainers.Where(n => n.Status == false);
                 }
             }
-            else if (!string.IsNullOrEmpty(SearchById)) return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(n => n.ID.Contains(SearchById)).ToListAsync());
-            else if (!string.IsNullOrEmpty(SearchByActivation))
+            if (SearchBySectionFeild != null)
             {
-                if (SearchByActivation.Contains("Active")) return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(s => s.Status == true).ToListAsync());
-                else return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).Where(s => s.Status == false).ToListAsync());
+                Trainers = Trainers.Where(s => s.SectionLookupID.ToString()==SearchBySectionFeild || s.SectionLookupID1.ToString() == SearchBySectionFeild);
+                SectionLookup sectionlookup = _SectionLookup.SectionLookUp.First(s => s.SectionLookupID.ToString().Contains(SearchBySectionFeild));
+                ViewData["SectionFieldResult"] = sectionlookup.SectionField;
             }
-            else
-            {
-                return View(await _TrainerService.Trainers.Include(s => s.Section).ThenInclude(s => s.SectionField).ToListAsync());
-            }
-            //return View(result);
+            return View(Trainers);
         }
 
         // GET: Trainers/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
@@ -98,6 +110,7 @@ namespace TrainingSystem.Web.Controllers
         // GET: Trainers/Create
         public IActionResult Create()
         {
+            ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
             return View();
         }
@@ -107,20 +120,33 @@ namespace TrainingSystem.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,SectionID,Status,ContactNumber,Address,UserName,Email,Password")] Trainer trainer)
+        public async Task<IActionResult> Create([Bind("ID,Name,LastName,SectionID,Status,ContactNumber,Email,Password,SectionLookupID,Address")] Trainer trainer)
         {
-            if (ModelState.IsValid)
+            trainer.UserName = trainer.Name + '_' + trainer.LastName;
+            
+            if (ModelState.IsValid && _TrainerService.RepetedName(trainer.UserName))
             {
-                 _TrainerService.AddTrainer(trainer);
+                
+                _TrainerService.AddTrainer(trainer);
                 await _TrainerService.SaveChangesAsyncc();
+                _TrainerService.SendLoginInfo(trainer);
                 return RedirectToAction(nameof(Index));
             }
+            if (!_TrainerService.RepetedName(trainer.UserName))
+            {
+                ViewData["ErrorMessage"] = "This trainer already added.";
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "";
+            }
+            ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
             return View(trainer);
         }
 
         // GET: Trainers/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
             {
@@ -132,30 +158,25 @@ namespace TrainingSystem.Web.Controllers
             {
                 return NotFound();
             }
+            ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
             return View(trainer);
         }
 
-        // POST: Trainers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,Name,SectionID,Status,ContactNumber,Address,UserName,Email,Password")] Trainer trainer)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,LastName,Status,ContactNumber,Email,SectionLookupID,SectionLookupID1,Address,Password,SectionID")] Trainer trainer)
         {
-            if (id != trainer.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
+            trainer.UserName = trainer.Name + '_' + trainer.LastName;
+            if (ModelState.IsValid && _TrainerService.RepetedNameupdate(trainer.UserName,id))
             {
                 try
                 {
-                    _TrainerService.UpdateTrainer(trainer);
+                    
+                    _TrainerService.UpdateTrainer(id, trainer);
                     await _TrainerService.SaveChangesAsyncc();
-                    
-                    
+
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -170,13 +191,22 @@ namespace TrainingSystem.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            if (!_TrainerService.RepetedNameupdate(trainer.UserName, id))
+            {
+                ViewData["ErrorMessage"] = "This trainer already exist.";
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "";
+            }
+            ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
             return View(trainer);
         }
 
         // GET: Trainers/Delete/5
-        
-        public async Task<IActionResult> Delete(string id)
+
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
@@ -196,18 +226,91 @@ namespace TrainingSystem.Web.Controllers
         // POST: Trainers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var trainer = await _context.Trainers.FindAsync(id);
             _context.Trainers.Remove(trainer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        
 
-        private bool TrainerExists(string id)
+
+        private bool TrainerExists(int id)
         {
             return _context.Trainers.Any(e => e.ID == id);
+        }
+        public IActionResult TrainersReportPDF()
+        {
+            IQueryable<Trainer> Trainers = _TrainerService.Trainers.Include(s=>s.SectionField);
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("ID");
+            dt.Columns.Add("FirstName");
+            dt.Columns.Add("LastName");
+            dt.Columns.Add("SectionField");
+            dt.Columns.Add("Status");
+            foreach (var trainee in Trainers)
+            {
+                if (trainee.Status)
+                {
+                    dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Active");
+                }
+                dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Inactive");
+            }
+
+            var ReportPath=_configuration.GetValue<string>("ReportPath");
+            var path = ReportPath + "\\Report2.rdlc";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+
+            LocalReport lr = new LocalReport(path);
+            lr.AddDataSource("DataSet1", dt);
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+
+            var result = lr.Execute(RenderType.Pdf, 1, parameters, "");
+
+            return new FileContentResult(result.MainStream, "application/pdf");
+
+        }
+        public IActionResult TrainersReportExcel()
+        {
+            IQueryable<Trainer> Trainers = _TrainerService.Trainers.Include(s => s.SectionField);
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("ID");
+            dt.Columns.Add("FirstName");
+            dt.Columns.Add("LastName");
+            dt.Columns.Add("SectionField");
+            dt.Columns.Add("Status");
+            foreach (var trainee in Trainers)
+            {
+                if (trainee.Status)
+                {
+                    dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Active");
+                }
+                dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Inactive");
+            }
+
+
+            var ReportPath = _configuration.GetValue<string>("ReportPath");
+            var path = ReportPath + "\\Report2.rdlc";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+
+            LocalReport lr = new LocalReport(path);
+            lr.AddDataSource("DataSet1", dt);
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+
+            var result = lr.Execute(RenderType.Excel, 1, parameters, "");
+
+            return new FileContentResult(result.MainStream, "application/vnd.ms-excel");
+
         }
     }
 }

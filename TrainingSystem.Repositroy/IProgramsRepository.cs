@@ -12,7 +12,7 @@ namespace TrainingSystem.Repositroy
         IQueryable<Programs> Programs { get; }
         void AddProgram(Programs programs);
         Task<Programs> GetProgramById(string? id);
-        void UpdateProgram(Programs programs);
+        public void UpdateProgram(string id, Programs program);
         Task SaveChangesAsyncc();
     }
 }

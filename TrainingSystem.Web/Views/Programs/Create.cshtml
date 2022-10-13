@@ -1,8 +1,6 @@
 ﻿@model TrainingSystem.Domain.Programs
 
-@{
-    ViewData["Title"] = "Create";
-}
+
 
 <h1>Create</h1>
 
@@ -16,6 +14,9 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+                @if (ViewBag.ErrorMessag == null){
+                    <p style="color:red;"> @ViewBag.ErrorMessage</p>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="TrainerID" class="control-label"></label>
@@ -45,7 +46,7 @@
                                                     <th></th>
                                                     <th>Section ID</th>
                                                     <th>Section Field</th>
-                                                    <th>Trainres</th>
+                                                    <th>Trainer</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -67,6 +68,7 @@
                                    </td>
                                  <td>  @sections.SectionID </td>
                                    <td> @sections.SectionField </td>
+                                   <td> @sections.TrainerName.Name </td>
                                   
                         </tr>
                     }

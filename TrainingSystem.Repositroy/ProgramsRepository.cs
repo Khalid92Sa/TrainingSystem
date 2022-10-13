@@ -33,9 +33,18 @@ namespace TrainingSystem.Repositroy
           await  _context.SaveChangesAsync();
         }
 
-        public void UpdateProgram(Programs programs)
+        public async void UpdateProgram(string id,Programs program)
         {
-            _context.Update(programs);
+            Programs programToUpdate =await _context.Programs.FindAsync(id);
+            if (programToUpdate == null)
+            {
+                return;
+            }
+            programToUpdate.Name = program.Name;
+            programToUpdate.TrainerID = program.TrainerID;
+            programToUpdate.StartDate = program.StartDate;
+            programToUpdate.Trainer = program.Trainer;
+            await _context.SaveChangesAsync();
         }
     }
 }

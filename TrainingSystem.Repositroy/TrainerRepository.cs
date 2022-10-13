@@ -25,14 +25,28 @@ namespace TrainingSystem.Repositroy
         {
              _context.Add(trainer);
         }
-        public async Task<Trainer> GetTrainerById(string id)
+        public async Task<Trainer> GetTrainerById(int id)
         {
             var trainer = await _context.Trainers.FindAsync(id);
             return trainer;
         }
-        public void UpdateTrainer(Trainer trainer)
+        public void UpdateTrainer(int id,Trainer trainer)
         {
-            _context.Update(trainer);
+            var trainerToUpdate = _context.Trainers.Find(id);
+            if (trainerToUpdate == null)
+            {
+                return;
+            }
+            trainerToUpdate.Name = trainer.Name;
+            trainerToUpdate.SectionLookupID = trainer.SectionLookupID;
+            trainerToUpdate.SectionLookupID1 = trainer.SectionLookupID1;
+            trainerToUpdate.Address = trainer.Address;
+            trainerToUpdate.UserName = trainer.UserName;
+            trainerToUpdate.Email = trainer.Email;
+            trainerToUpdate.LastName = trainer.LastName;
+            trainerToUpdate.ContactNumber = trainer.ContactNumber;
+            trainerToUpdate.Status = trainer.Status;
+            //_context.Update(trainer);
         }
 
         public bool Login(string email, string password)

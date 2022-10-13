@@ -16,9 +16,6 @@
             <th>
                 Trainer
             </th>
-            <th>
-                Trainees
-            </th>
         </tr>
     </thead>
     <tbody>
@@ -33,12 +30,6 @@
                 </td>
                 <td>
                     @item.section.Trainer.Name
-                </td>
-                <td>
-                    @foreach(var x in item.section.Trainees)
-                    {
-                        @x.Name <br />
-                    }
                 </td>
             </tr>
         }

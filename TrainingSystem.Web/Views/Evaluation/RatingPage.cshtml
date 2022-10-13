@@ -1,0 +1,109 @@
+﻿@model TrainingSystem.Application.DTOs.Evaluation.TraineeQuestionsDTO
+
+@{
+    ViewData["Title"] = "RatingPage";
+    var index = 0;
+    var sumOfBoxes = 0;
+}
+
+<div>
+    <br />
+    <h1><center>Rating Page</center></h1>
+
+    <h4>Trainee's Name:@Model.TraineeName</h4>
+    @if (ViewBag.ErrorMassege != null)
+    {
+        <center>
+            <h4 style="font-size:10;color:red;">&#x2022; @ViewBag.ErrorMassege</h4>
+        </center>
+    }
+
+    <div>
+        <form method="post">
+            <input value="@ViewBag.TrainerID" asp-for="@Model.TrainerID" type="hidden"><br>
+            <input value="@Model.TraineeID" asp-for="@Model.TraineeID" type="hidden"><br>
+            <fieldset style="border:1px solid black;padding:40px;">
+                <legend>Evaluation Form</legend>
+                @foreach (var item in Model.questions)
+                {
+                    <label>@(index+1))@item.Question</label>
+                    <input class="txt" type="number" min="0" max="10" value="0" name="Questions[@index].value">
+                    <br>
+                    <input type="hidden" min="1" max="10" value="@item.Id" name="Questions[@index].Id">
+                    <br>
+                    index++;
+
+
+                }
+
+                <textarea placeholder="Please,Write your Feedback." rows="4" cols="50" style="margin-left:300px" asp-for="@Model.feedback">@Model.feedback</textarea>
+
+
+                <button class="btn btn-success btn-block btn-info" type="submit" style="width: 100px; margin-left: 900px">Save</button>
+
+
+
+            </fieldset>
+
+
+        </form>
+        @* <label  style="margin-left:800px">
+        Evaluation Rate :<output id="sum" hidden></output>
+        @{var result = "";
+        @if (sumOfBoxes < 70)
+        {
+        result = sumOfBoxes + " out of 100 (Poor)";
+        }
+        else if (sumOfBoxes >= 70 && sumOfBoxes < 80)
+        {
+        result = sumOfBoxes + " out of 100 (Good)";
+        }
+        else if (sumOfBoxes >= 80 && sumOfBoxes < 90)
+        {
+        result = sumOfBoxes + " out of 100 (veryGood)";
+        }
+        else
+        {
+        result = sumOfBoxes + " out of 100 (Excellent)";
+        }
+
+        }
+        @result
+
+        </label>*@
+        <br />
+        <div>
+            <a asp-action="Index" asp-route-id="@ViewBag.TrainerID">Back to List</a>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(".txt").on('change', function() {
+
+                $(this).keyup(function() {
+                    calculateSum();
+                });
+            });
+
+        });
+
+        function calculateSum() {
+            var sum = 0;
+            $(".txt").each(function() {
+
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    sum += parseFloat(this.value);
+
+                }
+            });
+
+            $("#sum").html(sum.toFixed(2));
+        }
+    </script>
+
+
+}

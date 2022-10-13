@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TrainingSystem.Domain;
 using TrainingSystem.Repositroy;
@@ -37,14 +38,38 @@ namespace TrainingSystem.Service.Services
 
         }
 
+        public bool RepetedName(string Name)
+        {
+            var programes = _context.Programs.FirstOrDefault(x => x.Name == Name);
+            if (programes == null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool RepetedNameupdate(string Name, string id)
+        {
+            var programToUpdate= _context.Programs.FirstOrDefault(x => x.ID == id);
+            if (programToUpdate.Name == Name)
+            {
+                return true;
+            }
+            var trainees = _context.Programs.FirstOrDefault(x => x.Name == Name);
+            if (trainees == null)
+            {
+                return true;
+            }
+            return false;
+        }
         public async Task SaveChangesAsyncc()
         {
             await _ProgramsRepository.SaveChangesAsyncc();
         }
 
-        public void UpdateProgram(Programs programs)
+        public void UpdateProgram(string id,Programs programs)
         {
-            _ProgramsRepository.UpdateProgram(programs);
+            _ProgramsRepository.UpdateProgram(id,programs);
         }
 
     }

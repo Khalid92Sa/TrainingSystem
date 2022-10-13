@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {}
+    "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj": {
+    "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
+        "projectUniqueName": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
         "projectName": "TrainingSystem.Application",
-        "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
-        "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\obj\\",
+        "projectPath": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj",
+        "packagesPath": "C:\\Users\\arebaei\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\arebaei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,8 +26,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/v3/index.json": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -41,6 +45,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.7.31, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.2.2, )"
@@ -52,7 +60,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -61,21 +70,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
+    "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
         "projectName": "TrainingSystem.Domain",
-        "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
-        "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
+        "projectPath": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj",
+        "packagesPath": "C:\\Users\\arebaei\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\arebaei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -83,15 +96,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/v3/index.json": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj": {
-                "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj"
+              "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj": {
+                "projectPath": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Application\\TrainingSystem.Application.csproj"
               }
             }
           }
@@ -106,6 +119,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.7.31, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.25, )"
@@ -137,7 +154,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -146,21 +164,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {
+    "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
+        "projectUniqueName": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
         "projectName": "TrainingSystem.Repositroy",
-        "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
-        "packagesPath": "C:\\Users\\one_touch\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\obj\\",
+        "projectPath": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\TrainingSystem.Repositroy.csproj",
+        "packagesPath": "C:\\Users\\arebaei\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Repositroy\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\one_touch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\arebaei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -168,15 +190,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/v3/index.json": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
-                "projectPath": "C:\\Users\\one_touch\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
+              "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\arebaei\\source\\repos\\TrainingSystem\\TrainingSystem.Domain\\TrainingSystem.Domain.csproj"
               }
             }
           }
@@ -191,6 +213,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.7.31, )"
+            },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -202,7 +228,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -211,7 +238,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

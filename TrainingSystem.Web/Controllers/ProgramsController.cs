@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using AspNetCore.Reporting;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TrainingSystem.Domain;
 using TrainingSystem.Service;
 using TrainingSystem.Service.Interfaces;
@@ -19,16 +24,19 @@ namespace TrainingSystem.Web.Controllers
         private readonly ISection _section;
         private readonly IprogramsService _program;
         private readonly ITrainerService _trainer;
+        private readonly IConfiguration _configuration;
         public ProgramsController(ApplicationDbContext context,
             ISection section,
             IprogramsService program,
-            ITrainerService trainer
+            ITrainerService trainer,
+            IConfiguration configuration
             )
         {
             _context = context;
             _section = section;
             _program = program;
             _trainer = trainer;
+            _configuration = configuration;
         }
 
         // GET: Programs
@@ -49,8 +57,8 @@ namespace TrainingSystem.Web.Controllers
             }
             if (HeadOfProgram != null)
             {
-                applicationDbContext = applicationDbContext.Where(s => s.TrainerID.Contains(HeadOfProgram));
-                var head = _trainer.Trainers.First(s => s.ID == HeadOfProgram);
+                applicationDbContext = applicationDbContext.Where(s => s.TrainerID.ToString().Contains(HeadOfProgram));
+                var head = _trainer.Trainers.First(s => s.ID.ToString() == HeadOfProgram);
                 ViewData["HeadOfProgramResult"] = head.Name;
             }
             return View(await applicationDbContext.ToListAsync());
@@ -101,22 +109,24 @@ namespace TrainingSystem.Web.Controllers
                 foreach (var course in selectedCourses)
                 {
                     var courseToAdd = new ProgramSection { ProgramsID = programs.ID, SectionID = course };
-                    //to test
-                    //foreach (var x in _context.progSecs.Where(x => x.SectionID == course))
-                    //{
-                    //    x.section.StardDate = programs.StartDate;
-                    //}
                     programs.programSections.Add(courseToAdd);
 
                 }
             }
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _program.RepetedName(programs.Name))
             {
-                //_context.Add(programs);
-                //await _context.SaveChangesAsync();
+
                 _program.AddProgram(programs);
                 await _program.SaveChangesAsyncc();
                 return RedirectToAction(nameof(Index));
+            }
+            if (!_program.RepetedName(programs.Name))
+            {
+                ViewData["ErrorMessage"] = "Name is already exist";
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = null;
             }
             ViewData["TrainerID"] = new SelectList(_trainer.Trainers, "ID", "Name", programs.TrainerID);
             PopulateAssignedSectionData(programs);
@@ -152,21 +162,15 @@ namespace TrainingSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("ID,Name,TrainerID,StartDate")] Programs programs, string[] selectedCourses)
         {
-            if (id != programs.ID)
-            {
-                return NotFound();
-            }
-
+          
             var ProgramToUpdate = await _program.Programs
                 .Include(i => i.programSections)
                 .Include(i => i.programSections)
                     .ThenInclude(i => i.section)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (await TryUpdateModelAsync<Programs>(
-                 ProgramToUpdate,
-                 "",
-                 x => x.Name, x => x.StartDate, x => x.EndDate, x => x.TrainerID, x => x.Trainer))
+            if (programs.TrainerID != 0&&  programs.StartDate != null && programs.Name != null && _program.RepetedNameupdate(programs.Name, id))
             {
+                _program.UpdateProgram(id, programs);
                 UpdateInstructorCourses(selectedCourses, ProgramToUpdate);
                 try
                 {
@@ -179,7 +183,16 @@ namespace TrainingSystem.Web.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
+
                 return RedirectToAction(nameof(Index));
+            }
+            if (!_program.RepetedNameupdate(programs.Name, id))
+            {
+                ViewData["ErrorMessage"] = "Name is already exist";
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = null;
             }
             ViewData["TrainerID"] = new SelectList(_trainer.Trainers, "ID", "Name", programs.TrainerID);
             UpdateInstructorCourses(selectedCourses, ProgramToUpdate);
@@ -311,6 +324,69 @@ namespace TrainingSystem.Web.Controllers
         private bool ProgramsExists(string id)
         {
             return _program.Programs.Any(e => e.ID == id);
+        }
+        public IActionResult ProgramsReportPDF()
+        {
+            IQueryable<Programs> programes = _program.Programs.Include(p => p.Trainer);
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Name");
+            dt.Columns.Add("HeadOfProgram");
+            dt.Columns.Add("StartDate");
+            dt.Columns.Add("EndDate");
+            foreach (var programe in programes)
+            {
+
+               dt.Rows.Add(programe.Name, programe.Trainer.Name, programe.StartDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture), programe.EndDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture));
+            }
+
+
+            var ReportPath = _configuration.GetValue<string>("ReportPath");
+            var path = ReportPath + "\\Report4.rdlc";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+
+            LocalReport lr = new LocalReport(path);
+            lr.AddDataSource("DataSet1", dt);
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+
+            var result = lr.Execute(RenderType.Pdf, 1, parameters, "");
+
+            return new FileContentResult(result.MainStream, "application/pdf");
+
+        }
+        public IActionResult ProgramsReportExcel()
+        {
+            IQueryable<Programs> programes = _program.Programs.Include(p => p.Trainer);
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Name");
+            dt.Columns.Add("HeadOfProgram");
+            dt.Columns.Add("StartDate");
+            dt.Columns.Add("EndDate");
+            foreach (var programe in programes)
+            {
+
+                dt.Rows.Add(programe.Name, programe.Trainer.Name, programe.StartDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture), programe.EndDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture));
+            }
+
+            var ReportPath = _configuration.GetValue<string>("ReportPath");
+            var path = ReportPath + "\\Report4.rdlc";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+
+            LocalReport lr = new LocalReport(path);
+            lr.AddDataSource("DataSet1", dt);
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            var result = lr.Execute(RenderType.Excel, 1, parameters, "");
+
+            return new FileContentResult(result.MainStream, "application/vnd.ms-excel");
         }
     }
 }

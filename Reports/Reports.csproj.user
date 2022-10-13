@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <None Update="DataSet\DataSet1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DataSet\DataSet2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DataSet\DataSet3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DataSet\DataSet4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DataSet\DataSet5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DataSet\DataSet6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+</Project>

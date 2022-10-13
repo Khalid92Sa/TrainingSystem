@@ -40,6 +40,8 @@ namespace TrainingSystem.Service
             traineeToUpdate.ContactNumber = trainee.ContactNumber;
             traineeToUpdate.StartDate = trainee.StartDate;
             traineeToUpdate.GraduationDate = trainee.GraduationDate;
+            traineeToUpdate.SectionLookupID = trainee.SectionLookupID;
+            traineeToUpdate.TrainerID = trainee.TrainerID;
             await context.SaveChangesAsync();
         }
 
@@ -74,6 +76,30 @@ namespace TrainingSystem.Service
             //await context.SaveChangesAsync();
             context.SaveChanges();
 
+        }
+
+        public Boolean RepetedName(string Name)
+        {
+            var trainees= context.Trainees.FirstOrDefault(x => x.Name==Name);
+            if(trainees == null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public Boolean RepetedNameupdate(string Name, int id)
+        {
+            var traineeToUpdate = GetTraineeByID(id);
+            if (traineeToUpdate.Name == Name)
+            {
+                return true; 
+            }
+            var trainees = context.Trainees.FirstOrDefault(x => x.Name == Name);
+            if (trainees == null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

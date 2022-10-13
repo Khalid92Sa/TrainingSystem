@@ -24,8 +24,6 @@ namespace TrainingSystem.Domain
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
-
-        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
@@ -33,12 +31,12 @@ namespace TrainingSystem.Domain
         {
             get { return StartDate.AddMonths(3); }
         }
-        [ForeignKey("Trainer")]
-        [Required(ErrorMessage = "Please Add Trainer berfore Section.")]
-        public string TrainerID { get; set; }
+        public int TrainerID { get; set; }
         public Trainer Trainer { get; set; }
         public ICollection<Trainee> Trainees { get; set; }
+        [Required(ErrorMessage = "Please Select Section Field.")]
         public int SectionLookupID { get; set; }
         public SectionLookup SectionField { get; set; }
+        public ProgramSection ProgramSection { get; set; }
     }
 }

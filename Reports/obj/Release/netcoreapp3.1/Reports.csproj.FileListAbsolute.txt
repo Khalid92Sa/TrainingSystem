@@ -1,0 +1,10 @@
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\bin\Release\netcoreapp3.1\Reports.deps.json
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\bin\Release\netcoreapp3.1\Reports.dll
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\bin\Release\netcoreapp3.1\Reports.pdb
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\obj\Release\netcoreapp3.1\Reports.csproj.AssemblyReference.cache
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\obj\Release\netcoreapp3.1\Reports.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\obj\Release\netcoreapp3.1\Reports.AssemblyInfoInputs.cache
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\obj\Release\netcoreapp3.1\Reports.AssemblyInfo.cs
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\obj\Release\netcoreapp3.1\Reports.csproj.CoreCompileInputs.cache
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\obj\Release\netcoreapp3.1\Reports.dll
+C:\Users\arebaei\source\repos\TrainingSystem\Reports\obj\Release\netcoreapp3.1\Reports.pdb

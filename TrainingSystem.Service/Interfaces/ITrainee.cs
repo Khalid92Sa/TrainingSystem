@@ -16,5 +16,7 @@ namespace TrainingSystem.Service
         public Task UpdateTrainee(Trainee trainee, int id);
         public void AddTraineeToSection(int id, int sectionid);
         public void RemoveTraineeFromSection(Section section);
+        public Boolean RepetedName(string Name);
+        public Boolean RepetedNameupdate(string Name, int id);
     }
 }

@@ -14,6 +14,7 @@ namespace TrainingSystem.Repositroy
         public bool Status { get; set; }
         public int Evaluation { get; set; }
         public bool IsInSection { get; set; }
+        public string feedback { get; set; }
 
     }
 }

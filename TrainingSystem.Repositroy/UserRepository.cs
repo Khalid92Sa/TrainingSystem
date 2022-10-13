@@ -23,6 +23,12 @@ namespace TrainingSystem.Repositroy
         }
         public async Task<Microsoft.AspNetCore.Identity.SignInResult> Passwordsignin(LoginDTO loginDto)
         {
+            var user = await _userManager.FindByNameAsync(loginDto.UserName);
+            if (user == null)
+            {
+                var userrfalid = await _signInManager.PasswordSignInAsync("sdksmcajscm", loginDto.Password, loginDto.RememberMe, false);
+                return userrfalid;
+            }
             var userr = await _signInManager.PasswordSignInAsync(loginDto.UserName, loginDto.Password, loginDto.RememberMe, false);
             return userr;
         }
@@ -35,6 +41,7 @@ namespace TrainingSystem.Repositroy
         public async Task<IdentityUser> GetUserByUserName(string userName)
         {
             var user = await _userManager.FindByNameAsync(userName);
+            //var user = await _userManager.FindByEmailAsync(userName);
             return user;
         }
 

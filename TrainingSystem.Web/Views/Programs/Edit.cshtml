@@ -17,6 +17,9 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+                @if (ViewBag.ErrorMessag == null){
+                    <p style="color:red;"> @ViewBag.ErrorMessage</p>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="TrainerID" class="control-label"></label>

@@ -1,0 +1,15 @@
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Release\netcoreapp3.1\TrainingSystem.Repositroy.deps.json
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Release\netcoreapp3.1\TrainingSystem.Repositroy.dll
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Release\netcoreapp3.1\TrainingSystem.Repositroy.pdb
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Release\netcoreapp3.1\TrainingSystem.Application.dll
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Release\netcoreapp3.1\TrainingSystem.Domain.dll
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Release\netcoreapp3.1\TrainingSystem.Domain.pdb
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\bin\Release\netcoreapp3.1\TrainingSystem.Application.pdb
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Release\netcoreapp3.1\TrainingSystem.Repositroy.csproj.AssemblyReference.cache
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Release\netcoreapp3.1\TrainingSystem.Repositroy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Release\netcoreapp3.1\TrainingSystem.Repositroy.AssemblyInfoInputs.cache
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Release\netcoreapp3.1\TrainingSystem.Repositroy.AssemblyInfo.cs
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Release\netcoreapp3.1\TrainingSystem.Repositroy.csproj.CoreCompileInputs.cache
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Release\netcoreapp3.1\TrainingSystem.Repositroy.csproj.CopyComplete
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Release\netcoreapp3.1\TrainingSystem.Repositroy.dll
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Repositroy\obj\Release\netcoreapp3.1\TrainingSystem.Repositroy.pdb

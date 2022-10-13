@@ -13,9 +13,13 @@ namespace TrainingSystem.Service
         IQueryable<Trainer> Trainers { get; }
         void AddTrainer(Trainer trainer);
         Task SaveChangesAsyncc();
-        Task<Trainer> GetTrainerById(string id);
-        void UpdateTrainer(Trainer trainer);
-        bool Login(string email,string password,int SectionID);
+        Task<Trainer> GetTrainerById(int id);
+        void UpdateTrainer(int id, Trainer trainer);
+        bool Login(string email,string password,int TrainerID);
+        void LogoutTrainer(int TrainerID);
+        public void SendLoginInfo(Trainer trainer);
+        public Boolean RepetedName(string Name);
+        public Boolean RepetedNameupdate(string Name, int id);
 
     }
 }

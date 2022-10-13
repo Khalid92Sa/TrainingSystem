@@ -1,3 +1,4 @@
+using Hangfire;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using System;
 using TrainingSystem.Domain;
 using TrainingSystem.Repositroy;
 using TrainingSystem.Service;
@@ -30,10 +33,15 @@ namespace TrainingSystem.Web
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddHangfire((sp, config) =>
+            {
+                config.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnectionHangFire"));
+                config.UseSerializerSettings(new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            });
+            services.AddHangfireServer();
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                ).AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders(); 
 
             services.AddMvc(config =>
             {
@@ -58,7 +66,13 @@ namespace TrainingSystem.Web
             services.AddScoped<ISection, SectionService>();
             services.AddScoped<IProgramsRepository, ProgramsRepository>();
             services.AddScoped<IprogramsService, ProgramsService>();
-            services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/Index");
+            services.AddScoped<IEvaluationRepository, EvaluationRepository>();
+            services.AddScoped<IEvaluationService, EvaluationService>();
+            services.ConfigureApplicationCookie(options => {
+                options.LoginPath = "/Home/Index";
+                options.ExpireTimeSpan = TimeSpan.FromDays(5);
+                options.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +94,7 @@ namespace TrainingSystem.Web
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseHangfireDashboard("/mydashboard");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

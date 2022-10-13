@@ -18,6 +18,8 @@ namespace TrainingSystem.Domain
         public DbSet<Programs> Programs { get; set; }
         public DbSet<ProgramSection> programSections { get; set; }
         public DbSet<SectionLookup> SectionLookup { get; set; }
+        public DbSet<Evaluation> Evaluations { get; set; }
+        public DbSet<Questions> Questions { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -25,7 +27,9 @@ namespace TrainingSystem.Domain
             builder.Entity<Programs>().ToTable("Program");
             builder.Entity<ProgramSection>()
                 .HasKey(c => new { c.SectionID, c.ProgramsID });
+            builder.Entity<Evaluation>().ToTable("Evaluation");
+            builder.Entity<Questions>().ToTable("Questions");
         }
-        //public DbSet<TrainingSystem.Application.DTOs.Users.LoginDTO> LoginDTO { get; set; }
+
     }
 }

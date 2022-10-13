@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Hangfire" Version="1.7.31" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TrainingSystem.Domain\TrainingSystem.Domain.csproj" />
     <ProjectReference Include="..\TrainingSystem.Repositroy\TrainingSystem.Repositroy.csproj" />
   </ItemGroup>

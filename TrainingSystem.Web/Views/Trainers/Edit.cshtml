@@ -8,6 +8,10 @@
 
 <h4>Trainer</h4>
 <hr />
+@if (ViewBag.ErrorMessag == null)
+{
+    <p style="color:red; font-size:20px">@ViewBag.ErrorMessage</p>
+}
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -16,19 +20,38 @@
             <input type="hidden" asp-for="SectionID" />
             <input type="hidden" asp-for="Password" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label  class="control-label">FirstName</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ContactNumber" class="control-label"></label>
-                <input asp-for="ContactNumber" class="form-control" />
-                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">SectionField 1</label>
+                <select asp-for="SectionLookupID" class="form-control" asp-items="ViewBag.SectionLookupID">
+                    <option value="">-- Section Field -- </option>
+                </select>
+                <span asp-validation-for="SectionLookupID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">SectionField 2</label>
+                <select asp-for="SectionLookupID1" class="form-control" asp-items="ViewBag.SectionLookupID">
+                    <option value="">-- Section Field -- </option>
+                </select>
+                <span asp-validation-for="SectionLookupID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactNumber" class="control-label"></label>
+                <input type="text" asp-for="ContactNumber" class="form-control" />
+                <span asp-validation-for="ContactNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>

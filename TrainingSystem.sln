@@ -5,13 +5,15 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingSystem.Web", "TrainingSystem.Web\TrainingSystem.Web.csproj", "{6D04E874-DEEB-4CF5-8A02-AC4B4DC361EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingSystem.Domain", "TrainingSystem.Domain\TrainingSystem.Domain.csproj", "{5C58CC2A-95A4-431D-95C3-9993CE79D4E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingSystem.Domain", "TrainingSystem.Domain\TrainingSystem.Domain.csproj", "{5C58CC2A-95A4-431D-95C3-9993CE79D4E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingSystem.Repositroy", "TrainingSystem.Repositroy\TrainingSystem.Repositroy.csproj", "{5531F107-3DC0-4ADD-A997-7CA148390443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingSystem.Repositroy", "TrainingSystem.Repositroy\TrainingSystem.Repositroy.csproj", "{5531F107-3DC0-4ADD-A997-7CA148390443}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingSystem.Service", "TrainingSystem.Service\TrainingSystem.Service.csproj", "{D3FAC199-FB0C-49C5-B65F-FA4A8824EB14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingSystem.Service", "TrainingSystem.Service\TrainingSystem.Service.csproj", "{D3FAC199-FB0C-49C5-B65F-FA4A8824EB14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingSystem.Application", "TrainingSystem.Application\TrainingSystem.Application.csproj", "{59C27FBE-8975-48CA-92F3-1BE90626A656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingSystem.Application", "TrainingSystem.Application\TrainingSystem.Application.csproj", "{59C27FBE-8975-48CA-92F3-1BE90626A656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports", "Reports\Reports.csproj", "{331FC580-45EC-412C-9930-921CBE9B2E34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{59C27FBE-8975-48CA-92F3-1BE90626A656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59C27FBE-8975-48CA-92F3-1BE90626A656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59C27FBE-8975-48CA-92F3-1BE90626A656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{331FC580-45EC-412C-9930-921CBE9B2E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{331FC580-45EC-412C-9930-921CBE9B2E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{331FC580-45EC-412C-9930-921CBE9B2E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{331FC580-45EC-412C-9930-921CBE9B2E34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

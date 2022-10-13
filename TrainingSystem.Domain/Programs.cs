@@ -10,16 +10,18 @@ namespace TrainingSystem.Domain
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string ID { get; set; }
+        [Required]
+        [RegularExpression(@"^[a-zA-Z0-9''-'\s]{1,40}$",
+         ErrorMessage = "Invalid Name, use english letter only")]
         public string Name { get; set; }
         [Display(Name = "Head Of Program")]
-        public string TrainerID { get; set; }
+        public int TrainerID { get; set; }
         
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
         public DateTime StartDate { get; set; }
 
-        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
