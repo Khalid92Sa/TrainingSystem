@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Exchange.WebServices.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.Web.CodeGeneration.Design;
 using System;
@@ -29,7 +30,7 @@ namespace TrainingSystem.Web.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
 
-        public EvaluationController(IEvaluationService evaluationService, IHttpContextAccessor httpContextAccessor, ITrainerService trainer,IConfiguration configuration) 
+        public EvaluationController(IEvaluationService evaluationService, IHttpContextAccessor httpContextAccessor, ITrainerService trainer, IConfiguration configuration)
         {
             _evaluationService = evaluationService;
             _httpContextAccessor = httpContextAccessor;
@@ -64,8 +65,8 @@ namespace TrainingSystem.Web.Controllers
         {
             ViewData["TrainerID"] = TrainerID;
             Trainer trainer21 = (Trainer)_trainer.Trainers
-                .Include(s=>s.Section)
-                .ThenInclude(s=>s.Trainees)
+                .Include(s => s.Section)
+                .ThenInclude(s => s.Trainees)
                 .FirstOrDefault(s => s.ID.ToString() == TrainerID);
             if (!trainer21.Loginstatus)
             {
@@ -74,7 +75,8 @@ namespace TrainingSystem.Web.Controllers
             }
             foreach (var trainee in trainer21.Section.Trainees)
             {
-                if(traineeID == trainee.ID) {
+                if (traineeID == trainee.ID)
+                {
                     var result = _evaluationService.getTraineeWithEvaluationForm(traineeID);
                     return View(result);
                 }
@@ -118,8 +120,30 @@ namespace TrainingSystem.Web.Controllers
             dt.Columns.Add("EvaluationRate");
             foreach (var trainees in result.evaluationTraineesDTOs)
             {
-
-                dt.Rows.Add(trainees.Name,trainees.SectionField,trainees.EvaluationRate);
+                if (trainees.EvaluationRate == 0)
+                {
+                    dt.Rows.Add(trainees.Name, trainees.SectionField, "No Evaluation");
+                }
+                else if (trainees.EvaluationRate <= 70)
+                {
+                    //Poor 
+                    dt.Rows.Add(trainees.Name, trainees.SectionField, "Poor");
+                }
+                else if (trainees.EvaluationRate <= 79)
+                {
+                    // Good 
+                    dt.Rows.Add(trainees.Name, trainees.SectionField, "Good");
+                }
+                else if (trainees.EvaluationRate <= 89)
+                {
+                    //Very Good 
+                    dt.Rows.Add(trainees.Name, trainees.SectionField, "VeryGood ");
+                }
+                else
+                {
+                    // Excellent
+                    dt.Rows.Add(trainees.Name, trainees.SectionField, "Excellent");
+                }
             }
 
 

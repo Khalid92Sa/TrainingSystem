@@ -8,7 +8,23 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateEdit">
-            <input id="ValueID" value"@Model.section.ID" asp-for="ID" type="hidden"></input>
+            <input id="ValueID" value"@Model.section.ID" asp-for="ID" type="hidden"/>
+            <div class="form-group">
+                <label class="control-label">SectionField</label>
+                <select id="myInput" onchange="    getInputValue();" asp-for="SectionLookupID" class="form-control" asp-items="ViewBag.SectionLookupID">
+                    <option value="">-- Section Field -- </option>
+                </select>
+                <span asp-validation-for="SectionLookupID" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Trainer</label>
+                <select asp-for="TrainerID" class="form-control" asp-items="ViewBag.TrainerID">
+                    <option value="">-- Trainer -- </option>
+                </select>
+                <span asp-validation-for="TrainerID" class="text-danger"></span>
+
+            </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -18,22 +34,7 @@
                     <p style="color:red;"> @ViewBag.ErrorMessage</p>
                 }
             </div>
-            <div class="form-group">
-                <label class="control-label">SectionField</label>
-                <select id="myInput" onchange="    getInputValue();" asp-for="SectionLookupID" class="form-control" asp-items="ViewBag.SectionLookupID">
-                    <option value="">-- Section Field -- </option>
-                </select>
-                <span asp-validation-for="SectionLookupID" class="text-danger"></span>
-
-            </div>
-             <div class="form-group">
-                <label class="control-label">Trainer</label>
-                <select asp-for="TrainerID" class="form-control" asp-items="ViewBag.TrainerID">
-                    <option value="">-- Trainer -- </option>
-                </select>
-                <span asp-validation-for="TrainerID" class="text-danger"></span>
-
-            </div>
+            
 
             <div class="form-group">
                 <label asp-for="ContactNumber" class="control-label"></label>

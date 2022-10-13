@@ -8,15 +8,6 @@
     <div class="col-md-4">
         <form asp-action="AddnewTrainee" enctype="multipart/form-data" method="post">
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-                @if (ViewBag.ErrorMessag == null){
-                    <p style="color:red;"> @ViewBag.ErrorMessage</p>
-                }
-                
-            </div>
-            <div class="form-group">
                 <label class="control-label">SectionField</label>
                 <select id="myInput" onchange="    getInputValue();" asp-for="SectionLookupID" class="form-control" asp-items="ViewBag.SectionLookupID">
                     <option value="">-- Section Field -- </option>
@@ -32,6 +23,17 @@
                 <span asp-validation-for="TrainerID" class="text-danger"></span>
 
             </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                @if (ViewBag.ErrorMessag == null){
+                    <p style="color:red;"> @ViewBag.ErrorMessage</p>
+                }
+                
+            </div>
+            
+            
 
             <div class="form-group">
                 <label asp-for="ContactNumber" class="control-label"></label>
