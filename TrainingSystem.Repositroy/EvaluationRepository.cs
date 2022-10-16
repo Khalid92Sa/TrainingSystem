@@ -8,7 +8,7 @@ using TrainingSystem.Domain;
 
 namespace TrainingSystem.Repositroy
 {
-    public class EvaluationRepository:IEvaluationRepository
+    public class EvaluationRepository : IEvaluationRepository
     {
         private ApplicationDbContext _context;
         public EvaluationRepository(ApplicationDbContext context)
@@ -18,21 +18,28 @@ namespace TrainingSystem.Repositroy
 
         public Trainer GetTrainerWithListOFTraineesById(int id)
         {
-            
+
+            //return _context.Trainers
+            //    .Include(b => b.Section)
+            //    .ThenInclude(b => b.Trainees)
+            //     .ThenInclude(b => b.Evaluation)
+            //    .Include(b => b.Section)
+            //        .ThenInclude(b => b.SectionField)
+            //    .SingleOrDefault(s => s.ID == id);
             return _context.Trainers
                 .Include(b => b.Section)
-                .ThenInclude(b => b.Trainees)
-                 .ThenInclude(b => b.Evaluation)
-                .Include(b => b.Section)
-                    .ThenInclude(b => b.SectionField)
+                 .Include(b => b.Trainees)
+                    .ThenInclude(b => b.Evaluation)
+                 .Include(b => b.Trainees)
+                      .ThenInclude(b => b.SectionField)
                 .SingleOrDefault(s => s.ID == id);
-
+    
         }
-        
+
         public IQueryable<Questions> getAllQuestions()
         {
             return _context.Questions;
-             
+
         }
 
         public Trainee GetTraineeById(int id)

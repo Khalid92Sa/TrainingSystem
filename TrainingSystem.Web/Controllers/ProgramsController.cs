@@ -238,13 +238,15 @@ namespace TrainingSystem.Web.Controllers
 
         private void PopulateAssignedSectionData(Programs programs)
         {
-            var allSection = _section.Sections.Include(x => x.Trainer).Include(s => s.SectionField);
+            IQueryable<Section> allSection = _section.Sections.Include(x => x.Trainer).Include(s => s.SectionField).Where(s => s.StartDate.AddMonths(3) > DateTime.Now);
             var ProgramSection = new HashSet<int>(programs.programSections.Select(c => c.SectionID));
             var viewModel = new List<AssignedSectionData>();
             var viewModell = new List<int>();
             foreach (var section in allSection)
             {
-
+               
+                    Trainer trainer = _trainer.Trainers.FirstOrDefault(s => s.ID == section.TrainerID);
+                    section.Trainer = trainer;
                 viewModel.Add(new AssignedSectionData
                 {
                     SectionID = section.ID,
@@ -303,7 +305,7 @@ namespace TrainingSystem.Web.Controllers
                 return NotFound();
             }
 
-            var programs = await _program.Programs
+            var Programs =await _program.Programs
                 .Include(p => p.programSections)
                     .ThenInclude(x => x.section)
                     .ThenInclude(x => x.SectionField)
@@ -314,12 +316,20 @@ namespace TrainingSystem.Web.Controllers
                     .ThenInclude(x => x.section)
                     .ThenInclude(x => x.Trainees)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (programs == null)
+            foreach (var program in Programs.programSections)
+            {
+
+                    Trainer trainer = _trainer.Trainers.FirstOrDefault(s => s.ID == program.section.TrainerID);
+                    program.section.Trainer = trainer;
+                
+                
+            }
+            if (Programs == null)
             {
                 return NotFound();
             }
 
-            return View(programs);
+            return View(Programs);
         }
         private bool ProgramsExists(string id)
         {

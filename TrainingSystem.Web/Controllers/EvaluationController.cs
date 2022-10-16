@@ -65,15 +65,14 @@ namespace TrainingSystem.Web.Controllers
         {
             ViewData["TrainerID"] = TrainerID;
             Trainer trainer21 = (Trainer)_trainer.Trainers
-                .Include(s => s.Section)
-                .ThenInclude(s => s.Trainees)
+                .Include(s => s.Trainees)
                 .FirstOrDefault(s => s.ID.ToString() == TrainerID);
             if (!trainer21.Loginstatus)
             {
                 return RedirectToAction("Index", new RouteValueDictionary(
                    new { controller = "Home", action = "Index", Id = TrainerID }));
             }
-            foreach (var trainee in trainer21.Section.Trainees)
+            foreach (var trainee in trainer21.Trainees)
             {
                 if (traineeID == trainee.ID)
                 {

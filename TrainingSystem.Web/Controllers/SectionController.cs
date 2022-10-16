@@ -49,68 +49,38 @@ namespace TrainingSystem.Web.Controllers
             RepoTrainer = repoTrainer;
             _configuration = configuration;
         }
-        public async Task<ActionResult> Index(string searchSection, string DateFilter, string DateFilterFields)
+        public ActionResult Index(string searchSection, string DateFilter, string DateFilterFields)
         {
             ViewData["CurrentFilterDateFields"] = DateFilterFields;
             ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             ViewData["searchSection"] = searchSection;
             ViewData["CurrentFilterDate"] = DateFilter;
-            ViewData["SectionField"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
+            ViewData["SectionField"] = new SelectList( RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             IQueryable<Section> sections = RepoSection.Sections
                     .Include(s => s.Trainer)
                     .Include(s => s.Trainees)
                     .Include(s => s.SectionField)
                     .Include(s=>s.ProgramSection)
                     .ThenInclude(s=>s.programs);
+            foreach(var section in sections)
+            {
+                Trainer trainer = RepoTrainer.Trainers.FirstOrDefault(s=>s.ID==section.TrainerID);
+                section.Trainer = trainer;
+            }
             List<SectionsFields> groups = new List<SectionsFields>();
+            
+            var test = RepoSectionLookup.SectionLookUp;
+            foreach (var field in test)
+            {
+                var row = new SectionsFields { ID = field.SectionLookupID, SectionField = field.SectionField, Year = field.Year };
+                groups.Add(row);
+            }
             if (searchSection != null)
             {
                 sections = sections
-                    .Where(s => s.SectionField.SectionLookupID.ToString().Contains(searchSection));
-                SectionLookup sectionlookup = RepoSectionLookup.SectionLookUp.First(s => s.SectionLookupID.ToString().Contains(searchSection));
+                    .Where(s => s.SectionLookupID.ToString()== searchSection);
+                SectionLookup sectionlookup = RepoSectionLookup.SectionLookUp.First(s => s.SectionLookupID.ToString()==searchSection);
                 ViewData["SectionFieldResult"] = sectionlookup.SectionField;
-            }
-            var conn = RepoSection.Conn();
-            var id = 1;
-            DateTime date1 = new DateTime(1111, 1, 1, 1, 1, 1);
-            try
-            {
-                await conn.OpenAsync();
-                using var command = conn.CreateCommand();
-                //string query = "SELECT SectionLookup.SectionField , MIN(Sections.StartDate) FROM Sections INNER JOIN SectionLookup ON Sections.SectionLookupID = SectionLookup.SectionLookupID WHERE Sections.SectionLookupID = SectionLookup.SectionLookupID GROUP BY SectionLookup.SectionField; ";
-                string query = String.Join(
-                    Environment.NewLine,
-                    "SELECT SectionLookup.SectionField , MIN(Sections.StartDate)",
-                    "FROM Sections full JOIN SectionLookup",
-                    "ON Sections.SectionLookupID = SectionLookup.SectionLookupID",
-                    "where Sections.SectionLookupID = SectionLookup.SectionLookupID",
-                    "GROUP BY SectionLookup.SectionField;");
-                command.CommandText = query;
-                DbDataReader reader = command.ExecuteReader();
-                
-                
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                            var row = new SectionsFields { ID = id++, SectionField = reader.GetString(0), Year = reader.GetDateTime(1) };
-                        groups.Add(row);
-                    }
-                }
-                reader.Dispose();
-            }
-            finally
-            {
-                conn.Close();
-            }
-            foreach (var sectionfield in RepoSectionLookup.SectionLookUp)
-            {
-                var r = groups.Find(s => s.SectionField == sectionfield.SectionField);
-                if (r==null)
-                {
-                    var row = new SectionsFields { ID = id++, SectionField = sectionfield.SectionField, Year = date1 };
-                    groups.Add(row);
-                }
             }
             if (DateFilter != null)
             {
@@ -129,7 +99,7 @@ namespace TrainingSystem.Web.Controllers
             return View(ViewModelSectio);
         }
 
-        public ActionResult CreateEdit(int? id, int SectionLookupID)
+        public ActionResult CreateEdit(int? id, int SectionLookupID,int TrainerID)
         {
             ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             ViewData["CreateOrEdit"] = "Edit Section";
@@ -137,10 +107,10 @@ namespace TrainingSystem.Web.Controllers
 
             if (id == null)
             {
-                PopulateTrainee(SectionLookupID);
+                PopulateTrainee(SectionLookupID, TrainerID);
                 if (SectionLookupID > 0)
                 {
-                    ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s =>  (s.SectionLookupID == SectionLookupID ||s.SectionLookupID1==SectionLookupID)&&s.SectionID == null && s.Status == true), "ID", "Name");
+                    ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s =>  (s.SectionLookupID == SectionLookupID ||s.SectionLookupID1==SectionLookupID) && s.Status == true), "ID", "Name");
                 }
 
 
@@ -152,24 +122,27 @@ namespace TrainingSystem.Web.Controllers
                 .Include(s => s.Trainer)
                     .Include(s => s.Trainees)
                     .Include(s => s.SectionField).FirstOrDefault(s => s.ID == id);
-            PopulateTraineeData(section,SectionLookupID);
+            PopulateTraineeData(section,SectionLookupID, TrainerID);
             if (SectionLookupID > 0)
             {
-                ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s => (s.SectionLookupID == SectionLookupID || s.SectionLookupID1 == SectionLookupID) &&  s.Status == true && (s.SectionID == null || s.SectionID == id)), "ID", "Name");
+                ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s => (s.SectionLookupID == SectionLookupID || s.SectionLookupID1 == SectionLookupID) &&  s.Status == true ), "ID", "Name");
             }
             else
             {
-                ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s => s.SectionLookupID == section.SectionLookupID && (s.SectionID == null || s.SectionID == id)), "ID", "Name");
-                //ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s => s.SectionID == null || s.SectionID == id), "ID", "Name");
+                ViewData["TrainerID"] = new SelectList(RepoTrainer.Trainers.Where(s => s.SectionLookupID == section.SectionLookupID || s.SectionLookupID1 == SectionLookupID), "ID", "Name");
             }
             return View(section);
         }
-        private void PopulateTrainee(int SectionLookupID)
+        private void PopulateTrainee(int SectionLookupID,int TrainerID)
         {
             IQueryable<Trainee> allTrainee = RepoTrainee.Trainees.Include(s => s.SectionField).Include(s=>s.Trainer);
             if (SectionLookupID > 0)
             {
                 allTrainee = allTrainee.Where(s => s.SectionLookupID==SectionLookupID);
+            }
+            if(TrainerID > 0)
+            {
+                allTrainee = allTrainee.Where(s => s.TrainerID == TrainerID);
             }
             var viewModel = new List<TraineesInSection>();
             foreach (var trainee in allTrainee)
@@ -186,12 +159,20 @@ namespace TrainingSystem.Web.Controllers
             }
             ViewData["Trainees"] = viewModel;
         }
-        private void PopulateTraineeData(Section section,int SectionLookupID)
+        private void PopulateTraineeData(Section section,int SectionLookupID,int TrainerID)
         {
             IQueryable<Trainee> allTrainee = RepoTrainee.Trainees.Include(s => s.SectionField).Include(s=>s.Trainer);
             if (SectionLookupID > 0)
             {
                 allTrainee = allTrainee.Where(s => s.SectionLookupID == SectionLookupID);
+            }
+            if (TrainerID > 0)
+            {
+                allTrainee = allTrainee.Where(s => s.TrainerID == TrainerID);
+            }
+            else
+            {
+                allTrainee = allTrainee.Where(s => s.TrainerID == section.TrainerID);
             }
             var Traineeinsection = section.Trainees.Where(S => S.SectionID == section.ID).Select(s => s.ID);
             var viewModel = new List<TraineesInSection>();
@@ -291,10 +272,30 @@ namespace TrainingSystem.Web.Controllers
             //}
             if (ModelState.IsValid)
             {
-                await RepoSectionLookup.CreateSectionField(model.SectionField);
+                await RepoSectionLookup.CreateSectionField(model.SectionField,model.Year);
                 return RedirectToAction(nameof(Index));
             }
             return View();
+        }
+        public IActionResult EditSectionField(int id)
+        {
+            SectionLookup SectionField = RepoSectionLookup.SectionLookUp.FirstOrDefault(s=>s.SectionLookupID==id);
+            return View(SectionField);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditSectionField(int id,SectionLookup model)
+        {
+            Console.WriteLine(id);
+            Console.WriteLine(model.SectionField);
+            Console.WriteLine(model.Year);
+            if (ModelState.IsValid)
+            {
+                await RepoSectionLookup.EditSectionField(id,model.SectionField, model.Year);
+                return RedirectToAction(nameof(Index));
+            }
+            SectionLookup SectionField = RepoSectionLookup.SectionLookUp.FirstOrDefault(s => s.SectionLookupID == id);
+            return View(SectionField);
         }
 
         public IActionResult ViewTrainees(int id)
@@ -304,6 +305,8 @@ namespace TrainingSystem.Web.Controllers
                     .Include(s => s.Trainees)
                     .Include(s => s.SectionField).FirstOrDefault(s => s.ID == id);
             PopulateTraineeDataForView(section);
+            Trainer trainer = RepoTrainer.Trainers.FirstOrDefault(s => s.ID == section.TrainerID);
+            section.Trainer = trainer;
             return View(section);
         }
         private void PopulateTraineeDataForView(Section section)
@@ -345,6 +348,8 @@ namespace TrainingSystem.Web.Controllers
             dt.Columns.Add("Trainer");
             foreach (var section in sections)
             {
+                Trainer trainer = RepoTrainer.Trainers.FirstOrDefault(s => s.ID == section.TrainerID);
+                section.Trainer = trainer;
                 if (section.ProgramSection == null)
                 {
 
@@ -395,6 +400,8 @@ namespace TrainingSystem.Web.Controllers
             dt.Columns.Add("Trainer");
             foreach (var section in sections)
             {
+                Trainer trainer = RepoTrainer.Trainers.FirstOrDefault(s => s.ID == section.TrainerID);
+                section.Trainer = trainer;
                 if (section.ProgramSection == null)
                 {
                     

@@ -793,3 +793,4 @@ C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcor
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.pdb
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.genruntimeconfig.cache
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\ResetPasswordTrainer.cshtml.g.cs
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\EditSectionField.cshtml.g.cs

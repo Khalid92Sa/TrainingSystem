@@ -219,3 +219,4 @@ C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\bin\Release\netc
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\bin\Release\netcoreapp3.1\TrainingSystem.Web.Views.pdb
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\TrainingSystem.Web.csproj.CopyComplete
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\TrainingSystem.Web.genruntimeconfig.cache
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\Razor\Views\Section\EditSectionField.cshtml.g.cs

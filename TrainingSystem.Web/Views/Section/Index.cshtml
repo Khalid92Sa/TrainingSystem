@@ -117,7 +117,7 @@
                 </td>
 
                 <td class="DontTakeInPDF" id="DontTakeInPDF">
-                    <a class="btn btn-default" asp-action="CreateEdit" asp-route-id="@item.ID" asp-route-SectionLookupID="@item.SectionLookupID">Edit</a>
+                    <a class="btn btn-primary btn-sm" asp-action="CreateEdit" asp-route-id="@item.ID" asp-route-SectionLookupID="@item.SectionLookupID">Edit</a>
                 </td>
 
             </tr>
@@ -169,13 +169,16 @@
                     @Html.DisplayFor(modelItem => item.SectionField)
                 </td>
                 <td>
-                    @if (item.Year == new DateTime(1111, 1, 1, 1, 1, 1))
+                    @if (item.Year == null)
                     {
                         <p>Not Yet</p>
                     }else{
                         @Html.DisplayFor(modelItem => item.Year)
                     }
                     
+                </td>
+                <td class="DontTakeInPDF" id="DontTakeInPDF">
+                    <a class="btn btn-primary btn-sm" asp-action="EditSectionField" asp-route-id="@item.ID">Edit</a>
                 </td>
             </tr>
         }

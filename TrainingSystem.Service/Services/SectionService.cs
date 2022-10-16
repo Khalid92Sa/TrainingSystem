@@ -60,16 +60,6 @@ namespace TrainingSystem.Service
             await context.SaveChangesAsync();
         }
 
-        public System.Data.Common.DbConnection Conn()
-        {
-            return context.Database.GetDbConnection();
-        }
-
-        public async Task Save()
-        {
-            await context.SaveChangesAsync();
-        }
-
         public void SendEvaluationEmail(Section Section)
         {
             string trainees = @"";
@@ -141,48 +131,6 @@ namespace TrainingSystem.Service
             }
         }
 
-        public List<SectionsFields> SectionsFields()
-        {
-            List<SectionsFields> groups = new List<SectionsFields>();
-            var conn = Conn();
-            try
-            {
-                conn.OpenAsync();
-                using var command = conn.CreateCommand();
-                //string query = "SELECT SectionLookup.SectionField , MIN(Sections.StartDate) FROM Sections INNER JOIN SectionLookup ON Sections.SectionLookupID = SectionLookup.SectionLookupID WHERE Sections.SectionLookupID = SectionLookup.SectionLookupID GROUP BY SectionLookup.SectionField; ";
-                string query = String.Join(
-                    Environment.NewLine,
-                    "SELECT SectionLookup.SectionField , MIN(Sections.StartDate)",
-                    "FROM Sections full JOIN SectionLookup",
-                    "ON Sections.SectionLookupID = SectionLookup.SectionLookupID",
-                    "Where Sections.SectionLookupID = SectionLookup.SectionLookupID",
-                    "GROUP BY SectionLookup.SectionField;");
-                command.CommandText = query;
-                DbDataReader reader = command.ExecuteReader();
-                var id = 1;
-                if (reader.HasRows)
-                {
-                    while  (reader.Read())
-                    {
-                        //if (reader[1] == null)
-                        //{
-                            var row = new SectionsFields { ID = id++, SectionField = reader.GetString(0),Year=reader.GetDateTime(1) };
-                            groups.Add(row);
-                        //}
-                        //else
-                        //{
-                        //    var row = new SectionsFields { ID = id++, SectionField = reader.GetString(0), Year = reader.GetDateTime(1) };
-                        //    groups.Add(row);
-                        //}
-                    }
-                }
-                reader.Dispose();
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return groups;
-        }
+
     }
 }

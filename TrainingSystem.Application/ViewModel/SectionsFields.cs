@@ -11,6 +11,6 @@ namespace TrainingSystem.Application.ViewModel
         public string SectionField { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Year { get; set; }
+        public string Year { get; set; }
     }
 }

@@ -17,11 +17,20 @@ namespace TrainingSystem.Service.Services
         }
         public IQueryable<SectionLookup> SectionLookUp => context.SectionLookup;
 
-        public async Task CreateSectionField(string sectionfield)
+        public async Task CreateSectionField(string sectionfield,string Year)
         {
             SectionLookup sectionLookup = new SectionLookup();
             sectionLookup.SectionField = sectionfield;
+            sectionLookup.Year= Year;
             context.SectionLookup.Add(sectionLookup);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task EditSectionField(int id, string sectionfield, string Year)
+        {
+            SectionLookup SectionField = SectionLookUp.FirstOrDefault(s => s.SectionLookupID == id);
+            SectionField.SectionField = sectionfield;
+            SectionField.Year = Year;
             await context.SaveChangesAsync();
         }
     }

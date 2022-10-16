@@ -14,8 +14,5 @@ namespace TrainingSystem.Service
         public void SendEvaluationEmail(Section section);
         public void SendStartEmail(Section section);
         public Task UpdateSection(Section section, int id);
-        public System.Data.Common.DbConnection Conn();
-        List<SectionsFields> SectionsFields();
-        public Task Save();
     }
 }

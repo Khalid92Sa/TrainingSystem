@@ -10,6 +10,7 @@ namespace TrainingSystem.Service.Interfaces
     public interface ISectionLookup
     {
         IQueryable<SectionLookup> SectionLookUp { get; }
-        public Task CreateSectionField(string sectionfield);
+        public Task CreateSectionField(string sectionfield,string Year);
+        public Task EditSectionField(int id,string sectionfield, string Year);
     }
 }

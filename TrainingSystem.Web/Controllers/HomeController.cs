@@ -265,17 +265,10 @@ namespace TrainingSystem.Web.Controllers
                 .Include(s => s.Trainer);
             if (Trainer != null)
             {
-                if (Trainer == "NotIncludeSection")
-                {
-                    Trainees = Trainees.Where(s => s.SectionID == null);
-                    ViewData["TrainerResult"] = "Not Include Section";
-                }
-                else
-                {
-                    Trainees = Trainees.Where(s => s.Section.Trainer.ID.ToString().Contains(Trainer));
+                    Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
                     Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
                     ViewData["TrainerResult"] = trainer.Name;
-                }
+
             }
             if (Trainee != null)
             {
@@ -409,17 +402,11 @@ namespace TrainingSystem.Web.Controllers
                  .Include(s => s.Trainer);
             if (Trainer != null)
             {
-                if (Trainer == "NotIncludeSection")
-                {
-                    Trainees = Trainees.Where(s => s.SectionID == null);
-                    ViewData["TrainerResult"] = "Not Include Section";
-                }
-                else
-                {
-                    Trainees = Trainees.Where(s => s.Section.Trainer.ID.ToString().Contains(Trainer));
+
+                    Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
                     Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
                     ViewData["TrainerResult"] = trainer.Name;
-                }
+                
             }
             if (Trainee != null)
             {
@@ -602,17 +589,9 @@ namespace TrainingSystem.Web.Controllers
                  .Include(s => s.Trainer);
             if (Trainer != null)
             {
-                if (Trainer == "NotIncludeSection")
-                {
-                    Trainees = Trainees.Where(s => s.SectionID == null);
-                    ViewData["TrainerResult"] = "Not Include Section";
-                }
-                else
-                {
-                    Trainees = Trainees.Where(s => s.Section.Trainer.ID.ToString().Contains(Trainer));
+                    Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
                     Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
                     ViewData["TrainerResult"] = trainer.Name;
-                }
             }
             if (Trainee != null)
             {

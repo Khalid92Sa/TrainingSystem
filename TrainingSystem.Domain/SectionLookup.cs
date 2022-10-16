@@ -10,6 +10,8 @@ namespace TrainingSystem.Domain
         public int SectionLookupID { get; set; }
         [Required]
         public string SectionField { get; set; }
+        [Required]
+        public string Year { get; set; }
 
         public ICollection<Section> Sections { get; set; }
         public ICollection<Trainee> Trainees { get; set; }

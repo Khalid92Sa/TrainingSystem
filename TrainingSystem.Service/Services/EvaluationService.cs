@@ -30,11 +30,11 @@ namespace TrainingSystem.Service.Services
             {
                 TrainerID = result.ID,
                 TrainerName = result.Name,
-                evaluationTraineesDTOs = result.Section.Trainees.Select(t => new EvaluationTraineesDTO()
+                evaluationTraineesDTOs = result.Trainees.Select(t => new EvaluationTraineesDTO()
                 {
                     traineeID = t.ID,
                     Name = t.Name,
-                    SectionField = t.Section.SectionField.SectionField,
+                    SectionField = t.SectionField.SectionField,
                     EvaluationRate=t.Evaluation==null?0:t.Evaluation.EvaluationRate
                 }).ToList()
 

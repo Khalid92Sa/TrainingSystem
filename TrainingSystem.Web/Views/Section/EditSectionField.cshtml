@@ -1,0 +1,36 @@
+﻿@model TrainingSystem.Domain.SectionLookup
+
+@{
+    ViewData["Title"] = "Edit SectionField";
+}
+
+<h1>Edit SectionField</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditSectionField">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input value="@Model.SectionLookupID" type="hidden"/>
+            <div class="form-group">
+                <label asp-for="SectionField" class="control-label"></label>
+                <input asp-for="SectionField" class="form-control" />
+                <span asp-validation-for="SectionField" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input type="number" asp-for="Year" class="form-control" min="2000" max="3000" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+
+    <a asp-action="Index">Back to Sections</a>
+
+
+</div>
