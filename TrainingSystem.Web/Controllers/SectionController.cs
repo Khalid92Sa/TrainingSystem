@@ -135,7 +135,7 @@ namespace TrainingSystem.Web.Controllers
         }
         private void PopulateTrainee(int SectionLookupID,int TrainerID)
         {
-            IQueryable<Trainee> allTrainee = RepoTrainee.Trainees.Include(s => s.SectionField).Include(s=>s.Trainer);
+            IQueryable<Trainee> allTrainee = RepoTrainee.Trainees.Include(s => s.SectionField).Include(s=>s.Trainer).Where(s=>s.SectionID==null);
             if (SectionLookupID > 0)
             {
                 allTrainee = allTrainee.Where(s => s.SectionLookupID==SectionLookupID);
@@ -161,7 +161,7 @@ namespace TrainingSystem.Web.Controllers
         }
         private void PopulateTraineeData(Section section,int SectionLookupID,int TrainerID)
         {
-            IQueryable<Trainee> allTrainee = RepoTrainee.Trainees.Include(s => s.SectionField).Include(s=>s.Trainer);
+            IQueryable<Trainee> allTrainee = RepoTrainee.Trainees.Include(s => s.SectionField).Include(s=>s.Trainer).Where(s => s.SectionID == null || s.SectionID==section.ID);
             if (SectionLookupID > 0)
             {
                 allTrainee = allTrainee.Where(s => s.SectionLookupID == SectionLookupID);

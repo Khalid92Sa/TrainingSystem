@@ -255,7 +255,10 @@ namespace TrainingSystem.Web.Controllers
                 {
                     dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Active");
                 }
-                dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Inactive");
+                else
+                {
+                    dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Inactive");
+                }
             }
 
             var ReportPath=_configuration.GetValue<string>("ReportPath");
@@ -291,7 +294,11 @@ namespace TrainingSystem.Web.Controllers
                 {
                     dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Active");
                 }
-                dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Inactive");
+                else
+                {
+                    dt.Rows.Add(trainee.ID, trainee.Name, trainee.LastName, trainee.SectionField.SectionField, "Inactive");
+                }
+                
             }
 
 
