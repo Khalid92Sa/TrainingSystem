@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingSystem.Application.DTOs.Users;
+using TrainingSystem.Application.ViewModel;
 using TrainingSystem.Domain;
 using TrainingSystem.Repositroy;
 using TrainingSystem.Service;
@@ -102,26 +103,26 @@ namespace TrainingSystem.Web.Controllers
             _logger.LogInformation("trainerID:" + TrainerID);
             try
             {
-               if (ModelState.IsValid)
-            {
-                var result = _trainer.Login(loginDTO.UserName, loginDTO.Password, TrainerID);
-                if (result)
+                if (ModelState.IsValid)
                 {
-                    BackgroundJob.Schedule(() => _trainer.LogoutTrainer(TrainerID), TimeSpan.FromMinutes(10));
-                    return RedirectToAction("Index", new RouteValueDictionary(
-                     new { controller = "Evaluation", action = "Index", Id = TrainerID }));
+                    var result = _trainer.Login(loginDTO.UserName, loginDTO.Password, TrainerID);
+                    if (result)
+                    {
+                        BackgroundJob.Schedule(() => _trainer.LogoutTrainer(TrainerID), TimeSpan.FromMinutes(10));
+                        return RedirectToAction("Index", new RouteValueDictionary(
+                         new { controller = "Evaluation", action = "Index", Id = TrainerID }));
+                    }
+                    ModelState.AddModelError(string.Empty, "invalid Login Attempt");
                 }
-                ModelState.AddModelError(string.Empty, "invalid Login Attempt");
-            }
 
-            return View(loginDTO);
+                return View(loginDTO);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
                 throw ex;
             }
-           
+
         }
         //Forgot Password Page implementation
         [AllowAnonymous]
@@ -147,12 +148,12 @@ namespace TrainingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<ConfrimationCodeResponseDTO> ConfirmationCode(string userName, int code)
         {
-            
+
             var result = _UserService.ConfirmationCode(userName, code);
             var res = new ConfrimationCodeResponseDTO();
             var user = await _UserService.GetUserByUserName(userName);
-          
-            
+
+
             if (result && user != null)
             {
                 var token = await _UserManager.GeneratePasswordResetTokenAsync(user);
@@ -220,7 +221,7 @@ namespace TrainingSystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var trainer = _trainer.Trainers.FirstOrDefault(s=>s.UserName== resetPasswordDTO.UserName);
+                var trainer = _trainer.Trainers.FirstOrDefault(s => s.UserName == resetPasswordDTO.UserName);
                 if (trainer is null)
                 {
                     return NotFound();
@@ -234,6 +235,44 @@ namespace TrainingSystem.Web.Controllers
             return View(resetPasswordDTO);
         }
         [Authorize]
+        public IActionResult Home()
+        {
+            HomeDto Dto = new HomeDto() { CountSomeItem = new List<CountSomeItem>() };
+            IQueryable<SectionLookup> SectionFields = _sectionLookup.SectionLookUp;
+            IQueryable<Trainer> Trainers = _trainer.Trainers.Where(s=>s.Status==true);
+            IQueryable<Trainee> Trainees = _trainee.Trainees
+                .Include(s => s.Section)
+                .Where(
+                s => s.SectionID !=null
+                &&s.Section.StartDate < DateTime.Now
+                && s.Section.StartDate.AddMonths(3) > DateTime.Now
+                );
+            //Trainees = Trainees.Where(s => s.Section.StartDate < DateTime.Now &&s.Section.StartDate.AddMonths(3) > DateTime.Now);
+            Dto.CountSomeItem.Add(
+            new CountSomeItem()
+            {
+                Item = "SectionFields",
+                Count = SectionFields.Count()
+            });
+            Dto.CountSomeItem.Add(
+            new CountSomeItem()
+            {
+                Item = "Trainers",
+                Count = Trainers.Count()
+            });
+            Dto.CountSomeItem.Add(
+            new CountSomeItem()
+            {
+                Item = "Trainees",
+                Count = Trainees.Count()
+            });
+
+            return View(Dto);
+        }
+
+
+
+        [Authorize]
         public IActionResult ReportingPage(string Trainer, string Trainee, string Section, string Status, string Score)
         {
             ViewData["Trainer"] = Trainer;
@@ -242,19 +281,19 @@ namespace TrainingSystem.Web.Controllers
             ViewData["Status"] = Status;
             ViewData["Score"] = Score;
             ViewData["Trainers"] = new SelectList(_trainer.Trainers, "ID", "Name");
-            
+
             if (Trainer != null)
             {
                 Trainer trainer = _trainer.Trainers.Where(s => s.ID.ToString() == Trainer).First();
                 ViewData["SectionField"] = new SelectList(_sectionLookup.SectionLookUp.Where(s => s.SectionLookupID == trainer.SectionLookupID1 || s.SectionLookupID == trainer.SectionLookupID), "SectionLookupID", "SectionField");
-                ViewData["Trainees"] = new SelectList(_trainee.Trainees.Where(s=>s.TrainerID.ToString()==Trainer), "ID", "Name");
+                ViewData["Trainees"] = new SelectList(_trainee.Trainees.Where(s => s.TrainerID.ToString() == Trainer), "ID", "Name");
             }
             else
             {
                 ViewData["SectionField"] = new SelectList(_sectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
                 ViewData["Trainees"] = new SelectList(_trainee.Trainees, "ID", "Name");
             }
-            
+
             IQueryable<Trainee> Trainees = _trainee.Trainees
                 .Include(s => s.SectionField)
                 .Include(s => s.Section)
@@ -265,9 +304,9 @@ namespace TrainingSystem.Web.Controllers
                 .Include(s => s.Trainer);
             if (Trainer != null)
             {
-                    Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
-                    Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
-                    ViewData["TrainerResult"] = trainer.Name;
+                Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
+                Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
+                ViewData["TrainerResult"] = trainer.Name;
 
             }
             if (Trainee != null)
@@ -403,10 +442,10 @@ namespace TrainingSystem.Web.Controllers
             if (Trainer != null)
             {
 
-                    Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
-                    Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
-                    ViewData["TrainerResult"] = trainer.Name;
-                
+                Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
+                Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
+                ViewData["TrainerResult"] = trainer.Name;
+
             }
             if (Trainee != null)
             {
@@ -510,8 +549,8 @@ namespace TrainingSystem.Web.Controllers
                     {
                         if (item.GraduationStatus)
                         {
-                           
-                            if(item.Evaluation.EvaluationRate <= 70)
+
+                            if (item.Evaluation.EvaluationRate <= 70)
                             {
                                 dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Poor", item.Evaluation.feedback);
                             }
@@ -589,9 +628,9 @@ namespace TrainingSystem.Web.Controllers
                  .Include(s => s.Trainer);
             if (Trainer != null)
             {
-                    Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
-                    Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
-                    ViewData["TrainerResult"] = trainer.Name;
+                Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
+                Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
+                ViewData["TrainerResult"] = trainer.Name;
             }
             if (Trainee != null)
             {

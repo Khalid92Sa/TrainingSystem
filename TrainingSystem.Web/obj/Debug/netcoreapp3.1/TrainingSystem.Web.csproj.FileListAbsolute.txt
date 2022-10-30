@@ -756,9 +756,11 @@ C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcor
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Evaluation\Index.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Evaluation\RatingPage.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\ForgotPassword.cshtml.g.cs
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Home.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\ReportingPage.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\ResetPassword.cshtml.g.cs
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\ResetPasswordTrainer.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\Create.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\Delete.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\Details.cshtml.g.cs
@@ -767,6 +769,7 @@ C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcor
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Programs\ViewSection.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\CreateEdit.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\CreateSectionField.cshtml.g.cs
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\EditSectionField.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\Index.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\ViewTrainees.cshtml.g.cs
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
@@ -792,5 +795,3 @@ C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcor
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.dll
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.pdb
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\TrainingSystem.Web.genruntimeconfig.cache
-C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\ResetPasswordTrainer.cshtml.g.cs
-C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Debug\netcoreapp3.1\Razor\Views\Section\EditSectionField.cshtml.g.cs

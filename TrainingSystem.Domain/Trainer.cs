@@ -36,10 +36,9 @@ namespace TrainingSystem.Domain
         [StringLength(14, MinimumLength = 14, ErrorMessage = "This field must be 14 numbers and containes country code")]
         public string ContactNumber { get; set; }
         public string UserName { get; set; }
-        [Required]
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
          ErrorMessage = "Invalid Address, use english letter only")]
-        public string Address { get; set; }
+        public string Address { get; set; } = "Amman";
         [Required]
         [EmailAddress]
         public string Email { get; set; }

@@ -120,7 +120,7 @@ namespace TrainingSystem.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,LastName,SectionID,Status,ContactNumber,Email,Password,SectionLookupID,Address")] Trainer trainer)
+        public async Task<IActionResult> Create([Bind("ID,Name,LastName,SectionID,Status,ContactNumber,Email,Password,SectionLookupID")] Trainer trainer)
         {
             trainer.UserName = trainer.Name + '_' + trainer.LastName;
             
@@ -165,7 +165,7 @@ namespace TrainingSystem.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,LastName,Status,ContactNumber,Email,SectionLookupID,SectionLookupID1,Address,Password,SectionID")] Trainer trainer)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,LastName,Status,ContactNumber,Email,SectionLookupID,SectionLookupID1,Password,SectionID")] Trainer trainer)
         {
             trainer.UserName = trainer.Name + '_' + trainer.LastName;
             if (ModelState.IsValid && _TrainerService.RepetedNameupdate(trainer.UserName,id))

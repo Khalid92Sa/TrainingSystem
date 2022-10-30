@@ -70,14 +70,24 @@ namespace TrainingSystem.Service
                 SmtpClient smtp = new SmtpClient();
                 message.To.Add(new MailAddress(trainer.Email));
                 message.From = new MailAddress("notifications@techprocess.net");
-                message.Subject = "Mr.\\Mrs. " + trainer.Name + ",";
+                message.Subject = "Welcome To The Training System!";
                 message.IsBodyHtml = true;
                 message.Body = String.Join(
+
+                     Environment.NewLine,
+                     "Dear " + trainer.Name + ",",
+                     Environment.NewLine,
+                    "Welcome to the training system that related to the HR Department.",
+                     Environment.NewLine,
+                    "You can access your account by the below URL to reach your trainees and evaluate them after completing the training period:",
+                     Environment.NewLine,
+                    "Username:" +trainer.UserName,
+                     Environment.NewLine,
+                    "Password:" + trainer.Password ,
                     Environment.NewLine,
-                    "You Added to the training system as a trainer",
-                    "UserName:" + trainer.UserName,
-                    "Password:" + trainer.Password,
-                    "Regards,");
+                    "Best Regards,");
+                Console.WriteLine(message.Subject);
+                Console.WriteLine(message.Body);
                 smtp.Host = "mail.sssprocess.com";
                 smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
                 smtp.Port = 587;

@@ -51,12 +51,17 @@ namespace TrainingSystem.Service
                     SmtpClient smtp = new SmtpClient();
                     message.To.Add(new MailAddress(user.Email));
                     message.From = new MailAddress("notifications@techprocess.net");
-                    message.Subject = "Mr.\\Mrs. " + user.UserName + ",";
+                    message.Subject = "Forget Password";
                     message.IsBodyHtml = true;
                     message.Body = String.Join(
+                        Environment.NewLine,
+                         "Dear " + user.UserName + ",\n",
                          Environment.NewLine,
-                         "Confirmation code:" + code,
-                         "Regards,");
+                         "Confirmation code:" + code+"\n",
+                         Environment.NewLine,
+                         "Best Regards,");
+                    Console.WriteLine(message.Subject);
+                    Console.WriteLine(message.Body);
                     smtp.Host = "mail.sssprocess.com";
                     smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
                     smtp.Port = 587;
