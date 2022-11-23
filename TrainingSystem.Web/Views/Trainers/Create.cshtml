@@ -47,23 +47,15 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            @*<div class="form-group form-check">
-            <label class="form-check-label">
-            <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-            </label>
-
-            </div>*@
             <label>
-                <input type="checkbox" id="myInput" onchange="getInputValue();" value="1">
+                <input asp-for="Status" type="checkbox" id="myInput" onchange="getInputValue();" checked>
                 Active
             </label>
 
             <label>
-                <input type="checkbox" value='true'>
+                <input onchange="getInputValue1();" id="checkbox1" type="checkbox">
                 InActive
             </label>
-
-
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -81,11 +73,22 @@
     }
     }
     <script>
-        function getInputValue() {
-            var inputVal = document.getElementById("myInput").value;
-            alert(inputVal);
-            
+        const checkbox = document.getElementById('myInput');
 
+        checkbox.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                document.getElementById("checkbox1").checked = false;
+            } else {
+                document.getElementById("checkbox1").checked = true;
+            }
+        });
+        const checkbox1 = document.getElementById('checkbox1');
 
-        }
+        checkbox1.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                document.getElementById("myInput").checked = false;
+            } else {
+                document.getElementById("myInput").checked = true;
+            }
+        });
     </script>

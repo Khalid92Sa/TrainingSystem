@@ -482,10 +482,10 @@
         </Style>
       </Image>
     </ReportItems>
-    <Height>2.54167in</Height>
+    <Height>2.14111in</Height>
     <Style />
   </Body>
-  <Width>9.12375in</Width>
+  <Width>6.28062in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
@@ -573,6 +573,7 @@ iBGjIBGTU4wYMQoSMTnFiBGjIBGTU4wYMQoSMTnFiBGjIBGTU4wYMQoSMTnFiBGjIBGTU4wYMQoSMTnF
 eXOcMI1pCMF544JueqbnRSmLG3QQfjdI1ymBOz9nOYMQVE6DXN6jdHDWlb9NnfjbDBzn314IW/cwoN5e1wq6RpTrR2nbdP2A30hj4Fd2g0zK6RRnf8s1siYnZ8NSSdMQ7uNBDRrl5qQD1/IbaOTvbFDznTIH3fRMz6Msfjc+TJ3NNcz1gtKSjjReEnQeCGozg1zeo3QwA8bU28B9PKgsUQZdOnAt06+dCGq3KNeP0rbpyMm0DXmafIOQTTk5N13+2SBrcgI0mBkczgbmu9dxN3LZ8YM6jPPGGZCW8kchJxDmPI5znhfCdAqThnzSpfWrd1D5DILazCCX9ygdzLXoO856m77kPu6FMO0bFuaaTpg+4T5uEOX6Udo2yv00EoRsy8n3dOXJFDkhJypoBqoTfsfdyGXHNzfGC6ZDcT0nOBbUyJmeB7zqT3rOS1df0y6I3yAAfuUD5h4EIajNDHJ5j8KAa1Fud9v6HXeD+oQddOngbn/T3kH5R7l+lLYNU3fKSn6IV59wIttymr6cD+SEnExjuDu433E3TKXdEjQg/RA00PwGsWlgv5ue6XkGlIl0TgkLOmO69KadvWDa1l12J4LazCCX9ygMTJu5y+133A3q4yynkUzglU+6eke5vl/beiEMOQHOJ206ZFJOJzmZsZGPfpATcooRI0aMXCMmpxgxYhQkYnKKESNGQSImpxgxYhQkYnKKESNGQSImpxgxYhQkYnKKESNGQSImpxgxYhQkYnKKESNGQSImpxgxYhQkYnKKESNGQSImpxgxYhQkYnKKESNGQSImpxgxYhQkYnKKESNGQSImpxgxYhQkYnKKESNGAULk/wMUfpilygavawAAAABJRU5ErkJggg==</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>3d626cd8-5b75-427e-9590-9a410dedeb0f</rd:ReportID>
 </Report>

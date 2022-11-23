@@ -160,6 +160,7 @@ namespace TrainingSystem.Web.Controllers
             }
             ViewData["SectionLookupID"] = new SelectList(RepoSectionLookup.SectionLookUp, "SectionLookupID", "SectionField");
             ViewData["SectionID"] = new SelectList(_section.Sections, "ID", "SectionField");
+            ViewData["Active"] = trainer.Status;
             return View(trainer);
         }
 

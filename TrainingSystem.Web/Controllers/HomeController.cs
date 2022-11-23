@@ -80,7 +80,7 @@ namespace TrainingSystem.Web.Controllers
                 {
 
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Index", "Trainers");
+                    return RedirectToAction("Home", "Home");
                 }
                 ModelState.AddModelError(string.Empty, "invalid Login Attempt");
             }
@@ -237,7 +237,6 @@ namespace TrainingSystem.Web.Controllers
         [Authorize]
         public IActionResult Home()
         {
-            HomeDto Dto = new HomeDto() { CountSomeItem = new List<CountSomeItem>() };
             IQueryable<SectionLookup> SectionFields = _sectionLookup.SectionLookUp;
             IQueryable<Trainer> Trainers = _trainer.Trainers.Where(s=>s.Status==true);
             IQueryable<Trainee> Trainees = _trainee.Trainees
@@ -247,27 +246,12 @@ namespace TrainingSystem.Web.Controllers
                 &&s.Section.StartDate < DateTime.Now
                 && s.Section.StartDate.AddMonths(3) > DateTime.Now
                 );
-            //Trainees = Trainees.Where(s => s.Section.StartDate < DateTime.Now &&s.Section.StartDate.AddMonths(3) > DateTime.Now);
-            Dto.CountSomeItem.Add(
-            new CountSomeItem()
-            {
-                Item = "SectionFields",
-                Count = SectionFields.Count()
-            });
-            Dto.CountSomeItem.Add(
-            new CountSomeItem()
-            {
-                Item = "Trainers",
-                Count = Trainers.Count()
-            });
-            Dto.CountSomeItem.Add(
-            new CountSomeItem()
-            {
-                Item = "Trainees",
-                Count = Trainees.Count()
-            });
+            ViewData["SectionFields"] = SectionFields.Count();
+            ViewData["Trainers"] = Trainers.Count();
+            ViewData["Trainees"] = Trainees.Count();
 
-            return View(Dto);
+
+            return View();
         }
 
 

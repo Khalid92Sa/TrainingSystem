@@ -1,7 +1,11 @@
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\TrainingSystem.Web.exe
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\css\Home.css
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\css\LoginStyleSheet.css
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\css\nicepage.css
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\css\site.css
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\favicon.ico
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\js\jquery.js
+C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\js\nicepage.js
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\js\site.js
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\arebaei\source\repos\TrainingSystem\TrainingSystem.Web\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map

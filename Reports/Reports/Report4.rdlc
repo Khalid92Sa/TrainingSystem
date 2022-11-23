@@ -62,7 +62,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Head Of Program</Value>
+                              <Value>Head Of Season</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -311,7 +311,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Programs Reports</Value>
+                <Value>Seasons Reports</Value>
                 <Style>
                   <FontSize>18pt</FontSize>
                   <Color>Blue</Color>
@@ -352,10 +352,10 @@
         </Style>
       </Image>
     </ReportItems>
-    <Height>2.76042in</Height>
+    <Height>2.2175in</Height>
     <Style />
   </Body>
-  <Width>6.60708in</Width>
+  <Width>5.13687in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>

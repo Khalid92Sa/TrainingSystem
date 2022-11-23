@@ -75,19 +75,15 @@ namespace TrainingSystem.Service
                 SmtpClient smtp = new SmtpClient();
                 message.To.Add(new MailAddress(Section.Trainer.Email));
                 message.From = new MailAddress("notifications@techprocess.net");
-                message.Subject = "Evaluate trainees";
+                message.Subject = "Evaluate Trainees";
                 message.IsBodyHtml = true;
                 message.Body = String.Join(
                     Environment.NewLine,
-                    "Mr.\\Mrs. " + Section.Trainer.Name + ",",
-                     Environment.NewLine,
+                    "Mr.\\Mrs. " + Section.Trainer.Name + ",\n",
                      "Please Evaluate following trainees:",
-                     Environment.NewLine,
-                     trainees,
-                     Environment.NewLine,
+                     trainees+ "\n",
                      "By The Link: " + "https://saib-web/TS/Home/Index/" + Section.Trainer.ID,
-                     Environment.NewLine,
-                     "Best Regards,");
+                     "Best Regards,\n");
                 smtp.Host = "mail.sssprocess.com";
                 smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
                 smtp.Port = 587;
@@ -120,15 +116,11 @@ namespace TrainingSystem.Service
                 message.IsBodyHtml = true;
                 message.Body = String.Join(
                     Environment.NewLine,
-                    "Mr.\\Mrs. " + Section.Trainer.Name + ",",
-                    Environment.NewLine,
-                    "Our company has opened a new training track.",
-                    Environment.NewLine,
-                    "You have been handed the " + Section.SectionField.SectionField + " Track with each of the following trainees:",
-                    Environment.NewLine,
-                     trainees,
-                     Environment.NewLine,
-                    "Best Regards,");
+                    "Mr.\\Mrs. " + Section.Trainer.Name + ",\n",
+                    "Our company has opened a new training track.\n",
+                    "You have been handed the " + Section.SectionField.SectionField + " Track with each of the following trainees:\n",
+                     trainees+"\n",
+                    "Best Regards,\n");
                 smtp.Host = "mail.sssprocess.com";
                 smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
                 smtp.Port = 587;

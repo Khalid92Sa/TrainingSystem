@@ -56,12 +56,8 @@ namespace TrainingSystem.Service
                     message.Body = String.Join(
                         Environment.NewLine,
                          "Dear " + user.UserName + ",\n",
-                         Environment.NewLine,
                          "Confirmation code:" + code+"\n",
-                         Environment.NewLine,
                          "Best Regards,");
-                    Console.WriteLine(message.Subject);
-                    Console.WriteLine(message.Body);
                     smtp.Host = "mail.sssprocess.com";
                     smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
                     smtp.Port = 587;

@@ -53,11 +53,28 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+            @if(ViewBag.Active == true ){
+                <label>
+                    <input asp-for="Status" type="checkbox" id="myInput" onchange="getInputValue();" checked>
+                    Active
                 </label>
-            </div>
+
+                <label>
+                    <input onchange="getInputValue1();" id="checkbox1" type="checkbox">
+                    InActive
+                </label>
+            }else{
+                <label>
+                    <input asp-for="Status" type="checkbox" id="myInput" onchange="getInputValue();" >
+                    Active
+                </label>
+
+                <label>
+                    <input onchange="getInputValue1();" id="checkbox1" type="checkbox" checked>
+                    InActive
+                </label>
+            }
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -72,3 +89,23 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+    <script>
+        const checkbox = document.getElementById('myInput');
+
+        checkbox.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                document.getElementById("checkbox1").checked = false;
+            } else {
+                document.getElementById("checkbox1").checked = true;
+            }
+        });
+        const checkbox1 = document.getElementById('checkbox1');
+
+        checkbox1.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                document.getElementById("myInput").checked = false;
+            } else {
+                document.getElementById("myInput").checked = true;
+            }
+        });
+    </script>
