@@ -285,8 +285,6 @@ namespace Reports.DataSet {
             
             private global::System.Data.DataColumn columnSectionField;
             
-            private global::System.Data.DataColumn columnGraduationStatus;
-            
             private global::System.Data.DataColumn columnEvaluationScore;
             
             private global::System.Data.DataColumn columnFeedBack;
@@ -350,14 +348,6 @@ namespace Reports.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn GraduationStatusColumn {
-                get {
-                    return this.columnGraduationStatus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn EvaluationScoreColumn {
                 get {
                     return this.columnEvaluationScore;
@@ -409,13 +399,12 @@ namespace Reports.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string Trainee, string Trainer, string SectionField, string GraduationStatus, string EvaluationScore, string FeedBack) {
+            public DataTable1Row AddDataTable1Row(string Trainee, string Trainer, string SectionField, string EvaluationScore, string FeedBack) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Trainee,
                         Trainer,
                         SectionField,
-                        GraduationStatus,
                         EvaluationScore,
                         FeedBack};
                 rowDataTable1Row.ItemArray = columnValuesArray;
@@ -443,7 +432,6 @@ namespace Reports.DataSet {
                 this.columnTrainee = base.Columns["Trainee"];
                 this.columnTrainer = base.Columns["Trainer"];
                 this.columnSectionField = base.Columns["SectionField"];
-                this.columnGraduationStatus = base.Columns["GraduationStatus"];
                 this.columnEvaluationScore = base.Columns["EvaluationScore"];
                 this.columnFeedBack = base.Columns["FeedBack"];
             }
@@ -457,8 +445,6 @@ namespace Reports.DataSet {
                 base.Columns.Add(this.columnTrainer);
                 this.columnSectionField = new global::System.Data.DataColumn("SectionField", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSectionField);
-                this.columnGraduationStatus = new global::System.Data.DataColumn("GraduationStatus", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGraduationStatus);
                 this.columnEvaluationScore = new global::System.Data.DataColumn("EvaluationScore", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEvaluationScore);
                 this.columnFeedBack = new global::System.Data.DataColumn("FeedBack", typeof(string), null, global::System.Data.MappingType.Element);
@@ -653,22 +639,6 @@ namespace Reports.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string GraduationStatus {
-                get {
-                    try {
-                        return ((string)(this[this.tableDataTable1.GraduationStatusColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GraduationStatus\' in table \'DataTable1\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable1.GraduationStatusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string EvaluationScore {
                 get {
                     try {
@@ -733,18 +703,6 @@ namespace Reports.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetSectionFieldNull() {
                 this[this.tableDataTable1.SectionFieldColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsGraduationStatusNull() {
-                return this.IsNull(this.tableDataTable1.GraduationStatusColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetGraduationStatusNull() {
-                this[this.tableDataTable1.GraduationStatusColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

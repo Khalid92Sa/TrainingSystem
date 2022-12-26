@@ -101,7 +101,7 @@ namespace TrainingSystem.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,TrainerID,StartDate")] Programs programs, int[] selectedCourses)
+        public async Task<IActionResult> Create([Bind("ID,Name,TrainerID,StartDate,EndDate")] Programs programs, int[] selectedCourses)
         {
             if (selectedCourses != null)
             {
@@ -160,7 +160,7 @@ namespace TrainingSystem.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,Name,TrainerID,StartDate")] Programs programs, string[] selectedCourses)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,Name,TrainerID,StartDate,EndDate")] Programs programs, string[] selectedCourses)
         {
           
             var ProgramToUpdate = await _program.Programs
@@ -238,7 +238,11 @@ namespace TrainingSystem.Web.Controllers
 
         private void PopulateAssignedSectionData(Programs programs)
         {
-            IQueryable<Section> allSection = _section.Sections.Include(x => x.Trainer).Include(s => s.SectionField).Where(s => s.StartDate.AddMonths(3) > DateTime.Now);
+            IQueryable<Section> allSection = _section.Sections
+                .Include(x => x.Trainer)
+                .Include(s => s.SectionField)
+                .Include(s=>s.ProgramSection)
+                .Where(s=>s.ProgramSection == null || s.ProgramSection.ProgramsID == programs.ID);
             var ProgramSection = new HashSet<int>(programs.programSections.Select(c => c.SectionID));
             var viewModel = new List<AssignedSectionData>();
             var viewModell = new List<int>();

@@ -37,6 +37,7 @@ namespace TrainingSystem.Repositroy
         [EmailAddress]
         public string Email { get; set; }
         public string CVFileName { get; set; }
+        public string HRFeedback { get; set; }
 
         public IFormFile File { get; set; }
     }

@@ -65,6 +65,7 @@ namespace TrainingSystem.Domain
             }
 
         }
+        public string HRFeedback { get; set; }
         public int? SectionID { get; set; }
         public Section Section { get; set; }
         public Evaluation Evaluation { get; set; }

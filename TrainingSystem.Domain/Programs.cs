@@ -25,10 +25,7 @@ namespace TrainingSystem.Domain
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
-        public DateTime EndDate
-        {
-            get { return StartDate.AddMonths(3); }
-        }
+        public DateTime EndDate { get; set; }
         public Trainer Trainer { get; set; }
         public ICollection<ProgramSection> programSections { get; set; }
     }

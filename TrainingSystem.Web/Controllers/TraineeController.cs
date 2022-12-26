@@ -110,7 +110,7 @@ namespace TrainingSystem.Web.Controllers
                 if (model.File != null)
                 {
                     FileInfo fileInfo = new FileInfo(model.File.FileName);
-                    string fileName = model.CVFileName + fileInfo.Extension;
+                    string fileName = model.Name+"CV" + fileInfo.Extension;
                     using (var ms = new MemoryStream())
                     {
                         model.File.CopyTo(ms);
@@ -126,6 +126,7 @@ namespace TrainingSystem.Web.Controllers
                         trainee.GraduationDate = model.GraduationDate;
                         trainee.CV = fileBytes;
                         trainee.CVFileName = fileName;
+                        trainee.HRFeedback = model.HRFeedback;
                     }
                 }
                 else
@@ -137,6 +138,7 @@ namespace TrainingSystem.Web.Controllers
                     trainee.StartDate = model.StartDate;
                     trainee.Email = model.Email;
                     trainee.GraduationDate = model.GraduationDate;
+                    trainee.HRFeedback = model.HRFeedback;
                 }
                 await RepoTrainee.CreateTrainee(trainee);
                 return RedirectToAction(nameof(Index));
@@ -178,7 +180,7 @@ namespace TrainingSystem.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateEdit([Bind("Name,Email,TrainerID,GraduationDate,ContactNumber,SectionLookupID,CVFileName")] Trainee trainee, int id, int? SectionLookupID)
+        public async Task<ActionResult> CreateEdit([Bind("Name,Email,TrainerID,GraduationDate,HRFeedback,ContactNumber,SectionLookupID,CVFileName")] Trainee trainee, int id, int? SectionLookupID)
         {
             
             if (ModelState.IsValid &&RepoTrainee.RepetedNameupdate(trainee.Name,id))

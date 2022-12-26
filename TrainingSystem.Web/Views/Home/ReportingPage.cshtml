@@ -46,28 +46,6 @@
                         }
                         
                     </select>
-                    <select class="form-select form-control-sm mb-1 ml-2" name="Status" style="width:100px">
-                        @if (ViewBag.Status == null)
-                        {
-                            <option value="">--Status--</option>
-                            <option value="Inactive">Inactive</option>
-                            <option value="Active">Active</option>
-                        }
-                        else
-                        {
-                            @if (ViewBag.Status == "Inactive")
-                            {
-                                <option value="Inactive">Inactive</option>
-                                <option value="Active">Active</option>
-                            }
-                            else
-                            {
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-
-                            }}
-
-                    </select>
                     <select class="form-select form-control-sm mb-1 ml-2" name="Score" style="width:100px">
                         @if (@ViewBag.Score == null)
                         {
@@ -100,7 +78,6 @@
                    asp-route-Trainer="@ViewBag.Trainer"
                    asp-route-Trainee="@ViewBag.Trainee"
                    asp-route-Section="@ViewBag.Section"
-                   asp-route-Status="@ViewBag.Status"
                    asp-route-Score="@ViewBag.Score" 
                    style="float:right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#008000b8" class="bi bi-file-earmark-excel-fill" viewBox="0 0 16 16">
@@ -111,7 +88,6 @@
                    asp-route-Trainer="@ViewBag.Trainer"
                    asp-route-Trainee="@ViewBag.Trainee"
                    asp-route-Section="@ViewBag.Section"
-                   asp-route-Status="@ViewBag.Status"
                    asp-route-Score="@ViewBag.Score"
                     style="float:right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#ff0000b8" class="bi bi-file-earmark-pdf-fill" viewBox="0 0 16 16">
@@ -136,9 +112,6 @@
                 Section field
             </th>
             <th>
-                GraduationStatus
-            </th>
-            <th>
                 Evaluation Score
             </th>
             <th>
@@ -161,16 +134,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Sectionfield)
 
-                </td>
-                <td>
-                    @if (@item.Status)
-                    {
-                        <p>Active</p>
-                    }
-                    else
-                    {
-                        <p>Inactive</p>
-                    }
                 </td>
                 <td>
                     @if (@item.IsInSection == true)
@@ -227,7 +190,12 @@
                     }
                     else
                     {
-                        <p>No Evaluation</p>
+                        @if (@item.feedback == null){
+                            <p>No Evaluation</p>
+                        }else{
+                            <p>HR:</p>@Html.DisplayFor(modelItem => item.feedback)
+                        }
+                        
                     }
                 </td>
             </tr>

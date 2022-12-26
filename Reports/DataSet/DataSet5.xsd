@@ -9,18 +9,17 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DataSet5" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSet5" msprop:Generator_DataSetName="DataSet5">
+  <xs:element name="DataSet5" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSet5" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet5">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_UserTableName="DataTable1">
+        <xs:element name="DataTable1" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Trainee" msprop:Generator_ColumnPropNameInRow="Trainee" msprop:Generator_ColumnPropNameInTable="TraineeColumn" msprop:Generator_ColumnVarNameInTable="columnTrainee" msprop:Generator_UserColumnName="Trainee" type="xs:string" minOccurs="0" />
-              <xs:element name="Trainer" msprop:Generator_ColumnPropNameInRow="Trainer" msprop:Generator_ColumnPropNameInTable="TrainerColumn" msprop:Generator_ColumnVarNameInTable="columnTrainer" msprop:Generator_UserColumnName="Trainer" type="xs:string" minOccurs="0" />
-              <xs:element name="SectionField" msprop:Generator_ColumnPropNameInRow="SectionField" msprop:Generator_ColumnPropNameInTable="SectionFieldColumn" msprop:Generator_ColumnVarNameInTable="columnSectionField" msprop:Generator_UserColumnName="SectionField" type="xs:string" minOccurs="0" />
-              <xs:element name="GraduationStatus" msprop:Generator_ColumnPropNameInRow="GraduationStatus" msprop:Generator_ColumnPropNameInTable="GraduationStatusColumn" msprop:Generator_ColumnVarNameInTable="columnGraduationStatus" msprop:Generator_UserColumnName="GraduationStatus" type="xs:string" minOccurs="0" />
-              <xs:element name="EvaluationScore" msprop:Generator_ColumnPropNameInRow="EvaluationScore" msprop:Generator_ColumnPropNameInTable="EvaluationScoreColumn" msprop:Generator_ColumnVarNameInTable="columnEvaluationScore" msprop:Generator_UserColumnName="EvaluationScore" type="xs:string" minOccurs="0" />
-              <xs:element name="FeedBack" msprop:Generator_ColumnPropNameInRow="FeedBack" msprop:Generator_ColumnPropNameInTable="FeedBackColumn" msprop:Generator_ColumnVarNameInTable="columnFeedBack" msprop:Generator_UserColumnName="FeedBack" type="xs:string" minOccurs="0" />
+              <xs:element name="Trainee" msprop:Generator_UserColumnName="Trainee" msprop:Generator_ColumnPropNameInTable="TraineeColumn" msprop:Generator_ColumnPropNameInRow="Trainee" msprop:Generator_ColumnVarNameInTable="columnTrainee" type="xs:string" minOccurs="0" />
+              <xs:element name="Trainer" msprop:Generator_UserColumnName="Trainer" msprop:Generator_ColumnPropNameInTable="TrainerColumn" msprop:Generator_ColumnPropNameInRow="Trainer" msprop:Generator_ColumnVarNameInTable="columnTrainer" type="xs:string" minOccurs="0" />
+              <xs:element name="SectionField" msprop:Generator_UserColumnName="SectionField" msprop:Generator_ColumnPropNameInTable="SectionFieldColumn" msprop:Generator_ColumnPropNameInRow="SectionField" msprop:Generator_ColumnVarNameInTable="columnSectionField" type="xs:string" minOccurs="0" />
+              <xs:element name="EvaluationScore" msprop:Generator_UserColumnName="EvaluationScore" msprop:Generator_ColumnPropNameInTable="EvaluationScoreColumn" msprop:Generator_ColumnPropNameInRow="EvaluationScore" msprop:Generator_ColumnVarNameInTable="columnEvaluationScore" type="xs:string" minOccurs="0" />
+              <xs:element name="FeedBack" msprop:Generator_UserColumnName="FeedBack" msprop:Generator_ColumnPropNameInTable="FeedBackColumn" msprop:Generator_ColumnPropNameInRow="FeedBack" msprop:Generator_ColumnVarNameInTable="columnFeedBack" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

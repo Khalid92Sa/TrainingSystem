@@ -52,12 +52,11 @@ namespace TrainingSystem.Service
                     message.To.Add(new MailAddress(user.Email));
                     message.From = new MailAddress("notifications@techprocess.net");
                     message.Subject = "Forget Password";
-                    message.IsBodyHtml = true;
-                    message.Body = String.Join(
-                        Environment.NewLine,
-                         "Dear " + user.UserName + ",\n",
-                         "Confirmation code:" + code+"\n",
-                         "Best Regards,");
+                    message.IsBodyHtml = false;
+                    message.Body = 
+                         "Dear " + user.UserName + ",\n\n"+
+                         "Confirmation code:" + code+"\n\n"+
+                         "Best Regards,";
                     smtp.Host = "mail.sssprocess.com";
                     smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
                     smtp.Port = 587;
@@ -85,12 +84,12 @@ namespace TrainingSystem.Service
                     SmtpClient smtp = new SmtpClient();
                     message.To.Add(new MailAddress(trainer.Email));
                     message.From = new MailAddress("notifications@techprocess.net");
-                    message.Subject = "Mr.\\Mrs. " + trainer.Name + ",";
-                    message.IsBodyHtml = true;
-                    message.Body = String.Join(
-                         Environment.NewLine,
-                         "Confirmation code:" + code,
-                         "Regards,");
+                    message.Subject = "Forget Password";
+                    message.IsBodyHtml = false;
+                    message.Body =
+                         "Dear " + trainer.UserName + ",\n\n" +
+                         "Confirmation code:" + code + "\n\n" +
+                         "Best Regards,";
                     smtp.Host = "mail.sssprocess.com";
                     smtp.Credentials = new NetworkCredential("notifications", "P@ssw0rd", "sss-process.org");
                     smtp.Port = 587;

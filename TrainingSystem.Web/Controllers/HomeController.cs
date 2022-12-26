@@ -238,12 +238,12 @@ namespace TrainingSystem.Web.Controllers
         public IActionResult Home()
         {
             IQueryable<SectionLookup> SectionFields = _sectionLookup.SectionLookUp;
-            IQueryable<Trainer> Trainers = _trainer.Trainers.Where(s=>s.Status==true);
+            IQueryable<Trainer> Trainers = _trainer.Trainers.Where(s => s.Status == true);
             IQueryable<Trainee> Trainees = _trainee.Trainees
                 .Include(s => s.Section)
                 .Where(
-                s => s.SectionID !=null
-                &&s.Section.StartDate < DateTime.Now
+                s => s.SectionID != null
+                && s.Section.StartDate < DateTime.Now
                 && s.Section.StartDate.AddMonths(3) > DateTime.Now
                 );
             ViewData["SectionFields"] = SectionFields.Count();
@@ -364,8 +364,8 @@ namespace TrainingSystem.Web.Controllers
                     {
                         Trainee = item.Name,
                         Trainer = item.Trainer.Name,
-                        Status = item.GraduationStatus,
                         Sectionfield = item.SectionField.SectionField,
+                        feedback=item.HRFeedback,
                         IsInSection = false
                     });
                 }
@@ -378,7 +378,6 @@ namespace TrainingSystem.Web.Controllers
                             Trainee = item.Name,
                             Trainer = item.Trainer.Name,
                             Sectionfield = item.SectionField.SectionField,
-                            Status = item.GraduationStatus,
                             Evaluation = 0,
                             IsInSection = true
                         });
@@ -391,7 +390,6 @@ namespace TrainingSystem.Web.Controllers
                             Trainee = item.Name,
                             Trainer = item.Trainer.Name,
                             Sectionfield = item.SectionField.SectionField,
-                            Status = item.GraduationStatus,
                             Evaluation = item.Evaluation.EvaluationRate,
                             IsInSection = true,
                             feedback = item.Evaluation.feedback
@@ -498,77 +496,45 @@ namespace TrainingSystem.Web.Controllers
             dt.Columns.Add("Trainee");
             dt.Columns.Add("Trainer");
             dt.Columns.Add("SectionField");
-            dt.Columns.Add("GraduationStatus");
             dt.Columns.Add("EvaluationScore");
             dt.Columns.Add("FeedBack");
             foreach (var item in Trainees)
             {
                 if (item.SectionID == null)
                 {
-                    if (item.GraduationStatus)
+                    if (item.HRFeedback == null)
                     {
-                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Not Include Section", "Not Include Section");
+                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Not Include Section", "Not Include Section");
                     }
                     else
                     {
-                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Not Include Section", "Not Include Section");
+                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Not Include Section", "HR:"+item.HRFeedback);
                     }
-
+                    
                 }
                 else
                 {
                     if (item.Evaluation == null)
                     {
-                        if (item.GraduationStatus)
-                        {
-                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "No Evauation", "No Evaluation");
-                        }
-                        else
-                        {
-                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "No Evauation", "No Evaluation");
-                        }
-
+                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "No Evauation", "No Evaluation");
                     }
                     else
                     {
-                        if (item.GraduationStatus)
+                        if (item.Evaluation.EvaluationRate <= 70)
                         {
-
-                            if (item.Evaluation.EvaluationRate <= 70)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Poor", item.Evaluation.feedback);
-                            }
-                            else if (item.Evaluation.EvaluationRate <= 79)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Good", item.Evaluation.feedback);
-                            }
-                            else if (item.Evaluation.EvaluationRate <= 89)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Very Good", item.Evaluation.feedback);
-                            }
-                            else
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Excellent", item.Evaluation.feedback);
-                            }
+                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Poor", item.Evaluation.feedback);
+                        }
+                        else if (item.Evaluation.EvaluationRate <= 79)
+                        {
+                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Good", item.Evaluation.feedback);
+                        }
+                        else if (item.Evaluation.EvaluationRate <= 89)
+                        {
+                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Very Good", item.Evaluation.feedback);
                         }
                         else
                         {
-                            if (item.Evaluation.EvaluationRate <= 70)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Poor", item.Evaluation.feedback);
-                            }
-                            else if (item.Evaluation.EvaluationRate <= 79)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Good", item.Evaluation.feedback);
-                            }
-                            else if (item.Evaluation.EvaluationRate <= 89)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Very Good", item.Evaluation.feedback);
-                            }
-                            else
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Excellent", item.Evaluation.feedback);
-                            }
+                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField,"Excellent", item.Evaluation.feedback);
                         }
 
                     }
@@ -612,9 +578,11 @@ namespace TrainingSystem.Web.Controllers
                  .Include(s => s.Trainer);
             if (Trainer != null)
             {
+
                 Trainees = Trainees.Where(s => s.Trainer.ID.ToString().Contains(Trainer));
                 Trainer trainer = _trainer.Trainers.First(s => s.ID.ToString() == Trainer);
                 ViewData["TrainerResult"] = trainer.Name;
+
             }
             if (Trainee != null)
             {
@@ -683,77 +651,44 @@ namespace TrainingSystem.Web.Controllers
             dt.Columns.Add("Trainee");
             dt.Columns.Add("Trainer");
             dt.Columns.Add("SectionField");
-            dt.Columns.Add("GraduationStatus");
             dt.Columns.Add("EvaluationScore");
             dt.Columns.Add("FeedBack");
             foreach (var item in Trainees)
             {
                 if (item.SectionID == null)
                 {
-                    if (item.GraduationStatus)
+                    if (item.HRFeedback == null)
                     {
-                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Not Include Section", "Not Include Section");
+                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Not Include Section", "Not Include Section");
                     }
                     else
                     {
-                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Not Include Section", "Not Include Section");
+                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Not Include Section", "HR:" + item.HRFeedback);
                     }
-
                 }
                 else
                 {
                     if (item.Evaluation == null)
                     {
-                        if (item.GraduationStatus)
-                        {
-                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "No Evauation", "No Evaluation");
-                        }
-                        else
-                        {
-                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "No Evauation", "No Evaluation");
-                        }
-
+                        dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "No Evauation", "No Evaluation");
                     }
                     else
                     {
-                        if (item.GraduationStatus)
+                        if (item.Evaluation.EvaluationRate <= 70)
                         {
-
-                            if (item.Evaluation.EvaluationRate <= 70)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Poor", item.Evaluation.feedback);
-                            }
-                            else if (item.Evaluation.EvaluationRate <= 79)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Good", item.Evaluation.feedback);
-                            }
-                            else if (item.Evaluation.EvaluationRate <= 89)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Very Good", item.Evaluation.feedback);
-                            }
-                            else
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Active", "Excellent", item.Evaluation.feedback);
-                            }
+                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Poor", item.Evaluation.feedback);
+                        }
+                        else if (item.Evaluation.EvaluationRate <= 79)
+                        {
+                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Good", item.Evaluation.feedback);
+                        }
+                        else if (item.Evaluation.EvaluationRate <= 89)
+                        {
+                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Very Good", item.Evaluation.feedback);
                         }
                         else
                         {
-                            if (item.Evaluation.EvaluationRate <= 70)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Poor", item.Evaluation.feedback);
-                            }
-                            else if (item.Evaluation.EvaluationRate <= 79)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Good", item.Evaluation.feedback);
-                            }
-                            else if (item.Evaluation.EvaluationRate <= 89)
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Very Good", item.Evaluation.feedback);
-                            }
-                            else
-                            {
-                                dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Inactive", "Excellent", item.Evaluation.feedback);
-                            }
+                            dt.Rows.Add(item.Name, item.Trainer.Name, item.SectionField.SectionField, "Excellent", item.Evaluation.feedback);
                         }
 
                     }

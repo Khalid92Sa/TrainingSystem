@@ -42,6 +42,7 @@ namespace TrainingSystem.Service
             traineeToUpdate.GraduationDate = trainee.GraduationDate;
             traineeToUpdate.SectionLookupID = trainee.SectionLookupID;
             traineeToUpdate.TrainerID = trainee.TrainerID;
+            traineeToUpdate.HRFeedback = trainee.HRFeedback;
             await context.SaveChangesAsync();
         }
 

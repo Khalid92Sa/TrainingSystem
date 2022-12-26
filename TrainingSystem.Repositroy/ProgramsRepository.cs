@@ -43,6 +43,7 @@ namespace TrainingSystem.Repositroy
             programToUpdate.Name = program.Name;
             programToUpdate.TrainerID = program.TrainerID;
             programToUpdate.StartDate = program.StartDate;
+            programToUpdate.EndDate = program.EndDate;
             programToUpdate.Trainer = program.Trainer;
             await _context.SaveChangesAsync();
         }

@@ -52,6 +52,11 @@
                 <input asp-for="GraduationDate" class="form-control" />
                 <span asp-validation-for="GraduationDate" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="HRFeedback" class="control-label"></label>
+                <input asp-for="HRFeedback" class="form-control" />
+                <span asp-validation-for="HRFeedback" class="text-danger"></span>
+            </div>
             <div class="from-group">
                 @if (ViewBag.CreateOrEdit == "Edit Trainee")
                 {
