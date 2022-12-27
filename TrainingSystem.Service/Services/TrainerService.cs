@@ -73,7 +73,7 @@ namespace TrainingSystem.Service
                 message.Subject = "Welcome To The Training System!";
                 message.IsBodyHtml = false;
                 message.Body =
-                         "Dear " + trainer.UserName + ",\n\n" +
+                         "Dear " + trainer.Name + ",\n\n" +
                          "Welcome to the training system that related to the HR Department.\n"+
                          "You can access your account by the below info to reach your trainees and evaluate them after completing the training period:\n"+
                          "Username:" + trainer.UserName + "\n"+

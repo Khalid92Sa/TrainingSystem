@@ -87,7 +87,7 @@ namespace TrainingSystem.Service
                     message.Subject = "Forget Password";
                     message.IsBodyHtml = false;
                     message.Body =
-                         "Dear " + trainer.UserName + ",\n\n" +
+                         "Dear " + trainer.Name + ",\n\n" +
                          "Confirmation code:" + code + "\n\n" +
                          "Best Regards,";
                     smtp.Host = "mail.sssprocess.com";
